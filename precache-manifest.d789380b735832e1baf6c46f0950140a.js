@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "5f0004d9374f8f06357945ee5eacafb0",
+    "revision": "0544bbeccc67a0717271e2815b9e8a0e",
     "url": "/staircalculator/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/staircalculator/static/css/2.67123b20.chunk.css"
   },
   {
-    "revision": "30cf2e4a5638bb8d9b16",
+    "revision": "0f56622dbab16830366c",
     "url": "/staircalculator/static/css/main.d1b05096.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/staircalculator/static/js/2.e45977a7.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "30cf2e4a5638bb8d9b16",
-    "url": "/staircalculator/static/js/main.155f5581.chunk.js"
+    "revision": "0f56622dbab16830366c",
+    "url": "/staircalculator/static/js/main.a1777065.chunk.js"
   },
   {
     "revision": "9506cb289127363473e5",
