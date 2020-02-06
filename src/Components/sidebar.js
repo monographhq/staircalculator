@@ -1,8 +1,8 @@
 import React from 'react';
-import RiseRun from './riserun';
-import Details from './details';
-import Headroom from './headroom';
-import StairAngle from './inputs/stairangle';
+import RiseRun from './sidebarSections/riserun';
+import Details from './sidebarSections/details';
+import Headroom from './sidebarSections/headroom';
+import StairAngle from './sidebarSections/stairangle';
 
 const Sidebar = () => {
 
