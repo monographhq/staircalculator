@@ -118,8 +118,8 @@ class App extends Component {
             totalRunft={this.state.totalRunft}
             totalRunin={this.state.totalRunin}
             totalRunfr={this.state.totalRunfr}
-            totalRiseFt={this.state.totalRiseft}
-            totalRiseIn={this.state.totalRisein}
+            totalRiseft={this.state.totalRiseft}
+            totalRisein={this.state.totalRisein}
             totalRisefr={this.state.totalRisefr}
             idealRunin={this.state.idealRunin}
             idealRunfr={this.state.idealRunfr}
