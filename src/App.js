@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
-
 import TotalRun from './Components/inputs/totalrun';
 import TotalRise from './Components/inputs/totalrise';
 import IdealRun from './Components/inputs/idealrun';
@@ -12,6 +11,7 @@ import Height from './Components/inputs/height';
 import FloorOpening from './Components/inputs/flooropening';
 import FloorThickness from './Components/inputs/floorthickness';
 import Stair from './Components/stair';
+
 
 class App extends Component {
 
@@ -116,6 +116,15 @@ class App extends Component {
         <div className="col-8" id="container">
           <Stair 
             totalRunft={this.state.totalRunft}
+            totalRunin={this.state.totalRunin}
+            totalRunfr={this.state.totalRunfr}
+            totalRiseFt={this.state.totalRiseft}
+            totalRiseIn={this.state.totalRisein}
+            totalRisefr={this.state.totalRisefr}
+            idealRunin={this.state.idealRunin}
+            idealRunfr={this.state.idealRunfr}
+            idealRisein={this.state.idealRisein}
+            idealRisefr={this.state.idealRisefr}
           />
         </div>
         

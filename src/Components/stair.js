@@ -1,32 +1,41 @@
 import React from 'react';
-import Konva from 'konva';
-import { Stage, Layer, Rect, Text, Circle, Line } from 'react-konva';
+import { Stage, Layer, Line } from 'react-konva';
 
 const Stair = (props) => {
 
+  const start = 0;
+
+  let windowWidth = window.innerWidth * 0.66;
+  let move = [100, 100];
+  let coordinates = [];
+
+  let idealRun = props.idealRunin + props.idealRunfr;
+  let idealRise = props.idealRisein + props.idealRisefr;
+
+  let totalRun = props.totalRunft + props.totalRunin + props.totalRunfr;
+  let totalRise = props.totalRiseft + props.totalRisein + props.totalRisefr;
+
+  let runCount = totalRun / idealRun
+  let riseCount = totalRise / idealRise;
+
+
+  for (let i=0; i<runCount; i++){
+    coordinates.push(start + (idealRun*i), start + (idealRise*i), start + (idealRun*i), idealRise + (idealRise*i), idealRun + (idealRun*i), idealRise + (idealRise*i))
+  }
+
+  console.log(coordinates);
+
   return (
-    <Stage width={window.innerWidth * 0.66} height={window.innerHeight * 0.66}>
+    <Stage width={windowWidth} height={window.innerHeight}>
           <Layer>
-            <Text text="Some text on canvas" fontSize={15} />
-            <Rect
-              x={props.totalRunft}
-              y={50}
-              width={100}
-              height={100}
-              fill="red"
-              shadowBlur={10}
-            />
-            <Circle x={200} y={100} radius={50} fill="green" />
             <Line
-              x={20}
-              y={200}
-              points={[0, 0, 100, 0, 100, 100]}
-              tension={0.5}
-              closed
+              x={move[0]}
+              y={move[1]}
+              points={coordinates}
               stroke="black"
-              fillLinearGradientStartPoint={{ x: -50, y: -50 }}
-              fillLinearGradientEndPoint={{ x: 50, y: 50 }}
-              fillLinearGradientColorStops={[0, 'red', 1, 'yellow']}
+              strokeWidth={3}
+              lineCap='sqare'
+              lineJoin='sqare'
             />
           </Layer>
         </Stage>
