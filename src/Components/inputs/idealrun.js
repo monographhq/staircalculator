@@ -1,6 +1,6 @@
 import React from 'react';
 
-const IdealRun = () => {
+const IdealRun = (props) => {
 
     let selectInches = 11 + 1;
     let selectFractions = 16;
@@ -8,14 +8,14 @@ const IdealRun = () => {
     return (
         <div>
             <label>Ideal run</label>
-            <select>
+            <select defaultValue={props.idealRunin} onChange={props.changeidealRunin}>
                 {Array.from(Array(selectInches), (e, i) => {
-                    return ( <option key={i}>{i +'"'}</option> )
+                    return ( <option value={i} key={i}>{i +'"'}</option> )
                 })}
             </select>
-            <select>
+            <select defaultValue={props.idealRunfr} onChange={props.changeidealRunff}>
                 {Array.from(Array(selectFractions), (e, i) => {
-                    return ( <option key={i * 0.0625}>{i + "/16"}</option> )
+                    return ( <option value={i} key={i * 0.0625}>{i + "/16"}</option> )
                 })}
             </select>
         </div>  
