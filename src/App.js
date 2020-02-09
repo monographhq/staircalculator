@@ -28,40 +28,51 @@ class App extends Component {
     idealRisefr: 0,
 
     idealRunin: 11,
-    idealRunfr: 0
+    idealRunfr: 0,
+    
   }
 
+
+  //Handlers for changing total run
   changetotalRunft = (event) => {
-      this.setState({totalRunft:event.target.value})
+      this.setState({
+        totalRunft:event.target.value
+      })
   }
-
   changetotalRunin = (event) => {
       this.setState({totalRunin:event.target.value})
   }
-
   changetotalRunfr = (event) => {
       this.setState({totalRunfr:event.target.value})
   }
 
+  //Handlers for changing total rise
   changetotalRiseft = (event) => {
       this.setState({totalRiseft:event.target.value})
   }
-
   changetotalRisein = (event) => {
       this.setState({totalRisein:event.target.value})
   }
-
   changetotalRisefr = (event) => {
       this.setState({totalRisefr:event.target.value})
   }
 
+  //Handlers for changing ideal run
+  changeidealRunin = (event) => {
+    this.setState({idealRunin:event.target.value})
+  }
+  changeidealRunfr = (event) => {
+      this.setState({idealRunfr:event.target.value})
+  }
+
+  //Handlers for changing ideal rise
   changeidealRisein = (event) => {
       this.setState({idealRisein:event.target.value})
   }
-
   changeidealRisefr = (event) => {
       this.setState({idealRisefr:event.target.value})
   }
+  
 
   render(){
     return (
