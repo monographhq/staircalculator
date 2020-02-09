@@ -21,10 +21,10 @@ const Stair = (props) => {
 
   if (props.boolean === true){
     for (let i=0; i<xCount; i++){
-      coordinates.push( (yCount*idealRun)-(idealRun*i), idealRise*i, (yCount*idealRun)-(idealRun*(i+1)), idealRise*i, (yCount*idealRun)-(idealRun*(i+1)), (idealRise*(i+1)) )
+      coordinates.push( (totalRise)-(idealRun*i), idealRise*i, (totalRise)-(idealRun*(i+1)), idealRise*i, (totalRise)-(idealRun*(i+1)), (idealRise*(i+1)) )
     }} else if (props.boolean === false){
     for (let i=0; i<yCount; i++){
-      coordinates.push( (xCount*idealRise)-(idealRun*i), idealRise*i, (xCount*idealRise)-(idealRun*(i+1)), idealRise*i, (xCount*idealRise)-(idealRun*(i+1)), (idealRise*(i+1)) )
+      coordinates.push( (totalRun)-(idealRun*i), idealRise*i, (totalRun)-(idealRun*(i+1)), idealRise*i, (totalRun)-(idealRun*(i+1)), (idealRise*(i+1)) )
     }
   }
 
