@@ -6,7 +6,7 @@ const Stair = (props) => {
   const start = 0;
 
   let windowWidth = window.innerWidth * 0.65;
-  let move = [0,100];
+  let move = [windowWidth/2,100];
 
   let totalRun = parseInt(props.totalRunft) + parseInt(props.totalRunin) + parseFloat(props.totalRunfr);
   let totalRise = parseInt(props.totalRiseft) + parseInt(props.totalRisein) + parseFloat(props.totalRisefr);
@@ -21,10 +21,10 @@ const Stair = (props) => {
 
   if (props.boolean === true){
     for (let i=0; i<xCount; i++){
-      coordinates.push( totalRun-(idealRun*i), idealRise*i, totalRun-(idealRun*(i+1)), idealRise*i, totalRun-(idealRun*(i+1)), (idealRise*(i+1)) )
+      coordinates.push( (yCount*idealRun)-(idealRun*i), idealRise*i, (yCount*idealRun)-(idealRun*(i+1)), idealRise*i, (yCount*idealRun)-(idealRun*(i+1)), (idealRise*(i+1)) )
     }} else if (props.boolean === false){
     for (let i=0; i<yCount; i++){
-      coordinates.push( totalRun-(idealRun*i), idealRise*i, totalRun-(idealRun*(i+1)), idealRise*i, totalRun-(idealRun*(i+1)), (idealRise*(i+1)) )
+      coordinates.push( (xCount*idealRise)-(idealRun*i), idealRise*i, (xCount*idealRise)-(idealRun*(i+1)), idealRise*i, (xCount*idealRise)-(idealRun*(i+1)), (idealRise*(i+1)) )
     }
   }
 

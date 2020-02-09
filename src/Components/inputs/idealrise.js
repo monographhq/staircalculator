@@ -15,7 +15,7 @@ const IdealRise = (props) => {
             </select>
             <select defaultValue={props.idealRisefr} onChange={props.changeidealRisefr}>
                 {Array.from(Array(selectFractions), (e, i) => {
-                    return ( <option value={i} key={i * 0.0625}>{i + "/16"}</option> )
+                    return ( <option value={i * 0.0625} key={i * 0.0625}>{i + "/16"}</option> )
                 })}
             </select>
         </div>  

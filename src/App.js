@@ -64,8 +64,7 @@ class App extends Component {
   changetotalRunft = (event) => {
       this.setState({
         totalRunft:event.target.value,
-        runOn: true,
-
+        runOn: true
       })
   }
   changetotalRunin = (event) => {
