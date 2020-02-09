@@ -29,32 +29,76 @@ class App extends Component {
 
     idealRunin: 11,
     idealRunfr: 0,
-    
+
+    runOn: true
+
   }
 
+  //Retrieves run count
+  runCount = () => {
+    let sumRuntotal = parseInt( parseInt(this.state.totalRunft) + parseInt(this.state.totalRunin) + parseFloat(this.state.totalRunfr) );
+    let sumRunideal = parseInt( parseInt(this.state.idealRunin) + parseFloat(this.state.idealRunfr) );
+    return ( sumRuntotal / sumRunideal )
+  }
+
+  //Retrieves rise count
+  riseCount = () => {
+    let sumRisetotal = parseInt( parseInt(this.state.totalRiseft) + parseInt(this.state.totalRisein) + parseFloat(this.state.totalRisefr) );
+    let sumRiseideal = parseInt( parseInt(this.state.idealRisein) + parseFloat(this.state.idealRisefr) );
+    return ( sumRisetotal / sumRiseideal )
+  }
+
+  //Changes rise input values based on run
+  riseChange = () => {
+    let totalRise = this.runCount * (parseInt( parseInt(this.state.idealRisein) + parseFloat(this.state.idealRisefr) ) );
+    return totalRise
+  }
+
+  //Changes run input values based on rise
+  runChange = () => {
+    let totalRun = this.riseCount * (parseInt( parseInt(this.state.idealRunin) + parseFloat(this.state.idealRunfr) ) );
+    return totalRun
+  }
 
   //Handlers for changing total run
   changetotalRunft = (event) => {
       this.setState({
-        totalRunft:event.target.value
+        totalRunft:event.target.value,
+        runOn: true,
+
       })
   }
   changetotalRunin = (event) => {
-      this.setState({totalRunin:event.target.value})
+      this.setState({
+        totalRunin:event.target.value,
+        runOn: true
+      })
   }
   changetotalRunfr = (event) => {
-      this.setState({totalRunfr:event.target.value})
+      this.setState({
+        totalRunfr:event.target.value,
+        runOn: true
+      })
   }
 
   //Handlers for changing total rise
   changetotalRiseft = (event) => {
-      this.setState({totalRiseft:event.target.value})
+      this.setState({
+        totalRiseft:event.target.value,
+        runOn: false
+      })
   }
   changetotalRisein = (event) => {
-      this.setState({totalRisein:event.target.value})
+      this.setState({
+        totalRisein:event.target.value,
+        runOn: false
+      })
   }
   changetotalRisefr = (event) => {
-      this.setState({totalRisefr:event.target.value})
+      this.setState({
+        totalRisefr:event.target.value,
+        runOn: false
+      })
   }
 
   //Handlers for changing ideal run
@@ -136,6 +180,9 @@ class App extends Component {
             idealRunfr={this.state.idealRunfr}
             idealRisein={this.state.idealRisein}
             idealRisefr={this.state.idealRisefr}
+            boolean={this.state.runOn}
+            runCount={this.state.runCount}
+            riseCount={this.state.riseCount}
           />
         </div>
         
