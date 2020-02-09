@@ -8,18 +8,19 @@ const Stair = (props) => {
   let windowWidth = window.innerWidth * 0.66;
   let move = [100, 100];
 
-  let totalRun = props.totalRunft + props.totalRunin + props.totalRunfr;
-  let totalRise = props.totalRiseft + props.totalRisein + props.totalRisefr;
+  let totalRun = parseInt(props.totalRunft) + parseInt(props.totalRunin) + parseFloat(props.totalRunfr);
+  let totalRise = parseInt(props.totalRiseft) + parseInt(props.totalRisein) + parseFloat(props.totalRisefr);
 
-  let idealRun = props.idealRunin + props.idealRunfr;
-  let idealRise = props.idealRisein + props.idealRisefr;
+  let idealRun = parseInt(props.idealRunin) + parseFloat(props.idealRunfr);
+  let idealRise = parseInt(props.idealRisein) + parseFloat(props.idealRisefr);
   
-  let blank = [(windowWidth/totalRun), (idealRun*totalRise/totalRun)];
+  let xCount = parseInt(totalRun/idealRun);
 
-  let coordinates = [props.totalRunft, props.totalRiseft, props.totalRunft*1.25, props.totalRiseft*1.25];
+  let coordinates = [];
 
-  console.log(props.totalRunft);
-  console.log(props.totalRiseft);
+  for (let i=0; i<xCount; i++){
+    coordinates.push( totalRun-(idealRun*i), idealRise*i, totalRun-(idealRun*(i+1)), idealRise*i, totalRun-(idealRun*(i+1)), (idealRise*(i+1)) )
+  }
 
   return (
     <Stage width={windowWidth} height={window.innerHeight}>
@@ -29,7 +30,7 @@ const Stair = (props) => {
             y={move[1]}
             points={coordinates}
             stroke="black"
-            strokeWidth={3}
+            strokeWidth={2}
             lineCap='sqare'
             lineJoin='sqare'
           />
