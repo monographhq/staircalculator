@@ -148,8 +148,11 @@ class App extends Component {
     this.setState({floorfr:event.target.value})
   }
   
+  //Handlers for headroom
   changeheadroomlength = (event) => {
-    this.setState({headroomLength:event.target.value})
+    this.setState({
+      headroomLength:event.target.value
+    })
   }
 
   render(){
@@ -206,7 +209,6 @@ class App extends Component {
                   headroomLength={this.state.headroomLength}
                   changeheadroomlength={this.changeheadroomlength}
                 />
-                <FloorOpening />
                 <FloorThickness 
                   floorft={this.state.floorft}
                   floorin={this.state.floorin}
@@ -242,6 +244,7 @@ class App extends Component {
             floorin={this.state.floorin}
             floorfr={this.state.floorfr}
             headroomLength={this.state.headroomLength}
+            headroomDelta={this.state.headroomDelta}
           />
         </div>
         

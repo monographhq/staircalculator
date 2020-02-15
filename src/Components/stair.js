@@ -41,6 +41,8 @@ const Stair = (props) => {
 
   let headroomPts = [ (coordinates[coordinates.length-12]-(idealRun*3)), floorThickness, (coordinates[coordinates.length-12]-(idealRun*3)), 0, coordinates[coordinates.length-12]-idealRun + lengthH, 0, coordinates[coordinates.length-12]-idealRun + lengthH, floorThickness ];
 
+  let headroomDelta = coordinates[3] - (coordinates[coordinates.length-12]-idealRun + lengthH);
+
   return (
     <Stage width={windowWidth} height={window.innerHeight}>
         <Layer>
