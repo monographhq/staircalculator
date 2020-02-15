@@ -37,6 +37,8 @@ class App extends Component {
     floorin: 7,
     floorfr: 0,
     
+    headroomMax: 0,
+    headroomLength: 0,
 
     runOn: true
 
@@ -145,8 +147,10 @@ class App extends Component {
   changefloorfr = (event) => {
     this.setState({floorfr:event.target.value})
   }
-    
   
+  changeheadroomlength = (event) => {
+    this.setState({headroomLength:event.target.value})
+  }
 
   render(){
     return (
@@ -195,7 +199,13 @@ class App extends Component {
 
             <div>
                 <div>Headroom</div>
-                <Height />
+                <Height 
+                  totalRunft={this.state.totalRunft}
+                  totalRunin={this.state.totalRunin}
+                  totalRunfr={this.state.totalRunfr}
+                  headroomLength={this.state.headroomLength}
+                  changeheadroomlength={this.changeheadroomlength}
+                />
                 <FloorOpening />
                 <FloorThickness 
                   floorft={this.state.floorft}
@@ -231,6 +241,7 @@ class App extends Component {
             floorft={this.state.floorft}
             floorin={this.state.floorin}
             floorfr={this.state.floorfr}
+            headroomLength={this.state.headroomLength}
           />
         </div>
         

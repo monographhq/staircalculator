@@ -37,6 +37,10 @@ const Stair = (props) => {
     coordinates.push( (coordinates[coordinates.length-2]+stringerB), coordinates[coordinates.length-1], coordinates[0], stringerA, coordinates[0], floorThickness, (coordinates[0]+landing), floorThickness, (coordinates[0]+landing), 0)
   }
 
+  let lengthH = parseFloat(props.headroomLength);
+
+  let headroomPts = [ (coordinates[coordinates.length-12]-(idealRun*3)), floorThickness, (coordinates[coordinates.length-12]-(idealRun*3)), 0, coordinates[coordinates.length-12]-idealRun + lengthH, 0, coordinates[coordinates.length-12]-idealRun + lengthH, floorThickness ];
+
   return (
     <Stage width={windowWidth} height={window.innerHeight}>
         <Layer>
@@ -53,12 +57,12 @@ const Stair = (props) => {
         <Line
             x={move[0]}
             y={move[1]}
-            points={[0, 0, 0, 200]}
+            points={headroomPts}
             stroke="black"
             strokeWidth={2}
             lineCap='sqare'
             lineJoin='sqare'
-            
+            closed='true'
           />
         </Layer>
       </Stage>
