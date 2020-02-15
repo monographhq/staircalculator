@@ -3,8 +3,6 @@ import { Stage, Layer, Line } from 'react-konva';
 
 const Stair = (props) => {
 
-  const start = 0;
-
   let windowWidth = window.innerWidth * 0.65;
   let move = [windowWidth/2,100];
 
@@ -16,16 +14,27 @@ const Stair = (props) => {
 
   let xCount = parseInt(totalRun/idealRun);
   let yCount = parseInt(totalRise/idealRise);
+
+  let landing = 36;
+
+  let stringerA = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan(idealRun / idealRise));
+  let stringerB = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan(idealRise / idealRun));
+
   let coordinates = [];
+
+  let floorThickness = (parseFloat(props.floorft) + parseFloat(props.floorin) + parseFloat(props.floorfr));
 
 
   if (props.boolean === true){
     for (let i=0; i<xCount; i++){
       coordinates.push( (totalRise)-(idealRun*i), idealRise*i, (totalRise)-(idealRun*(i+1)), idealRise*i, (totalRise)-(idealRun*(i+1)), (idealRise*(i+1)) )
-    }} else if (props.boolean === false){
+    }
+    coordinates.push( (coordinates[coordinates.length-2]+stringerB), coordinates[coordinates.length-1], coordinates[0], stringerA, coordinates[0], floorThickness, (coordinates[0]+landing), floorThickness, (coordinates[0]+landing), 0)
+  } else if (props.boolean === false){
     for (let i=0; i<yCount; i++){
       coordinates.push( (totalRun)-(idealRun*i), idealRise*i, (totalRun)-(idealRun*(i+1)), idealRise*i, (totalRun)-(idealRun*(i+1)), (idealRise*(i+1)) )
     }
+    coordinates.push( (coordinates[coordinates.length-2]+stringerB), coordinates[coordinates.length-1], coordinates[0], stringerA, coordinates[0], floorThickness, (coordinates[0]+landing), floorThickness, (coordinates[0]+landing), 0)
   }
 
   return (
@@ -39,6 +48,17 @@ const Stair = (props) => {
             strokeWidth={2}
             lineCap='sqare'
             lineJoin='sqare'
+            closed='true'
+          />
+        <Line
+            x={move[0]}
+            y={move[1]}
+            points={[0, 0, 0, 200]}
+            stroke="black"
+            strokeWidth={2}
+            lineCap='sqare'
+            lineJoin='sqare'
+            
           />
         </Layer>
       </Stage>

@@ -9,17 +9,17 @@ const FloorThickness = (props) => {
     return (
         <div>
             <label>Floor Thickness</label>
-            <select>
+            <select defaultValue={props.floorft} onChange={props.changefloorft}>
                 {Array.from(Array(maxThickness), (e, i) => {
                     return ( <option key={i*12}>{i +"'"}</option> )
                 })}
             </select>
-            <select>
+            <select defaultValue={props.floorin} onChange={props.changefloorin}>
                 {Array.from(Array(selectInches), (e, i) => {
                     return ( <option key={i}>{i +'"'}</option> )
                 })}
             </select>
-            <select>
+            <select defaultValue={props.floorfr} onChange={props.changefloorfr}>
                 {Array.from(Array(selectFractions), (e, i) => {
                     return ( <option key={i * 0.0625}>{i + "/16"}</option> )
                 })}

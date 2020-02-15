@@ -30,6 +30,14 @@ class App extends Component {
     idealRunin: 11,
     idealRunfr: 0,
 
+    stringerin: 7 * Math.sin(Math.atan(7 / 11)),
+    stringerfr: 0,
+
+    floorft: 0,
+    floorin: 7,
+    floorfr: 0,
+    
+
     runOn: true
 
   }
@@ -115,6 +123,29 @@ class App extends Component {
   changeidealRisefr = (event) => {
       this.setState({idealRisefr:event.target.value})
   }
+
+  //Handlers for changing stringer
+  changestringerin = (event) => {
+    this.setState({stringerin:event.target.value})
+  }
+
+  changestringerfr = (event) => {
+    this.setState({stringerfr:event.target.value})
+  }
+
+  //Handlers for changing floor thickness
+  changefloorft = (event) => {
+    this.setState({floorft:event.target.value})
+  }
+
+  changefloorin = (event) => {
+    this.setState({floorin:event.target.value})
+  }
+
+  changefloorfr = (event) => {
+    this.setState({floorfr:event.target.value})
+  }
+    
   
 
   render(){
@@ -155,13 +186,26 @@ class App extends Component {
                 />
               </div>
 
-            <Details />
+            <Details 
+              stringerin={this.state.stringerin}
+              stringerfr={this.state.stringerfr}
+              changestringerin={this.changestringerin}
+              changestringerfr={this.changestringerfr}
+            />
 
             <div>
                 <div>Headroom</div>
                 <Height />
                 <FloorOpening />
-                <FloorThickness />
+                <FloorThickness 
+                  floorft={this.state.floorft}
+                  floorin={this.state.floorin}
+                  floorfr={this.state.floorfr}
+                  changefloorft={this.changefloorft}
+                  changefloorin={this.changefloorin}
+                  changefloorfr={this.changefloorfr}
+                />
+
             </div>
 
             <StairAngle />
@@ -182,6 +226,11 @@ class App extends Component {
             boolean={this.state.runOn}
             runCount={this.state.runCount}
             riseCount={this.state.riseCount}
+            stringerin={this.state.stringerin}
+            stringerfr={this.state.stringerfr}
+            floorft={this.state.floorft}
+            floorin={this.state.floorin}
+            floorfr={this.state.floorfr}
           />
         </div>
         
