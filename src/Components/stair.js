@@ -53,16 +53,20 @@ const Stair = (props) => {
   let riserthickness = parseFloat(props.riserin) + parseFloat(props.riserfr);
   let nosing = parseFloat(props.nosingin) + parseFloat(props.nosingfr);
 
-  let treadWidth = idealRun + nosing
+  let treadWidth = idealRun + nosing;
+  let riserHeight = idealRise - treadThickness;
 
-  let detailsX = [];
+  let treadsX = [];
   for (var i=2; i<xCount+2; i+6){
-    detailsX.push(coordinates[i] - nosing)
+    treadsX.push(move[0] + coordinates[i] - nosing);
   }
 
-  let detailsY = [];
-
-
+  let treadsY = [];
+  let risersY = [];
+  for (var i=3; i<yCount+3; i+6){
+    treadsY.push(move[1] + coordinates[i]);
+    risersY.push(move[1] + coordinates[i] +treadThickness);
+  }
 
 
   return (
@@ -89,10 +93,17 @@ const Stair = (props) => {
             closed='true'
           />
         <Rect
-            x={move[0]}
-            y={move[1]}
+            x={treadsX}
+            y={treadsY}
             width={treadWidth}
             height={treadThickness}
+            fill="red"
+        />
+        <Rect
+            x={treadsX}
+            y={risersY}
+            width={riserThickness}
+            height={riserHeight}
             fill="red"
         />
         </Layer>
