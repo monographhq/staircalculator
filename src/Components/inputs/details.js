@@ -11,14 +11,14 @@ const Details = (props) => {
             <div>Details</div>
             <div>
                 <label>Tread thickness</label>
-                <select>
+                <select defaultValue={props.treadin} onChange={props.changetreadin}>
                     {Array.from(Array(selectInches), (e, i) => {
-                        return ( <option key={i}>{i +'"'}</option> )
+                        return ( <option value={i} key={i}>{i +'"'}</option> )
                     })}
                 </select>
-                <select>
+                <select defaultValue="0" onChange={props.changetreadfr}>
                     {Array.from(Array(selectFractions), (e, i) => {
-                        return ( <option key={i * 0.0625}>{i + "/16"}</option> )
+                        return ( <option value={i * 0.0625} key={i * 0.0625}>{i + "/16"}</option> )
                     })}
                 </select>
             </div>
@@ -26,25 +26,25 @@ const Details = (props) => {
                 <label>Riser thickness</label>
                 <select>
                     {Array.from(Array(selectInches), (e, i) => {
-                        return ( <option key={i}>{i +'"'}</option> )
+                        return ( <option value={i} key={i}>{i +'"'}</option> )
                     })}
                 </select>
                 <select>
                     {Array.from(Array(selectFractions), (e, i) => {
-                        return ( <option key={i * 0.0625}>{i + "/16"}</option> )
+                        return ( <option value={i * 0.0625} key={i * 0.0625}>{i + "/16"}</option> )
                     })}
                 </select>
             </div>
             <div>
                 <label>Nosing</label>
-                <select>
+                <select defaultValue="0" onChange={props.changenosingin}>
                     {Array.from(Array(selectInches), (e, i) => {
-                        return ( <option key={i}>{i +'"'}</option> )
+                        return ( <option value={i} key={i}>{i +'"'}</option> )
                     })}
                 </select>
-                <select>
+                <select defaultValue="0" onChange={props.changenosingfr}>
                     {Array.from(Array(selectFractions), (e, i) => {
-                        return ( <option key={i * 0.0625}>{i + "/16"}</option> )
+                        return ( <option value={i * 0.0625} key={i * 0.0625}>{i + "/16"}</option> )
                     })}
                 </select>
             </div>
@@ -52,12 +52,12 @@ const Details = (props) => {
                 <label>Stringer Width</label>
                 <select defaultValue={props.stringerin} onChange={props.changestringerin}>
                     {Array.from(Array(selectStringer), (e, i) => {
-                        return ( <option key={i}>{i +'"'}</option> )
+                        return ( <option value={i} key={i}>{i +'"'}</option> )
                     })}
                 </select>
                 <select defaultValue={props.stringerfr} onChange={props.changestringerfr}>
                     {Array.from(Array(selectFractions), (e, i) => {
-                        return ( <option key={i * 0.0625}>{i + "/16"}</option> )
+                        return ( <option value={i * 0.0625} key={i * 0.0625}>{i + "/16"}</option> )
                     })}
                 </select>
             </div>

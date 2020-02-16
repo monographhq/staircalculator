@@ -40,35 +40,44 @@ class App extends Component {
     headroomMax: 0,
     headroomLength: 0,
 
+    treadin: 1,
+    treadfr: 0,
+
+    riserin: 1,
+    riserfr: 0,
+
+    nosingin: 0,
+    nosingfr: 0,
+
     runOn: true
 
   }
 
-  //Retrieves run count
-  runCount = () => {
-    let sumRuntotal = parseInt( parseInt(this.state.totalRunft) + parseInt(this.state.totalRunin) + parseFloat(this.state.totalRunfr) );
-    let sumRunideal = parseInt( parseInt(this.state.idealRunin) + parseFloat(this.state.idealRunfr) );
-    return ( sumRuntotal / sumRunideal )
-  }
+  // //Retrieves run count
+  // runCount = () => {
+  //   let sumRuntotal = parseInt( parseInt(this.state.totalRunft) + parseInt(this.state.totalRunin) + parseFloat(this.state.totalRunfr) );
+  //   let sumRunideal = parseInt( parseInt(this.state.idealRunin) + parseFloat(this.state.idealRunfr) );
+  //   return ( sumRuntotal / sumRunideal )
+  // }
 
-  //Retrieves rise count
-  riseCount = () => {
-    let sumRisetotal = parseInt( parseInt(this.state.totalRiseft) + parseInt(this.state.totalRisein) + parseFloat(this.state.totalRisefr) );
-    let sumRiseideal = parseInt( parseInt(this.state.idealRisein) + parseFloat(this.state.idealRisefr) );
-    return ( sumRisetotal / sumRiseideal )
-  }
+  // //Retrieves rise count
+  // riseCount = () => {
+  //   let sumRisetotal = parseInt( parseInt(this.state.totalRiseft) + parseInt(this.state.totalRisein) + parseFloat(this.state.totalRisefr) );
+  //   let sumRiseideal = parseInt( parseInt(this.state.idealRisein) + parseFloat(this.state.idealRisefr) );
+  //   return ( sumRisetotal / sumRiseideal )
+  // }
 
-  //Changes rise input values based on run
-  riseChange = () => {
-    let totalRise = this.runCount * (parseInt( parseInt(this.state.idealRisein) + parseFloat(this.state.idealRisefr) ) );
-    return totalRise
-  }
+  // //Changes rise input values based on run
+  // riseChange = () => {
+  //   let totalRise = this.runCount * (parseInt( parseInt(this.state.idealRisein) + parseFloat(this.state.idealRisefr) ) );
+  //   return totalRise
+  // }
 
-  //Changes run input values based on rise
-  runChange = () => {
-    let totalRun = this.riseCount * (parseInt( parseInt(this.state.idealRunin) + parseFloat(this.state.idealRunfr) ) );
-    return totalRun
-  }
+  // //Changes run input values based on rise
+  // runChange = () => {
+  //   let totalRun = this.riseCount * (parseInt( parseInt(this.state.idealRunin) + parseFloat(this.state.idealRunfr) ) );
+  //   return totalRun
+  // }
 
   //Handlers for changing total run
   changetotalRunft = (event) => {
@@ -155,6 +164,42 @@ class App extends Component {
     })
   }
 
+  //Handlers for tread
+  changetreadin = (event) => {
+    this.setState({
+      treadin:event.target.value
+    })
+  }
+  changetreadfr = (event) => {
+    this.setState({
+      treadfr:event.target.value
+    })
+  }
+
+  //Handlers for riser
+  changeriserin = (event) => {
+    this.setState({
+      riserin:event.target.value
+    })
+  }
+  changeriserfr = (event) => {
+    this.setState({
+      riserfr:event.target.value
+    })
+  }
+
+   //Handlers for nosing
+   changenosingin = (event) => {
+    this.setState({
+      nosingin:event.target.value
+    })
+  }
+  changenosingfr = (event) => {
+    this.setState({
+      nosingfr:event.target.value
+    })
+  }
+
   render(){
     return (
       <div className="container-fluid">
@@ -196,8 +241,14 @@ class App extends Component {
             <Details 
               stringerin={this.state.stringerin}
               stringerfr={this.state.stringerfr}
+              treadin={this.state.treadin}
+              treadfr={this.state.treadfr}
+              nosingin={this.state.nosingin}
+              nosingfr={this.state.nosingfr}
               changestringerin={this.changestringerin}
               changestringerfr={this.changestringerfr}
+              changetreadin={this.changetreadin}
+              changetreadfr={this.changetreadfr}
             />
 
             <div>
@@ -245,6 +296,12 @@ class App extends Component {
             floorfr={this.state.floorfr}
             headroomLength={this.state.headroomLength}
             headroomDelta={this.state.headroomDelta}
+            treadin={this.state.treadin}
+            treadfr={this.state.treadfr}
+            riserin={this.state.riserin}
+            riserfr={this.state.riserfr}
+            nosingin={this.state.nosingin}
+            nosingfr={this.state.nosingfr}
           />
         </div>
         
