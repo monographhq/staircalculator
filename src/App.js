@@ -252,6 +252,8 @@ class App extends Component {
               changetreadfr={this.changetreadfr}
               changeriserin={this.changeriserin}
               changeriserfr={this.changeriserfr}
+              changenosingin={this.changenosingin}
+              changenosingfr={this.changenosingfr}
             />
 
             <div>

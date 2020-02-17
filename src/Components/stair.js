@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stage, Layer, Line, Rect, Star } from 'react-konva';
+import { Stage, Layer, Line, Rect} from 'react-konva';
 
 const Stair = (props) => {
 
@@ -54,7 +54,7 @@ const Stair = (props) => {
   let riserThickness = parseFloat(props.riserin) + parseFloat(props.riserfr);
   let nosing = parseFloat(props.nosingin) + parseFloat(props.nosingfr);
 
-  let treadWidth = idealRun + nosing;
+  let treadLength = idealRun + nosing + riserThickness;
   let riserHeight = idealRise - treadThickness;
 
   let treadsX = [];
@@ -63,12 +63,16 @@ const Stair = (props) => {
   }
   let treadsY = [];
   let risersY = [];
-  for (var j=3; j<coordinates.length; j+=6){
+  for (let j=3; j<coordinates.length; j+=6){
     treadsY.push(move[1] + coordinates[j]);
-    risersY.push(move[1] + coordinates[j] +treadThickness);
+    risersY.push(move[1] + coordinates[j] + treadThickness);
+  }
+  let treadsW = [];
+  for (let h=0; h<treadsX.length; h++){
+    treadsW.push(treadsX[h]+nosing);
   }
 
-
+console.log(nosing);
   return (
     <Stage width={windowWidth} height={window.innerHeight}>
         <Layer>
@@ -97,7 +101,7 @@ const Stair = (props) => {
               key={i}
               x={treadsX[i]}
               y={treadsY[i]}
-              width={treadWidth}
+              width={treadLength}
               height={treadThickness}
               fill="red"
             />
@@ -105,7 +109,7 @@ const Stair = (props) => {
           {[...Array(xCount)].map((_, i) => (
             <Rect
               key={i}
-              x={treadsX[i]}
+              x={treadsW[i]}
               y={risersY[i]}
               width={riserThickness}
               height={riserHeight}
