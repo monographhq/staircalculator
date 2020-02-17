@@ -8,7 +8,6 @@ import IdealRise from './Components/inputs/idealrise';
 import Details from './Components/inputs/details';
 import StairAngle from './Components/inputs/stairangle';
 import Height from './Components/inputs/height';
-import FloorOpening from './Components/inputs/flooropening';
 import FloorThickness from './Components/inputs/floorthickness';
 import Stair from './Components/stair';
 
@@ -243,12 +242,16 @@ class App extends Component {
               stringerfr={this.state.stringerfr}
               treadin={this.state.treadin}
               treadfr={this.state.treadfr}
+              riserin={this.state.riserin}
+              riserfr={this.state.riserfr}
               nosingin={this.state.nosingin}
               nosingfr={this.state.nosingfr}
               changestringerin={this.changestringerin}
               changestringerfr={this.changestringerfr}
               changetreadin={this.changetreadin}
               changetreadfr={this.changetreadfr}
+              changeriserin={this.changeriserin}
+              changeriserfr={this.changeriserfr}
             />
 
             <div>

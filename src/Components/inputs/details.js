@@ -24,12 +24,12 @@ const Details = (props) => {
             </div>
             <div>
                 <label>Riser thickness</label>
-                <select>
+                <select defaultValue={props.riserin} onChange={props.changeriserin}>
                     {Array.from(Array(selectInches), (e, i) => {
                         return ( <option value={i} key={i}>{i +'"'}</option> )
                     })}
                 </select>
-                <select>
+                <select defaultValue="0" onChange={props.changeriserfr}>
                     {Array.from(Array(selectFractions), (e, i) => {
                         return ( <option value={i * 0.0625} key={i * 0.0625}>{i + "/16"}</option> )
                     })}

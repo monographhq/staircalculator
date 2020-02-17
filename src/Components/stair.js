@@ -1,10 +1,7 @@
 import React from 'react';
-import { Stage, Layer, Line, Rect } from 'react-konva';
+import { Stage, Layer, Line, Rect, Star } from 'react-konva';
 
 const Stair = (props) => {
-
-  let windowWidth = window.innerWidth * 0.65;
-  let move = [windowWidth/2,100];
 
   let totalRun = parseInt(props.totalRunft) + parseInt(props.totalRunin) + parseFloat(props.totalRunfr);
   let totalRise = parseInt(props.totalRiseft) + parseInt(props.totalRisein) + parseFloat(props.totalRisefr);
@@ -16,6 +13,12 @@ const Stair = (props) => {
   let yCount = parseInt(totalRise/idealRise);
 
   let landing = 36;
+  let lengthH = parseFloat(props.headroomLength);
+
+  let scaleFactor = (window.innerWidth*0.65) / (idealRun*xCount + lengthH + landing);
+
+  let windowWidth = window.innerWidth * 0.65;
+  let move = [windowWidth/2,100];
 
   let stringerA = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan(idealRun / idealRise));
   let stringerB = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan(idealRise / idealRun));
@@ -41,31 +44,28 @@ const Stair = (props) => {
   }
 
   //This is for the headroom part
-  let lengthH = parseFloat(props.headroomLength);
-
   let headroomPts = [ (coordinates[coordinates.length-12]-(idealRun*3)), floorThickness, (coordinates[coordinates.length-12]-(idealRun*3)), 0, coordinates[coordinates.length-12]-idealRun + lengthH, 0, coordinates[coordinates.length-12]-idealRun + lengthH, floorThickness ];
 
-  //This is for the floor opening dimension
-  let headroomDelta = coordinates[3] - (coordinates[coordinates.length-12]-idealRun + lengthH);
+  // //This is for the floor opening dimension
+  // let headroomDelta = coordinates[3] - (coordinates[coordinates.length-12]-idealRun + lengthH);
 
   //This creates the treads, risers, and nosing
   let treadThickness = parseFloat(props.treadin) + parseFloat(props.treadfr);
-  let riserthickness = parseFloat(props.riserin) + parseFloat(props.riserfr);
+  let riserThickness = parseFloat(props.riserin) + parseFloat(props.riserfr);
   let nosing = parseFloat(props.nosingin) + parseFloat(props.nosingfr);
 
   let treadWidth = idealRun + nosing;
   let riserHeight = idealRise - treadThickness;
 
   let treadsX = [];
-  for (var i=2; i<xCount+2; i+6){
-    treadsX.push(move[0] + coordinates[i] - nosing);
+  for (let k=2; k<(coordinates.length); k+=6){
+    treadsX.push(move[0] + coordinates[k] - nosing);
   }
-
   let treadsY = [];
   let risersY = [];
-  for (var i=3; i<yCount+3; i+6){
-    treadsY.push(move[1] + coordinates[i]);
-    risersY.push(move[1] + coordinates[i] +treadThickness);
+  for (var j=3; j<coordinates.length; j+=6){
+    treadsY.push(move[1] + coordinates[j]);
+    risersY.push(move[1] + coordinates[j] +treadThickness);
   }
 
 
@@ -92,20 +92,26 @@ const Stair = (props) => {
             lineJoin='sqare'
             closed='true'
           />
-        <Rect
-            x={treadsX}
-            y={treadsY}
-            width={treadWidth}
-            height={treadThickness}
-            fill="red"
-        />
-        <Rect
-            x={treadsX}
-            y={risersY}
-            width={riserThickness}
-            height={riserHeight}
-            fill="red"
-        />
+          {[...Array(xCount)].map((_, i) => (
+            <Rect
+              key={i}
+              x={treadsX[i]}
+              y={treadsY[i]}
+              width={treadWidth}
+              height={treadThickness}
+              fill="red"
+            />
+          ))}
+          {[...Array(xCount)].map((_, i) => (
+            <Rect
+              key={i}
+              x={treadsX[i]}
+              y={risersY[i]}
+              width={riserThickness}
+              height={riserHeight}
+              fill="red"
+            />
+          ))}
         </Layer>
       </Stage>
   )
