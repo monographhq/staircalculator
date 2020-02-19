@@ -8,7 +8,7 @@ const FloorThickness = (props) => {
 
     return (
         <div>
-            <label>Floor Thickness</label>
+            <label class="subtitle d-flex">Floor Thickness</label>
             <select defaultValue={props.floorft} onChange={props.changefloorft}>
                 {Array.from(Array(maxThickness), (e, i) => {
                     return ( <option value={i*12} key={i*12}>{i +"'"}</option> )

@@ -1,0 +1,25 @@
+.title {
+  font-family: Söhne Mono Halbfett;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.subtitle {
+  font-family: Söhne Mono;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 135%;
+  /* identical to box height, or 19px */
+
+  letter-spacing: 0.05em;
+}
+
+.dropdown {
+  font-family: Söhne Mono;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+}

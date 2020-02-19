@@ -4,7 +4,7 @@ const StairAngle = (props) => {
 
     return (
         <div>
-            <label>Stair Angle</label>
+            <label class="title d-flex">Stair Angle</label>
             <input type="range" min="30" max="45"/>
         </div>  
     )

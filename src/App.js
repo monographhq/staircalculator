@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import './App.css';
+import './Styles/App.css';
 import TotalRun from './Components/inputs/totalrun';
 import TotalRise from './Components/inputs/totalrise';
 import IdealRun from './Components/inputs/idealrun';
@@ -206,7 +206,7 @@ class App extends Component {
 
           <div id="sidebar" className="col-4">
               <div>
-                <div>Rise-run</div>
+                <div class="title">Rise-run</div>
                 <TotalRun 
                     totalRunft = {this.state.totalRunft}
                     totalRunin = {this.state.totalRunin}
@@ -257,7 +257,7 @@ class App extends Component {
             />
 
             <div>
-                <div>Headroom</div>
+                <div class="title">Headroom</div>
                 <Height 
                   totalRunft={this.state.totalRunft}
                   totalRunin={this.state.totalRunin}
@@ -275,7 +275,7 @@ class App extends Component {
                 />
 
             </div>
-
+          
             <StairAngle />
         </div>
 

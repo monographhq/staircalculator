@@ -1,0 +1,57 @@
+@font-face {
+  font-family: "Söhne Mono Buch";
+  src: url("../fonts/soehne-mono-web-buch.eot"),
+  url("../fonts/soehne-mono-web-buch.woff") format("woff"),
+  url("../fonts/soehne-mono-web-buch.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  }
+
+@font-face {
+  font-family: "Söhne Mono Halbfett";
+  src: url("../fonts/soehne-mono-web-halbfett.eot"),
+  url("../fonts/soehne-mono-web-halbfett.woff") format("woff"),
+  url("../fonts/soehne-mono-web-halbfett.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  }
+
+@font-face {
+  font-family: "Söhne Buch";
+  src: url("../fonts/soehne-web-buch.eot"),
+  url("../fonts/soehne-web-buch.woff") format("woff"),
+  url("../fonts/soehne-web-buch.woff2") format("woff2");
+  }
+
+@font-face {
+  font-family: "Söhne Buch Kursiv";
+  src: url("../fonts/soehne-web-buch-kursiv.eot"),
+  url("../fonts/soehne-web-buch-kursiv.woff") format("woff"),
+  url("../fonts/soehne-web-buch-kursiv.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  }
+
+@font-face {
+  font-family: "Söhne Halbfett";
+  src: url("../fonts/soehne-web-halbfett.eot"),
+  url("../fonts/soehne-web-halbfett.woff") format("woff"),
+  url("../fonts/soehne-web-halbfett.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  }
+
+@font-face {
+  font-family: "Pilat";
+  src: url("../fonts/Pilat-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  }
+
+@font-face {
+font-family: "Pilat Compressed";
+src: url("../fonts/PilatCompressed-Heavy.woff") format("woff"),
+url("../fonts/PilatCompressed-Heavy.woff2") format("woff2");
+font-weight: heavy;
+font-style: normal;
+}

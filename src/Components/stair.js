@@ -15,10 +15,8 @@ const Stair = (props) => {
   let landing = 36;
   let lengthH = parseFloat(props.headroomLength);
 
-  let scaleFactor = (window.innerWidth*0.65) / (idealRun*xCount + lengthH + landing);
 
   let windowWidth = window.innerWidth * 0.65;
-  let move = [windowWidth/2,100];
 
   let stringerA = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan(idealRun / idealRise));
   let stringerB = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan(idealRise / idealRun));
@@ -48,6 +46,8 @@ const Stair = (props) => {
 
   // //This is for the floor opening dimension
   // let headroomDelta = coordinates[3] - (coordinates[coordinates.length-12]-idealRun + lengthH);
+  
+  let move = [(windowWidth/2)-landing+(coordinates[coordinates.length-12]-(idealRun*3))-(xCount*idealRun),100];
 
   //This creates the treads, risers, and nosing
   let treadThickness = parseFloat(props.treadin) + parseFloat(props.treadfr);
@@ -72,7 +72,14 @@ const Stair = (props) => {
     treadsW.push(treadsX[h]+nosing);
   }
 
-console.log(nosing);
+  
+  const CANVAS_VIRTUAL_WIDTH = 350;
+  const CANVAS_VIRTUAL_HEIGHT = 350;
+  const scale = Math.min(
+    windowWidth / CANVAS_VIRTUAL_WIDTH,
+    window.innerHeight / CANVAS_VIRTUAL_HEIGHT
+  );
+
   return (
     <Stage width={windowWidth} height={window.innerHeight}>
         <Layer>
@@ -81,7 +88,7 @@ console.log(nosing);
             y={move[1]}
             points={coordinates}
             stroke="black"
-            strokeWidth={2}
+            strokeWidth={0.5}
             lineCap='sqare'
             lineJoin='sqare'
             closed='true'
@@ -91,7 +98,7 @@ console.log(nosing);
             y={move[1]}
             points={headroomPts}
             stroke="black"
-            strokeWidth={2}
+            strokeWidth={0.5}
             lineCap='sqare'
             lineJoin='sqare'
             closed='true'
@@ -104,6 +111,7 @@ console.log(nosing);
               width={treadLength}
               height={treadThickness}
               fill="red"
+              strokeWidth={0.5}
             />
           ))}
           {[...Array(xCount)].map((_, i) => (
@@ -114,6 +122,7 @@ console.log(nosing);
               width={riserThickness}
               height={riserHeight}
               fill="red"
+              strokeWidth={0.5}
             />
           ))}
         </Layer>
