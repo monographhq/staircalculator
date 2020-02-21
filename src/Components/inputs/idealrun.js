@@ -2,14 +2,14 @@ import React from 'react';
 
 const IdealRun = (props) => {
 
-    let selectInches = 11 + 1;
+    let selectInches = Array.from({length:36-10+1},(v,k)=>k+10);
     let selectFractions = 16;
 
     return (
         <div>
             <label className="subtitle d-flex">Ideal run</label>
             <select defaultValue={props.idealRunin} onChange={props.changeidealRunin} className="dropdown">
-                {Array.from(Array(selectInches), (e, i) => {
+                {Array.from(selectInches, (i) => {
                     return ( <option value={i} key={i}>{i +'"'}</option> )
                 })}
             </select>

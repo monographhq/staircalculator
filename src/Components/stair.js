@@ -52,12 +52,16 @@ const Stair = (props) => {
 
   // //This is for the floor opening dimension
   // let headroomDelta = coordinates[3] - (coordinates[coordinates.length-12]-idealRun + lengthH);
-  
-  let stairCenter = ( ((coordinates[coordinates.length-12]-idealRun*3) + landing + coordinates[0]) / 2 );
-  let moveCenter = ( (windowWidth/2) - stairCenter );
-  let move = [moveCenter,0];
 
-  // [(windowWidth/2)-landing+(coordinates[coordinates.length-12]-(idealRun*3))-(xCount*idealRun)
+  let stairLength = ( ((coordinates[coordinates.length-12]-idealRun*3) + landing + coordinates[0]) );
+  //This scales the drawing
+  let canvasWidth = stairLength;
+  let canvasHeight = idealRise*count;
+  
+  //This moves the drawing to the center
+  let moveCenter = ( (windowWidth/2) - (stairLength/2) );
+  let move = [moveCenter,100];
+
 
   //This creates the treads, risers, and nosing
   let treadThickness = parseFloat(props.treadin) + parseFloat(props.treadfr);
@@ -85,14 +89,6 @@ const Stair = (props) => {
   return (
     <Stage width={windowWidth} height={window.innerHeight}>
         <Layer>
-        <Line
-            x={windowWidth/2}
-            y={0}
-            points={[0, 0, 0, window.innerHeight]}
-            stroke="blue"
-            strokeWidth={0.5}
-            lineCap='sqare'
-          />
           <Line
             x={move[0]}
             y={move[1]}

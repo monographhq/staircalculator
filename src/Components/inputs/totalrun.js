@@ -2,7 +2,7 @@ import React from 'react';
 
 const TotalRun = (props) => {
 
-    let selectFeet = 60 + 1;
+    let selectFeet = Array.from({length:30-1+1},(v,k)=>k+1);
     let selectInches = 11 + 1;
     let selectFractions = 16;
 
@@ -11,7 +11,7 @@ const TotalRun = (props) => {
         <div>
             <label className="subtitle d-flex">Total run</label>
             <select id="totalRunFeet" defaultValue={props.totalRunft} onChange={props.changetotalRunft} className="dropdown">
-                {Array.from(Array(selectFeet), (e, i) => {
+                {Array.from(selectFeet, (i) => {
                     return ( <option value={i*12} key={i*12}>{i +"'"}</option> )
                 })}
             </select>

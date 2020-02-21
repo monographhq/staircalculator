@@ -276,7 +276,12 @@ class App extends Component {
 
             </div>
           
-            <StairAngle />
+            <StairAngle
+              idealRunin={this.state.idealRunin}
+              idealRunfr={this.state.idealRunfr}
+              idealRisein={this.state.idealRisein}
+              idealRisefr={this.state.idealRisefr}
+            />
         </div>
 
         <div className="col-8" id="container">

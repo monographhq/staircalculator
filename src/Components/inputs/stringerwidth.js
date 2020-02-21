@@ -2,14 +2,14 @@ import React from 'react';
 
 const Stringer = (props) => {
 
-    let selectInches = 11 + 1;
+    let selectInches = Array.from({length:11-5+1},(v,k)=>k+5);
     let selectFractions = 16;
 
     return (
         <div>
             <label className="subtitle">Stringer Width</label>
             <select defaultValue={props.stringerin} onChange={props.changestringerin} className="dropdown">
-                {Array.from(Array(selectInches), (e, i) => {
+                {Array.from(selectInches, (i) => {
                     return ( <option value={i} key={i}>{i +'"'}</option> )
                 })}
             </select>
@@ -23,4 +23,4 @@ const Stringer = (props) => {
     )
 }
 
-export default IdealRise
+export default Stringer
