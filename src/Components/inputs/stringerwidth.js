@@ -7,13 +7,13 @@ const Stringer = (props) => {
 
     return (
         <div>
-            <label class="subtitle">Stringer Width</label>
-            <select defaultValue={props.stringerin} onChange={props.changestringerin} class="dropdown">
+            <label className="subtitle">Stringer Width</label>
+            <select defaultValue={props.stringerin} onChange={props.changestringerin} className="dropdown">
                 {Array.from(Array(selectInches), (e, i) => {
                     return ( <option value={i} key={i}>{i +'"'}</option> )
                 })}
             </select>
-            <select defaultValue={props.stringerfr} onChange={props.changestringerfr} class="dropdown">
+            <select defaultValue={props.stringerfr} onChange={props.changestringerfr} className="dropdown">
                 {Array.from(Array(selectFractions), (e, i) => {
                     return ( <option value={i * 0.0625} key={i * 0.0625}>{i + "/16"}</option> )
                 })}

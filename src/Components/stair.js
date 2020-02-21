@@ -9,14 +9,19 @@ const Stair = (props) => {
   let idealRun = parseFloat(props.idealRunin) + parseFloat(props.idealRunfr);
   let idealRise = parseFloat(props.idealRisein) + parseFloat(props.idealRisefr);
 
-  let xCount = parseInt(totalRun/idealRun);
-  let yCount = parseInt(totalRise/idealRise);
+  let count = 0;
+
+  if (props.boolean === true){
+  count = parseInt(totalRun/idealRun);
+  } else if (props.boolean === false){
+    count = parseInt(totalRise/idealRise);
+  }
 
   let landing = 36;
   let lengthH = parseFloat(props.headroomLength);
 
 
-  let windowWidth = window.innerWidth * 0.65;
+  let windowWidth = (window.innerWidth * 0.65) - 15;
 
   let stringerA = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan(idealRun / idealRise));
   let stringerB = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan(idealRise / idealRun));
@@ -27,15 +32,16 @@ const Stair = (props) => {
 
 
   //This creates the stair drawing based on whether total rise or run is being selected
-  if (props.boolean === true){
-    for (let i=0; i<xCount; i++){
-      coordinates.push( (totalRise)-(idealRun*i), idealRise*i, (totalRise)-(idealRun*(i+1)), idealRise*i, (totalRise)-(idealRun*(i+1)), (idealRise*(i+1)) )
+  if (props.boolean === true){ //If total run is adjusted
+    for (let i=0; i<count; i++){
+      coordinates.push( (totalRun)-(idealRun*i), idealRise*i, (totalRun)-(idealRun*(i+1)), idealRise*i, (totalRun)-(idealRun*(i+1)), (idealRise*(i+1)) )
     }
     //This creates the landing and stringer
     coordinates.push( (coordinates[coordinates.length-2]+stringerB), coordinates[coordinates.length-1], coordinates[0], stringerA, coordinates[0], floorThickness, (coordinates[0]+landing), floorThickness, (coordinates[0]+landing), 0)
-  } else if (props.boolean === false){
-    for (let i=0; i<yCount; i++){
-      coordinates.push( (totalRun)-(idealRun*i), idealRise*i, (totalRun)-(idealRun*(i+1)), idealRise*i, (totalRun)-(idealRun*(i+1)), (idealRise*(i+1)) )
+
+  } else if (props.boolean === false){ //If total rise is adjusted
+    for (let i=0; i<count; i++){
+      coordinates.push( (totalRise)-(idealRun*i), idealRise*i, (totalRise)-(idealRun*(i+1)), idealRise*i, (totalRise)-(idealRun*(i+1)), (idealRise*(i+1)) )
     }
     //This creates the landing and stringer
     coordinates.push( (coordinates[coordinates.length-2]+stringerB), coordinates[coordinates.length-1], coordinates[0], stringerA, coordinates[0], floorThickness, (coordinates[0]+landing), floorThickness, (coordinates[0]+landing), 0)
@@ -47,7 +53,11 @@ const Stair = (props) => {
   // //This is for the floor opening dimension
   // let headroomDelta = coordinates[3] - (coordinates[coordinates.length-12]-idealRun + lengthH);
   
-  let move = [(windowWidth/2)-landing+(coordinates[coordinates.length-12]-(idealRun*3))-(xCount*idealRun),100];
+  let stairCenter = ( ((coordinates[coordinates.length-12]-idealRun*3) + landing + coordinates[0]) / 2 );
+  let moveCenter = ( (windowWidth/2) - stairCenter );
+  let move = [moveCenter,0];
+
+  // [(windowWidth/2)-landing+(coordinates[coordinates.length-12]-(idealRun*3))-(xCount*idealRun)
 
   //This creates the treads, risers, and nosing
   let treadThickness = parseFloat(props.treadin) + parseFloat(props.treadfr);
@@ -72,17 +82,17 @@ const Stair = (props) => {
     treadsW.push(treadsX[h]+nosing);
   }
 
-  
-  const CANVAS_VIRTUAL_WIDTH = 350;
-  const CANVAS_VIRTUAL_HEIGHT = 350;
-  const scale = Math.min(
-    windowWidth / CANVAS_VIRTUAL_WIDTH,
-    window.innerHeight / CANVAS_VIRTUAL_HEIGHT
-  );
-
   return (
     <Stage width={windowWidth} height={window.innerHeight}>
         <Layer>
+        <Line
+            x={windowWidth/2}
+            y={0}
+            points={[0, 0, 0, window.innerHeight]}
+            stroke="blue"
+            strokeWidth={0.5}
+            lineCap='sqare'
+          />
           <Line
             x={move[0]}
             y={move[1]}
@@ -103,7 +113,8 @@ const Stair = (props) => {
             lineJoin='sqare'
             closed='true'
           />
-          {[...Array(xCount)].map((_, i) => (
+          {
+          [...Array(count)].map((_, i) => (
             <Rect
               key={i}
               x={treadsX[i]}
@@ -113,8 +124,9 @@ const Stair = (props) => {
               fill="red"
               strokeWidth={0.5}
             />
-          ))}
-          {[...Array(xCount)].map((_, i) => (
+          ))
+          }
+          {[...Array(count)].map((_, i) => (
             <Rect
               key={i}
               x={treadsW[i]}

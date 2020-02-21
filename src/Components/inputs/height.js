@@ -7,7 +7,7 @@ const Height = (props) => {
 
     return (
         <div>
-            <label class="subtitle d-flex">Height</label>
+            <label className="subtitle d-flex">Height</label>
             <input type="range" defaultValue="0" min="0" max={headroomMax} onChange={props.changeheadroomlength} />
         </div>  
     )

@@ -206,7 +206,7 @@ class App extends Component {
 
           <div id="sidebar" className="col-4">
               <div>
-                <div class="title">Rise-run</div>
+                <div className="title">Rise-run</div>
                 <TotalRun 
                     totalRunft = {this.state.totalRunft}
                     totalRunin = {this.state.totalRunin}
@@ -257,7 +257,7 @@ class App extends Component {
             />
 
             <div>
-                <div class="title">Headroom</div>
+                <div className="title">Headroom</div>
                 <Height 
                   totalRunft={this.state.totalRunft}
                   totalRunin={this.state.totalRunin}
