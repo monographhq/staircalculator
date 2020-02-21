@@ -5,7 +5,7 @@ const StairAngle = (props) => {
     let idealRun = parseFloat(props.idealRunin) + parseFloat(props.idealRunfr);
     let idealRise = parseFloat(props.idealRisein) + parseFloat(props.idealRisefr);
 
-    let stairAngle = Math.atan((idealRise/idealRun)) * (180/Math.PI);
+    let stairAngle = (Math.atan((idealRise/idealRun)) * (180/Math.PI)).toFixed(1);
 
     return (
         <div>

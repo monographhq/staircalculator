@@ -53,23 +53,33 @@ const Stair = (props) => {
   // //This is for the floor opening dimension
   // let headroomDelta = coordinates[3] - (coordinates[coordinates.length-12]-idealRun + lengthH);
 
-  let stairLength = ( ((coordinates[coordinates.length-12]-idealRun*3) + landing + coordinates[0]) );
   //This scales the drawing
-  let canvasWidth = stairLength;
-  let canvasHeight = idealRise*count;
-  
+  let stairLength = ((headroomPts[0]) + landing + coordinates[0]);
+  let wr = (windowWidth)/(Math.abs(headroomPts[0]) + landing + coordinates[0]);
+  var ratio = wr*0.95;
+  console.log(wr);
+  console.log(coordinates[0]+landing, headroomPts[0])
+
+  for (var m=0; m<coordinates.length; m++){
+    coordinates[m] = coordinates[m]*ratio
+  }
+  for (var n=0; n<headroomPts.length; n++){
+    headroomPts[n] = headroomPts[n]*ratio
+  }
+
+
+
   //This moves the drawing to the center
-  let moveCenter = ( (windowWidth/2) - (stairLength/2) );
+  let moveCenter = ( (windowWidth/2) - (stairLength*ratio/2) );
   let move = [moveCenter,100];
 
-
   //This creates the treads, risers, and nosing
-  let treadThickness = parseFloat(props.treadin) + parseFloat(props.treadfr);
-  let riserThickness = parseFloat(props.riserin) + parseFloat(props.riserfr);
-  let nosing = parseFloat(props.nosingin) + parseFloat(props.nosingfr);
+  let treadThickness = ratio * (parseFloat(props.treadin) + parseFloat(props.treadfr));
+  let riserThickness = ratio * (parseFloat(props.riserin) + parseFloat(props.riserfr));
+  let nosing = ratio * (parseFloat(props.nosingin) + parseFloat(props.nosingfr));
 
-  let treadLength = idealRun + nosing + riserThickness;
-  let riserHeight = idealRise - treadThickness;
+  let treadLength = (idealRun*ratio + nosing + riserThickness);
+  let riserHeight = (idealRise*ratio - treadThickness);
 
   let treadsX = [];
   for (let k=2; k<(coordinates.length); k+=6){
@@ -86,15 +96,27 @@ const Stair = (props) => {
     treadsW.push(treadsX[h]+nosing);
   }
 
+
+
   return (
     <Stage width={windowWidth} height={window.innerHeight}>
         <Layer>
+        <Line
+            x={windowWidth/2}
+            y={0}
+            points={[0,0,0,window.innerHeight]}
+            stroke="black"
+            strokeWidth={0.75}
+            lineCap='sqare'
+            lineJoin='sqare'
+            closed='true'
+          />
           <Line
             x={move[0]}
             y={move[1]}
             points={coordinates}
             stroke="black"
-            strokeWidth={0.5}
+            strokeWidth={0.75}
             lineCap='sqare'
             lineJoin='sqare'
             closed='true'
@@ -104,7 +126,7 @@ const Stair = (props) => {
             y={move[1]}
             points={headroomPts}
             stroke="black"
-            strokeWidth={0.5}
+            strokeWidth={0.75}
             lineCap='sqare'
             lineJoin='sqare'
             closed='true'
@@ -117,8 +139,9 @@ const Stair = (props) => {
               y={treadsY[i]}
               width={treadLength}
               height={treadThickness}
-              fill="red"
-              strokeWidth={0.5}
+              fill="white"
+              stroke="black"
+              strokeWidth={0.75}
             />
           ))
           }
@@ -129,8 +152,9 @@ const Stair = (props) => {
               y={risersY[i]}
               width={riserThickness}
               height={riserHeight}
-              fill="red"
-              strokeWidth={0.5}
+              fill="white"
+              stroke="black"
+              strokeWidth={0.75}
             />
           ))}
         </Layer>

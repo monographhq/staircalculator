@@ -2,7 +2,7 @@ import React from 'react';
 
 const TotalRun = (props) => {
 
-    let selectFeet = Array.from({length:30-1+1},(v,k)=>k+1);
+    let selectFeet = Array.from({length:15-1+1},(v,k)=>k+1);
     let selectInches = 11 + 1;
     let selectFractions = 16;
 
