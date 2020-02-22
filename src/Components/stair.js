@@ -72,7 +72,7 @@ const Stair = (props) => {
   let moveCenter = ( (windowWidth/2) - (stairLength*ratio/2) );
   let move = [moveCenter,100];
 
-  //This creates the treads, risers, and nosing
+  //Treads, risers, and nosing dimensions
   let treadThickness = ratio * (parseFloat(props.treadin) + parseFloat(props.treadfr));
   let riserThickness = ratio * (parseFloat(props.riserin) + parseFloat(props.riserfr));
   let nosing = ratio * (parseFloat(props.nosingin) + parseFloat(props.nosingfr));
@@ -80,6 +80,7 @@ const Stair = (props) => {
   let treadLength = (idealRun*ratio + nosing + riserThickness);
   let riserHeight = (idealRise*ratio - treadThickness);
 
+  //Coordinates for treads, risers, and nosing
   let treadsX = [];
   for (let k=2; k<(coordinates.length); k+=6){
     treadsX.push(move[0] + coordinates[k] - nosing);
@@ -95,10 +96,18 @@ const Stair = (props) => {
     treadsW.push(treadsX[h]+nosing);
   }
 
+  //Coordinates for all treads minus the top one
   let treadsX2 = [];
   for (let r=1; r<treadsX.length; r++){
     treadsX2.push(treadsX[r]);
   }
+  let treadsY2 = [];
+  for (let t=1; t<treadsY.length; t++){
+    treadsY2.push(treadsY[t]);
+  }
+
+  //Coordinates and dimensions for the top tread
+  let topTread = [treadsX[0], treadsY[0]];
 
   return (
     <Stage width={windowWidth} height={window.innerHeight}>
@@ -123,12 +132,21 @@ const Stair = (props) => {
             lineJoin='sqare'
             closed='true'
           />
+          <Rect
+              x={topTread[0]}
+              y={topTread[1]}
+              width={treadLength + landing*ratio - riserThickness}
+              height={treadThickness}
+              fill="white"
+              stroke="black"
+              strokeWidth={0.75}
+            />
           {
-          [...Array(count)].map((_, i) => (
+          [...Array(count-1)].map((_, i) => (
             <Rect
               key={i}
-              x={treadsX[i]}
-              y={treadsY[i]}
+              x={treadsX2[i]}
+              y={treadsY2[i]}
               width={treadLength}
               height={treadThickness}
               fill="white"
