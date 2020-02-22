@@ -68,7 +68,7 @@ const Stair = (props) => {
 
   //This moves the drawing to the center
   let moveCenter = ( (windowWidth/2) - (stairLength*ratio/2) );
-  let move = [moveCenter,100];
+  let move = [moveCenter,200];
 
   //Treads, risers, and nosing dimensions
   let treadThickness = ratio * (parseFloat(props.treadin) + parseFloat(props.treadfr));

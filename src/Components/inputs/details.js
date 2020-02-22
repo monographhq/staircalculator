@@ -13,12 +13,12 @@ const Details = (props) => {
             <div className="title">Details</div>
             <div>
                 <label className="subtitle d-flex">Tread thickness</label>
-                <select defaultValue={props.treadin} onChange={props.changetreadin} className="dropdown">
+                <select defaultValue={props.treadin} onChange={props.changetreadin} className="dropdown dropdown__inch">
                     {Array.from(Array(treadInches), (e, i) => {
                         return ( <option value={i} key={i}>{i +'"'}</option> )
                     })}
                 </select>
-                <select defaultValue="0" onChange={props.changetreadfr} className="dropdown">
+                <select defaultValue="0" onChange={props.changetreadfr} className="dropdown dropdown__fraction">
                     {Array.from(Array(selectFractions), (e, i) => {
                         return ( <option value={i * 0.0625} key={i * 0.0625}>{i + "/16"}</option> )
                     })}
@@ -26,12 +26,12 @@ const Details = (props) => {
             </div>
             <div>
                 <label className="subtitle d-flex">Riser thickness</label>
-                <select defaultValue={props.riserin} onChange={props.changeriserin} className="dropdown">
+                <select defaultValue={props.riserin} onChange={props.changeriserin} className="dropdown dropdown__inch">
                     {Array.from(Array(treadInches), (e, i) => {
                         return ( <option value={i} key={i}>{i +'"'}</option> )
                     })}
                 </select>
-                <select defaultValue="0" onChange={props.changeriserfr} className="dropdown">
+                <select defaultValue="0" onChange={props.changeriserfr} className="dropdown dropdown__fraction">
                     {Array.from(Array(selectFractions), (e, i) => {
                         return ( <option value={i * 0.0625} key={i * 0.0625}>{i + "/16"}</option> )
                     })}
@@ -39,12 +39,12 @@ const Details = (props) => {
             </div>
             <div>
                 <label className="subtitle d-flex">Nosing</label>
-                <select defaultValue="0" onChange={props.changenosingin} className="dropdown">
+                <select defaultValue="0" onChange={props.changenosingin} className="dropdown dropdown__inch">
                     {Array.from(Array(nosingInches), (e, i) => {
                         return ( <option value={i} key={i}>{i +'"'}</option> )
                     })}
                 </select>
-                <select defaultValue="0" onChange={props.changenosingfr} className="dropdown">
+                <select defaultValue="0" onChange={props.changenosingfr} className="dropdown dropdown__fraction">
                     {Array.from(Array(nosingFractions), (e, i) => {
                         return ( <option value={i * 0.0625} key={i * 0.0625}>{i + "/16"}</option> )
                     })}
@@ -52,12 +52,12 @@ const Details = (props) => {
             </div>
             <div>
                 <label className="subtitle d-flex">Stringer Width</label>
-                <select defaultValue={props.stringerin} onChange={props.changestringerin} className="dropdown">
+                <select defaultValue={props.stringerin} onChange={props.changestringerin} className="dropdown dropdown__inch">
                     {Array.from(stringerInches, (i) => {
                         return ( <option value={i} key={i}>{i +'"'}</option> )
                     })}
                 </select>
-                <select defaultValue={props.stringerfr} onChange={props.changestringerfr} className="dropdown">
+                <select defaultValue={props.stringerfr} onChange={props.changestringerfr} className="dropdown dropdown__fraction">
                     {Array.from(Array(selectFractions), (e, i) => {
                         return ( <option value={i * 0.0625} key={i * 0.0625}>{i + "/16"}</option> )
                     })}

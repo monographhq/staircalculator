@@ -31,6 +31,7 @@
   margin: 0 -2rem;
 }
 
+/* These styles are for the toggles */
 .toggle-group {
   vertical-align: center;
   font-family: Söhne Mono;
@@ -57,8 +58,8 @@
 .toggle--inactive {
   box-sizing: border-box;
   background: none;
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .toggle--active {
@@ -68,12 +69,20 @@
   border: rgba(65, 234, 212, 0.82);
 }
 
+/*These styles are for the dropdown inputs*/
 .dropdown {
   font-family: Söhne Mono;
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
   line-height: 18px;
+  border-radius: 3px;
+  padding: 11px 1px;
+}
+
+
+.dropdown__feet, .dropdown__inch {
+  margin-right: 0.5em;
 }
 
 .stairangle__number {
