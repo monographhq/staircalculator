@@ -31,11 +31,15 @@
   margin: 0 -2rem;
 }
 
-.toggle {
+.toggle-group {
+  vertical-align: center;
   font-family: Söhne Mono;
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
+}
+
+.toggle {
   text-align: center;
   display: inline-block;
   width: 80px;

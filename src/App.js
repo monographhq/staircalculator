@@ -204,9 +204,24 @@ class App extends Component {
   }
 
   //Handlers for toggles
-  changeUnits = (event) => {
+  changeUnitsIn = () => {
     this.setState({
-      units: event.target.value
+      units: true
+    })
+  }
+  changeUnitsMM = () => {
+    this.setState({
+      units: false
+    })
+  }
+  changeDimensionsOn = () => {
+    this.setState({
+      dimensions: true
+    })
+  }
+  changeDimensionsOff = () => {
+    this.setState({
+      dimensions: false
     })
   }
 
@@ -219,10 +234,13 @@ class App extends Component {
               <div className="sidebar__section">
                 <Units 
                   units = {this.state.units}
-                  changeUnits = {this.changeUnits}
+                  changeUnitsIn = {this.changeUnitsIn}
+                  changeUnitsMM = {this.changeUnitsMM}
                 />
                 <Dimensions 
                   dimensions = {this.state.dimensions}
+                  changeDimensionsOn = {this.changeDimensionsOn}
+                  changeDimensionsOff = {this.changeDimensionsOff}
                 />
               </div>
 
