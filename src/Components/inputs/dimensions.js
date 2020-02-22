@@ -6,8 +6,8 @@ const Dimensions = (props) => {
                 <div>
                     <div className="subtitle">Dimensions</div>
                     <div className="d-flex">
-                        <button className="toggle-active" onClick={props.changeUnits}>ON</button>
-                        <button className="toggle-inactive" onClick={props.changeUnits}>OFF</button>
+                        <button className="toggle toggle__left toggle--active" onClick={props.changeUnits}>ON</button>
+                        <button className="toggle toggle__right toggle--inactive" onClick={props.changeUnits}>OFF</button>
                     </div>
                 </div>
         )
@@ -15,8 +15,8 @@ const Dimensions = (props) => {
         return (
             <div>
                 <div className="subtitle">Dimensions</div>
-                <button className="toggle-inactive" onClick={props.changeUnits}>ON</button>
-                <button className="toggle-active" onClick={props.changeUnits}>OFF</button>
+                <button className="toggle toggle__left toggle--inactive" onClick={props.changeUnits}>ON</button>
+                <button className="toggle toggle__right toggle--active" onClick={props.changeUnits}>OFF</button>
             </div>
     )
     }

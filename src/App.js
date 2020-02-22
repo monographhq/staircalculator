@@ -17,11 +17,11 @@ import Dimensions from './Components/inputs/dimensions';
 class App extends Component {
 
   state = {
-    totalRunft: 10 * 12,
+    totalRunft: 12 * 12,
     totalRunin: 0,
     totalRunfr: 0,
 
-    totalRiseft: 6 * 12,
+    totalRiseft: 9 * 12,
     totalRisein: 0,
     totalRisefr: 0,
 
@@ -31,8 +31,8 @@ class App extends Component {
     idealRunin: 11,
     idealRunfr: 0,
 
-    stringerin: 7 * Math.sin(Math.atan(7 / 11)),
-    stringerfr: 0,
+    stringerin: 5,
+    stringerfr: 0.0625 * 15,
 
     floorft: 0,
     floorin: 7,
@@ -51,7 +51,7 @@ class App extends Component {
     nosingfr: 0,
 
     runOn: true,
-    dimensions: true,
+    dimensions: false,
     units: true
 
   }

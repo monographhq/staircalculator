@@ -10,8 +10,8 @@ const StairAngle = (props) => {
     return (
         <div className="sidebar__section--last sidebar__section">
             <label className="title d-flex">Stair Angle</label>
-            <span className="stairangle__number">{stairAngle + '°'}</span>
-            <input type="range" defaultValue={stairAngle} min="30" max="45"/>
+                <span className="stairangle__number">{stairAngle + '°'}</span>
+                <input type="range" defaultValue={stairAngle} min="30" max="45" className="slider"/>
         </div>  
     )
 }

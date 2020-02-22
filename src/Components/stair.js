@@ -66,8 +66,6 @@ const Stair = (props) => {
     headroomPts[n] = headroomPts[n]*ratio
   }
 
-
-
   //This moves the drawing to the center
   let moveCenter = ( (windowWidth/2) - (stairLength*ratio/2) );
   let move = [moveCenter,100];
