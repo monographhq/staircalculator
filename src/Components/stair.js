@@ -21,7 +21,7 @@ const Stair = (props) => {
   let lengthH = parseFloat(props.headroomLength);
 
 
-  let windowWidth = (window.innerWidth * 0.65) - 15;
+  let windowWidth = (window.innerWidth * 0.82) - 15;
 
   let stringerA = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan(idealRun / idealRise));
   let stringerB = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan(idealRise / idealRun));
@@ -56,10 +56,9 @@ const Stair = (props) => {
   //This scales the drawing
   let stairLength = ((headroomPts[0]) + landing + coordinates[0]);
   let wr = (windowWidth)/(Math.abs(headroomPts[0]) + landing + coordinates[0]);
-  var ratio = wr*0.95;
-  console.log(wr);
-  console.log(coordinates[0]+landing, headroomPts[0])
+  var ratio = wr*0.75;
 
+  //This transforms the drawing based on the scale
   for (var m=0; m<coordinates.length; m++){
     coordinates[m] = coordinates[m]*ratio
   }
@@ -96,21 +95,14 @@ const Stair = (props) => {
     treadsW.push(treadsX[h]+nosing);
   }
 
-
+  let treadsX2 = [];
+  for (let r=1; r<treadsX.length; r++){
+    treadsX2.push(treadsX[r]);
+  }
 
   return (
     <Stage width={windowWidth} height={window.innerHeight}>
         <Layer>
-        <Line
-            x={windowWidth/2}
-            y={0}
-            points={[0,0,0,window.innerHeight]}
-            stroke="black"
-            strokeWidth={0.75}
-            lineCap='sqare'
-            lineJoin='sqare'
-            closed='true'
-          />
           <Line
             x={move[0]}
             y={move[1]}

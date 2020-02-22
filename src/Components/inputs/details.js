@@ -9,7 +9,7 @@ const Details = (props) => {
     let selectFractions = 16;
 
     return (
-        <div>
+        <div className="sidebar__section">
             <div className="title">Details</div>
             <div>
                 <label className="subtitle d-flex">Tread thickness</label>
@@ -52,12 +52,12 @@ const Details = (props) => {
             </div>
             <div>
                 <label className="subtitle d-flex">Stringer Width</label>
-                <select defaultValue={props.stringerin} onChange={props.changestringerin}>
+                <select defaultValue={props.stringerin} onChange={props.changestringerin} className="dropdown">
                     {Array.from(stringerInches, (i) => {
                         return ( <option value={i} key={i}>{i +'"'}</option> )
                     })}
                 </select>
-                <select defaultValue={props.stringerfr} onChange={props.changestringerfr}>
+                <select defaultValue={props.stringerfr} onChange={props.changestringerfr} className="dropdown">
                     {Array.from(Array(selectFractions), (e, i) => {
                         return ( <option value={i * 0.0625} key={i * 0.0625}>{i + "/16"}</option> )
                     })}

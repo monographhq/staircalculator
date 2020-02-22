@@ -1,0 +1,80 @@
+.title {
+  font-family: Söhne Mono Halbfett;
+  font-style: normal;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: white;
+}
+
+.subtitle {
+  font-family: Söhne Mono;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 135%;
+  letter-spacing: 0.05em;
+  color: white;
+}
+
+.sidebar__section {
+  padding: 3rem 0;
+}
+
+.sidebar__section--last {
+  padding-bottom: 4rem;
+}
+
+.sidebar__section--border {
+  border-top: 1px solid rgba(255, 255, 255, 0.8);
+  margin: 0 -2rem;
+}
+
+.toggle-inactive {
+  box-sizing: border-box;
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.8);
+  font-family: Söhne Mono;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  text-align: center;
+  display: inline-block;
+  padding: 1rem;
+  width: 77px;
+  height: 34px;
+}
+
+.toggle-active {
+  box-sizing: border-box;
+  background: rgba(65, 234, 212, 0.82);
+  color: rgba(255, 255, 255, 1);
+  border: rgba(65, 234, 212, 0.82);
+  font-family: Söhne Mono;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  text-align: center;
+  display: inline-block;
+  padding: 1rem;
+  width: 77px;
+  height: 34px;
+}
+
+.dropdown {
+  font-family: Söhne Mono;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.stairangle__number {
+  background: white;
+}
+
+#sidebar {
+  background: #001223;
+  padding: 0 2rem;
+}

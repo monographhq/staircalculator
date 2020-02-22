@@ -10,6 +10,8 @@ import StairAngle from './Components/inputs/stairangle';
 import Height from './Components/inputs/height';
 import FloorThickness from './Components/inputs/floorthickness';
 import Stair from './Components/stair';
+import Units from './Components/inputs/units';
+import Dimensions from './Components/inputs/dimensions';
 
 
 class App extends Component {
@@ -48,7 +50,9 @@ class App extends Component {
     nosingin: 0,
     nosingfr: 0,
 
-    runOn: true
+    runOn: true,
+    dimensions: true,
+    units: true
 
   }
 
@@ -199,13 +203,37 @@ class App extends Component {
     })
   }
 
+  //Handlers for toggles
+  changeUnit = (event) => {
+    if (this.units === true){
+    this.setState({
+      units: false
+    })
+  } else if (this.units === false){
+    this.setState({
+      units: true
+    })
+  }
+  }
+
   render(){
     return (
       <div className="container-fluid">
-        <div className="row">
+        <div className="row d-flex">
 
-          <div id="sidebar" className="col-4">
-              <div>
+          <div id="sidebar" className="col-2">
+              <div className="sidebar__section">
+                <Units 
+                  units = {this.state.units}
+                />
+                <Dimensions 
+                  dimensions = {this.state.dimensions}
+                />
+              </div>
+
+              <div className="sidebar__section--border"></div>
+
+              <div className="sidebar__section">
                 <div className="title">Rise-run</div>
                 <TotalRun 
                     totalRunft = {this.state.totalRunft}
@@ -237,83 +265,89 @@ class App extends Component {
                 />
               </div>
 
-            <Details 
+              <div className="sidebar__section--border"></div>
+
+              <Details 
+                stringerin={this.state.stringerin}
+                stringerfr={this.state.stringerfr}
+                treadin={this.state.treadin}
+                treadfr={this.state.treadfr}
+                riserin={this.state.riserin}
+                riserfr={this.state.riserfr}
+                nosingin={this.state.nosingin}
+                nosingfr={this.state.nosingfr}
+                changestringerin={this.changestringerin}
+                changestringerfr={this.changestringerfr}
+                changetreadin={this.changetreadin}
+                changetreadfr={this.changetreadfr}
+                changeriserin={this.changeriserin}
+                changeriserfr={this.changeriserfr}
+                changenosingin={this.changenosingin}
+                changenosingfr={this.changenosingfr}
+              />
+
+              <div className="sidebar__section--border"></div>
+
+              <div className="sidebar__section">
+                  <div className="title">Headroom</div>
+                  <Height 
+                    totalRunft={this.state.totalRunft}
+                    totalRunin={this.state.totalRunin}
+                    totalRunfr={this.state.totalRunfr}
+                    headroomLength={this.state.headroomLength}
+                    changeheadroomlength={this.changeheadroomlength}
+                  />
+                  <FloorThickness 
+                    floorft={this.state.floorft}
+                    floorin={this.state.floorin}
+                    floorfr={this.state.floorfr}
+                    changefloorft={this.changefloorft}
+                    changefloorin={this.changefloorin}
+                    changefloorfr={this.changefloorfr}
+                  />
+              </div>
+
+              <div className="sidebar__section--border"></div>
+            
+              <StairAngle
+                idealRunin={this.state.idealRunin}
+                idealRunfr={this.state.idealRunfr}
+                idealRisein={this.state.idealRisein}
+                idealRisefr={this.state.idealRisefr}
+              />
+
+          </div>
+
+          <div id="container" className="col-10">
+            <Stair 
+              totalRunft={this.state.totalRunft}
+              totalRunin={this.state.totalRunin}
+              totalRunfr={this.state.totalRunfr}
+              totalRiseft={this.state.totalRiseft}
+              totalRisein={this.state.totalRisein}
+              totalRisefr={this.state.totalRisefr}
+              idealRunin={this.state.idealRunin}
+              idealRunfr={this.state.idealRunfr}
+              idealRisein={this.state.idealRisein}
+              idealRisefr={this.state.idealRisefr}
+              boolean={this.state.runOn}
+              runCount={this.state.runCount}
+              riseCount={this.state.riseCount}
               stringerin={this.state.stringerin}
               stringerfr={this.state.stringerfr}
+              floorft={this.state.floorft}
+              floorin={this.state.floorin}
+              floorfr={this.state.floorfr}
+              headroomLength={this.state.headroomLength}
+              headroomDelta={this.state.headroomDelta}
               treadin={this.state.treadin}
               treadfr={this.state.treadfr}
               riserin={this.state.riserin}
               riserfr={this.state.riserfr}
               nosingin={this.state.nosingin}
               nosingfr={this.state.nosingfr}
-              changestringerin={this.changestringerin}
-              changestringerfr={this.changestringerfr}
-              changetreadin={this.changetreadin}
-              changetreadfr={this.changetreadfr}
-              changeriserin={this.changeriserin}
-              changeriserfr={this.changeriserfr}
-              changenosingin={this.changenosingin}
-              changenosingfr={this.changenosingfr}
             />
-
-            <div>
-                <div className="title">Headroom</div>
-                <Height 
-                  totalRunft={this.state.totalRunft}
-                  totalRunin={this.state.totalRunin}
-                  totalRunfr={this.state.totalRunfr}
-                  headroomLength={this.state.headroomLength}
-                  changeheadroomlength={this.changeheadroomlength}
-                />
-                <FloorThickness 
-                  floorft={this.state.floorft}
-                  floorin={this.state.floorin}
-                  floorfr={this.state.floorfr}
-                  changefloorft={this.changefloorft}
-                  changefloorin={this.changefloorin}
-                  changefloorfr={this.changefloorfr}
-                />
-
-            </div>
-          
-            <StairAngle
-              idealRunin={this.state.idealRunin}
-              idealRunfr={this.state.idealRunfr}
-              idealRisein={this.state.idealRisein}
-              idealRisefr={this.state.idealRisefr}
-            />
-        </div>
-
-        <div className="col-8" id="container">
-          <Stair 
-            totalRunft={this.state.totalRunft}
-            totalRunin={this.state.totalRunin}
-            totalRunfr={this.state.totalRunfr}
-            totalRiseft={this.state.totalRiseft}
-            totalRisein={this.state.totalRisein}
-            totalRisefr={this.state.totalRisefr}
-            idealRunin={this.state.idealRunin}
-            idealRunfr={this.state.idealRunfr}
-            idealRisein={this.state.idealRisein}
-            idealRisefr={this.state.idealRisefr}
-            boolean={this.state.runOn}
-            runCount={this.state.runCount}
-            riseCount={this.state.riseCount}
-            stringerin={this.state.stringerin}
-            stringerfr={this.state.stringerfr}
-            floorft={this.state.floorft}
-            floorin={this.state.floorin}
-            floorfr={this.state.floorfr}
-            headroomLength={this.state.headroomLength}
-            headroomDelta={this.state.headroomDelta}
-            treadin={this.state.treadin}
-            treadfr={this.state.treadfr}
-            riserin={this.state.riserin}
-            riserfr={this.state.riserfr}
-            nosingin={this.state.nosingin}
-            nosingfr={this.state.nosingfr}
-          />
-        </div>
+          </div>
         
       </div>
 
