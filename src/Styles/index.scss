@@ -43,16 +43,8 @@
 .toggle {
   text-align: center;
   display: inline-block;
-  width: 80px;
-  height: 36px;
-}
-
-.toggle__left {
-  margin-right: 1px;
-}
-
-.toggle__right {
-  margin-left: 1px;
+  width: 107px;
+  height: 45px;
 }
 
 .toggle--inactive {
@@ -77,18 +69,26 @@
   font-size: 14px;
   line-height: 18px;
   border-radius: 3px;
-  padding: 11px 1px;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  background: white;
+  width: 31%;
+  border: none;
 }
 
+.dropdown__feet {
+  margin-right: 8px;
+}
 
-.dropdown__feet, .dropdown__inch {
-  margin-right: 0.5em;
+.dropdown__inch {
+  margin-right: 8px;
 }
 
 .stairangle__number {
   background: white;
   padding: 11px 0;
   border-radius: 3px;
+  text-align: center;
 }
 
 #sidebar {
@@ -96,3 +96,39 @@
   padding: 0 2rem;
 }
 
+.slider__height {
+  width: 100%;
+}
+
+.slider__angle {
+  width: 65%;
+  margin: auto 0;
+}
+
+/* The slider itself */
+.slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  height: 2px; /* Specified height */
+  background: rgba(255, 255, 255, 0.5); /* Grey background */
+  outline: none; /* Remove outline */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 8px; /* Set a specific slider handle width */
+  height: 20px; /* Slider handle height */
+  background: #41EAD4; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+  width: 8px; /* Set a specific slider handle width */
+  height: 20px; /* Slider handle height */
+  background: #41EAD4; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}

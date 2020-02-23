@@ -8,7 +8,7 @@ const IdealRise = (props) => {
     return (
         <div>
             <label className="subtitle d-flex">Ideal rise</label>
-            <div className="select-container">
+            <div className="d-flex justify-content-start">
                 <select defaultValue={props.idealRisein} onChange={props.changeidealRisein} className="dropdown dropdown__inch">
                     {Array.from(selectInches, (i) => {
                         return ( <option value={i} key={i}>{i +'"'}</option> )

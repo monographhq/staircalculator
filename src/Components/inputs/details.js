@@ -13,16 +13,18 @@ const Details = (props) => {
             <div className="title">Details</div>
             <div>
                 <label className="subtitle d-flex">Tread thickness</label>
-                <select defaultValue={props.treadin} onChange={props.changetreadin} className="dropdown dropdown__inch">
-                    {Array.from(Array(treadInches), (e, i) => {
-                        return ( <option value={i} key={i}>{i +'"'}</option> )
-                    })}
-                </select>
-                <select defaultValue="0" onChange={props.changetreadfr} className="dropdown dropdown__fraction">
-                    {Array.from(Array(selectFractions), (e, i) => {
-                        return ( <option value={i * 0.0625} key={i * 0.0625}>{i + "/16"}</option> )
-                    })}
-                </select>
+                <div className="d-flex justify-content-start">
+                    <select defaultValue={props.treadin} onChange={props.changetreadin} className="dropdown dropdown__inch">
+                        {Array.from(Array(treadInches), (e, i) => {
+                            return ( <option value={i} key={i}>{i +'"'}</option> )
+                        })}
+                    </select>
+                    <select defaultValue="0" onChange={props.changetreadfr} className="dropdown dropdown__fraction">
+                        {Array.from(Array(selectFractions), (e, i) => {
+                            return ( <option value={i * 0.0625} key={i * 0.0625}>{i + "/16"}</option> )
+                        })}
+                    </select>
+                </div>
             </div>
             <div>
                 <label className="subtitle d-flex">Riser thickness</label>
