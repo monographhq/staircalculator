@@ -2,7 +2,7 @@ import React from 'react';
 
 const FloorThickness = (props) => {
 
-    let maxThickness = 15 + 1;
+    let maxThickness = 1+1;
     let selectInches = 11 + 1;
     let selectFractions = 16;
 

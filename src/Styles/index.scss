@@ -83,16 +83,21 @@
   padding-top: 13px;
   padding-bottom: 13px;
   background: white;
-  width: 34%;
   border: none;
 }
 
 .dropdown__feet {
-  margin-right: 2px;
+  margin-right: 6px;
+  width: 25%;
 }
 
 .dropdown__inch {
-  margin-right: 2px;
+  margin-right: 6px;
+  width: 25%;
+}
+
+.dropdown__fraction {
+  width: 35%;
 }
 
 .stairangle__number {
@@ -100,6 +105,7 @@
   padding: 11px 0;
   border-radius: 3px;
   text-align: center;
+  width: 25%;
 }
 
 /*Slider controls */
@@ -109,7 +115,7 @@
 }
 
 .slider__angle {
-  width: 65%;
+  width: 70%;
   margin: auto 0;
 }
 
@@ -149,12 +155,13 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: white;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: #C4C4C4;
+  border-radius: 1em;
 }
 
 /* Handle on hover */

@@ -10,7 +10,7 @@ const TotalRun = (props) => {
     return (
         <div>
             <label className="subtitle d-flex">Total run</label>
-            <div className="d-flex justify-content-between">
+            <div className="d-flex justify-content-start">
                 <select id="totalRunFeet" defaultValue={props.totalRunft} onChange={props.changetotalRunft} className="dropdown dropdown__feet">
                     {Array.from(selectFeet, (i) => {
                         return ( <option value={i*12} key={i*12}>{i +"'"}</option> )

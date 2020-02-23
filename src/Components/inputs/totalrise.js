@@ -9,7 +9,7 @@ const TotalRise = (props) => {
     return (
         <div>
             <label className="subtitle d-flex">Total rise</label>
-            <div className="d-flex justify-content-between">
+            <div className="d-flex justify-content-start">
                 <select id="totalRiseft" defaultValue={props.totalRiseft} onChange={props.changetotalRiseft} className="dropdown dropdown__feet">
                     {Array.from(selectFeet, (i) => {
                         return ( <option value={i*12} key={i*12}>{i +"'"}</option> )
