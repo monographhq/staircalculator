@@ -1,3 +1,14 @@
+#container {
+  overflow: hidden;
+}
+
+#sidebar {
+  background: #001223;
+  padding: 0 2rem;
+  overflow: auto;
+  height: 100vh;
+}
+
 .title {
   font-family: Söhne Mono Halbfett;
   font-style: normal;
@@ -72,16 +83,16 @@
   padding-top: 13px;
   padding-bottom: 13px;
   background: white;
-  width: 31%;
+  width: 34%;
   border: none;
 }
 
 .dropdown__feet {
-  margin-right: 8px;
+  margin-right: 2px;
 }
 
 .dropdown__inch {
-  margin-right: 8px;
+  margin-right: 2px;
 }
 
 .stairangle__number {
@@ -91,10 +102,7 @@
   text-align: center;
 }
 
-#sidebar {
-  background: #001223;
-  padding: 0 2rem;
-}
+/*Slider controls */
 
 .slider__height {
   width: 100%;
@@ -131,4 +139,25 @@
   height: 20px; /* Slider handle height */
   background: #41EAD4; /* Green background */
   cursor: pointer; /* Cursor on hover */
+}
+
+/* Scrollbar style */ 
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
