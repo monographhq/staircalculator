@@ -228,9 +228,9 @@ class App extends Component {
   render(){
     return (
       <div className="container-fluid">
-        <div className="row d-flex">
+        <div className="row">
 
-          <div id="sidebar" className="col-2">
+          <div id="sidebar" className="col-2 ">
               <div className="sidebar__section">
                 <Units 
                   units = {this.state.units}

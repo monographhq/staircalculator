@@ -19,7 +19,7 @@
 }
 
 .subtitle {
-  font-family: Söhne Mono;
+  font-family: Söhne Mono Halbfett;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -45,7 +45,7 @@
 /* These styles are for the toggles */
 .toggle-group {
   vertical-align: center;
-  font-family: Söhne Mono;
+  font-family: Söhne Mono Halbfett;
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
@@ -54,7 +54,7 @@
 .toggle {
   text-align: center;
   display: inline-block;
-  width: 107px;
+  width: 110px;
   height: 45px;
 }
 
@@ -74,7 +74,7 @@
 
 /*These styles are for the dropdown inputs*/
 .dropdown {
-  font-family: Söhne Mono;
+  font-family: Söhne Mono Halbfett;
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
@@ -102,10 +102,10 @@
 
 .stairangle__number {
   background: white;
-  padding: 11px 0;
+  padding: 11px auto;
   border-radius: 3px;
   text-align: center;
-  width: 25%;
+  width: 40%;
 }
 
 /*Slider controls */
@@ -115,7 +115,7 @@
 }
 
 .slider__angle {
-  width: 70%;
+  width: 55%;
   margin: auto 0;
 }
 
