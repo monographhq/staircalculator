@@ -115,22 +115,27 @@ const Stair = (props) => {
   //Dimension strings
   //This is the arrow dimensions
   let arrowWidth = 10 / 2;
-  let arrowHeight = 10 / 2;
   let arrowOffset = 40;
   let textLineOffset = 40;
   let textNumOffset = 20;
 
   //This is the dimension string for the total rise
   let dRise = [coordinates[coordinates.length-2]+arrowOffset, 0, coordinates[coordinates.length-2]+arrowOffset, coordinates[coordinates.length-9]];
-  let dRiseArrowTop = [dRise[0]-arrowWidth, dRise[1]+arrowHeight, dRise[0], dRise[1], dRise[0]+arrowWidth, dRise[1]+arrowHeight];
-  let dRiseArrowBot = [dRise[2]-arrowWidth, dRise[3]-arrowHeight, dRise[2], dRise[3], dRise[2]+arrowWidth, dRise[3]-arrowHeight];
+  let dRiseArrowTop = [dRise[0]-arrowWidth, dRise[1]+arrowWidth, dRise[0], dRise[1], dRise[0]+arrowWidth, dRise[1]+arrowWidth];
+  let dRiseArrowBot = [dRise[2]-arrowWidth, dRise[3]-arrowWidth, dRise[2], dRise[3], dRise[2]+arrowWidth, dRise[3]-arrowWidth];
   let dRiseText = [dRise[0], (dRise[1]+dRise[3])/2];
   let dRiseDashedTop = [coordinates[coordinates.length-2], dRise[1], dRise[0], dRise[1]];
   let dRiseDashedBot = [coordinates[coordinates.length-10], dRise[3], dRise[0], dRise[3]];
   let dRiseVal = [1, 2, 3];
 
   //This is the dimension string for the total run
-  let dRun = [coordinates[0]];
+  let dRun = [coordinates[coordinates.length-12], coordinates[coordinates.length-11]+arrowOffset, coordinates[0], coordinates[coordinates.length-11]+arrowOffset];
+  let dRunArrowLeft = [dRun[0]+arrowWidth, dRun[1]-arrowWidth, dRun[0], dRun[1], dRun[0]+arrowWidth, dRun[1]+arrowWidth];
+  let dRunArrowRight = [dRun[2]-arrowWidth, dRun[3]-arrowWidth, dRun[2], dRun[3], dRun[2]-arrowWidth, dRun[3]+arrowWidth];
+  let dRunText = [(dRun[0]+dRun[2])/2, dRun[1]];
+  let dRunDashedLeft = [dRun[0], dRun[1], dRun[0], dRun[1]-arrowOffset];
+  let dRunDashedRight = [dRun[2], dRun[3], dRun[2], coordinates[1]];
+
   //This is the dimension string for the stringer
   let dStringer = [];
   //This is the dimension string for the nosing
@@ -284,7 +289,7 @@ const Stair = (props) => {
             <Line
               x={move[0]}
               y={move[1]}
-              points={dRise}
+              points={dRun}
               stroke="#5541EA"
               strokeWidth={0.75}
               lineCap='round'
@@ -293,7 +298,7 @@ const Stair = (props) => {
             <Line
               x={move[0]}
               y={move[1]}
-              points={dRiseArrowTop}
+              points={dRunArrowLeft}
               stroke="#5541EA"
               strokeWidth={0.75}
               lineCap='round'
@@ -302,7 +307,7 @@ const Stair = (props) => {
             <Line
               x={move[0]}
               y={move[1]}
-              points={dRiseArrowBot}
+              points={dRunArrowRight}
               stroke="#5541EA"
               strokeWidth={0.75}
               lineCap='round'
@@ -311,7 +316,7 @@ const Stair = (props) => {
             <Line
               x={move[0]}
               y={move[1]}
-              points={dRiseDashedTop}
+              points={dRunDashedLeft}
               stroke="black"
               strokeWidth={0.75}
               lineCap='sqare'
@@ -321,7 +326,7 @@ const Stair = (props) => {
             <Line
               x={move[0]}
               y={move[1]}
-              points={dRiseDashedBot}
+              points={dRunDashedRight}
               stroke="black"
               strokeWidth={0.75}
               lineCap='sqare'
@@ -330,24 +335,22 @@ const Stair = (props) => {
             />
             <Text 
               width={100}
-              x={move[0] + dRiseText[0] + textLineOffset}
-              y={move[1] + dRiseText[1] - 50}
+              x={move[0] + dRunText[0] - 50}
+              y={move[1] + dRunText[1] + textLineOffset}
               fontFamily="Söhne Mono Buch"
               fontSize={14}
               fill="#5541EA"
-              text="Total Rise"
-              rotation={90}
+              text="Total Run"
               align="center"
             />
             <Text 
               width={100}
-              x={move[0] + dRiseText[0] + textNumOffset}
-              y={move[1] + dRiseText[1] - 50}
+              x={move[0] + dRunText[0] - 50 }
+              y={move[1] + dRunText[1] + textNumOffset}
               fontFamily="Söhne Mono Buch"
               fontSize={14}
               fill="#5541EA"
-              text={props.totalRiseft/12 + "' " + props.totalRisein + '" ' + props.totalRisefr*16 + "/16"}
-              rotation={90}
+              text={props.totalRunft/12 + "' " + props.totalRunin + '" ' + props.totalRunfr*16 + "/16"}
               align="center"
             />
           </React.Fragment>
