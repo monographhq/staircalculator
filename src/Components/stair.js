@@ -115,7 +115,7 @@ const Stair = (props) => {
             y={move[1]}
             points={coordinates}
             stroke="black"
-            strokeWidth={0.75}
+            strokeWidth={1.5}
             lineCap='sqare'
             lineJoin='sqare'
             closed='true'
@@ -125,7 +125,7 @@ const Stair = (props) => {
             y={move[1]}
             points={headroomPts}
             stroke="black"
-            strokeWidth={0.75}
+            strokeWidth={1.5}
             lineCap='sqare'
             lineJoin='sqare'
             closed='true'
@@ -137,7 +137,7 @@ const Stair = (props) => {
               height={treadThickness}
               fill="white"
               stroke="black"
-              strokeWidth={0.75}
+              strokeWidth={1.5}
             />
           {
           [...Array(count-1)].map((_, i) => (
@@ -149,7 +149,7 @@ const Stair = (props) => {
               height={treadThickness}
               fill="white"
               stroke="black"
-              strokeWidth={0.75}
+              strokeWidth={1.5}
             />
           ))
           }
@@ -162,7 +162,7 @@ const Stair = (props) => {
               height={riserHeight}
               fill="white"
               stroke="black"
-              strokeWidth={0.75}
+              strokeWidth={1.5}
             />
           ))}
         </Layer>

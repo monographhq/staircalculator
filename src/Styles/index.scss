@@ -54,7 +54,7 @@
 .toggle {
   text-align: center;
   display: inline-block;
-  width: 110px;
+  width: 102px;
   height: 45px;
 }
 
@@ -80,11 +80,21 @@
   font-size: 14px;
   line-height: 18px;
   border-radius: 3px;
-  padding-top: 13px;
-  padding-bottom: 13px;
+  padding: 13px 8px;
   background: white;
   border: none;
+  margin: 0;      
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: relative;
+  background-image: url("../images/dropdown-arrow.svg");
+  background-repeat: no-repeat;
+  background-position: 90% center;
 }
+
 
 .dropdown__feet {
   margin-right: 6px;
