@@ -52,7 +52,7 @@ class App extends Component {
     nosingfr: 0,
 
     runOn: true,
-    dimensions: false,
+    dimensions: true,
     units: true,
     details: true
 
@@ -314,6 +314,7 @@ class App extends Component {
                 changeriserfr={this.changeriserfr}
                 changenosingin={this.changenosingin}
                 changenosingfr={this.changenosingfr}
+                details={this.state.details}
               />
 
               <div className="sidebar__section--border"></div>
@@ -377,6 +378,7 @@ class App extends Component {
               nosingin={this.state.nosingin}
               nosingfr={this.state.nosingfr}
               details={this.state.details}
+              dimensions={this.state.dimensions}
             />
           </div>
         

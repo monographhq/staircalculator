@@ -1,7 +1,14 @@
 import React from 'react';
-import { Stage, Layer, Line, Rect, Arrow} from 'react-konva';
+import { Stage, Layer, Line, Rect, Text } from 'react-konva';
+import '../Styles/fonts.css';
 
 const Stair = (props) => {
+
+  var FontFaceObserver = require('fontfaceobserver');
+  var font = new FontFaceObserver('Söhne Mono Buch');
+  font.load().then(function () {
+    console.log('My Family has loaded');
+  });
 
   let totalRun = parseInt(props.totalRunft) + parseInt(props.totalRunin) + parseFloat(props.totalRunfr);
   let totalRise = parseInt(props.totalRiseft) + parseInt(props.totalRisein) + parseFloat(props.totalRisefr);
@@ -111,22 +118,32 @@ const Stair = (props) => {
   //Coordinates and dimensions for the top tread
   let topTread = [treadsX[0], treadsY[0]];
 
-  //Dimension lines
-  //This is the dimension line for the total rise
+  //Dimension strings
+  //This is the arrow dimensions
+  let arrowWidth = 10 / 2;
+  let arrowHeight = 10 / 2;
+  let arrowOffset = 40;
+
+  //This is the dimension string for the total rise
   let dRiseval = 0;
-  let dRise = [];
-  let dRisemov = 0;
-  //This is the dimension line for the total run
+  let dRise = [coordinates[coordinates.length-2]+arrowOffset, 0, coordinates[coordinates.length-2]+arrowOffset, coordinates[coordinates.length-9]];
+  let dRiseArrowTop = [dRise[0]-arrowWidth, dRise[1]+arrowHeight, dRise[0], dRise[1], dRise[0]+arrowWidth, dRise[1]+arrowHeight];
+  let dRiseArrowBot = [dRise[2]-arrowWidth, dRise[3]-arrowHeight, dRise[2], dRise[3], dRise[2]+arrowWidth, dRise[3]-arrowHeight];
+  let dRiseText = [];
+  let dRiseDashedTop = [coordinates[coordinates.length-2], dRise[1], dRise[0], dRise[1]];
+  let dRiseDashedBot = [coordinates[coordinates.length-10], dRise[3], dRise[0], dRise[3]];
+
+  //This is the dimension string for the total run
   let dRun = [];
-  //This is the dimension line for the stringer
+  //This is the dimension string for the stringer
   let dStringer = [];
-  //This is the dimension line for the nosing
+  //This is the dimension string for the nosing
   let dNosing = []; 
-  //This is the dimension line for the headroom
+  //This is the dimension string for the headroom
   let dHeadroom = [];
-  //This is the dimension line for the floor thickness
+  //This is the dimension string for the floor thickness
   let dFloor = [];
-  //This is the dimension line for the stair angle
+  //This is the dimension string for the stair angle
   let dAngle = [];
 
   return (
@@ -192,8 +209,65 @@ const Stair = (props) => {
           ))
           }
         </Layer>
-        <Layer>
-          
+        <Layer> 
+        {props.dimensions &&
+          <React.Fragment>
+            <Line
+              x={move[0]}
+              y={move[1]}
+              points={dRise}
+              stroke="#5541EA"
+              strokeWidth={0.75}
+              lineCap='round'
+              lineJoin='round'
+            />
+            <Line
+              x={move[0]}
+              y={move[1]}
+              points={dRiseArrowTop}
+              stroke="#5541EA"
+              strokeWidth={0.75}
+              lineCap='round'
+              lineJoin='round'
+            />
+            <Line
+              x={move[0]}
+              y={move[1]}
+              points={dRiseArrowBot}
+              stroke="#5541EA"
+              strokeWidth={0.75}
+              lineCap='round'
+              lineJoin='round'
+            />
+            <Line
+              x={move[0]}
+              y={move[1]}
+              points={dRiseDashedTop}
+              stroke="black"
+              strokeWidth={0.75}
+              lineCap='sqare'
+              lineJoin='sqare'
+              dash={[3, 4]}
+            />
+            <Line
+              x={move[0]}
+              y={move[1]}
+              points={dRiseDashedBot}
+              stroke="black"
+              strokeWidth={0.75}
+              lineCap='sqare'
+              lineJoin='sqare'
+              dash={[3, 4]}
+            />
+            <Text 
+              fontFamily="Söhne Mono Buch"
+              fontSize={14}
+              fill="#5541EA"
+              text="Total Rise"
+              align="center"
+            />
+          </React.Fragment>
+        }
         </Layer>
       </Stage>
   )

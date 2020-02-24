@@ -72,6 +72,11 @@
   border: rgba(65, 234, 212, 0.82);
 }
 
+.disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
 /*These styles are for the dropdown inputs*/
 .dropdown {
   font-family: Söhne Mono Halbfett;
