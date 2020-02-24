@@ -3,7 +3,7 @@ import React from 'react';
 const IdealRise = (props) => {
 
     let selectInches = Array.from({length:7-4+1},(v,k)=>k+4);
-    let selectFractions = 12;
+    let selectFractions = 13;
 
     return (
         <div className="select-wrapper">

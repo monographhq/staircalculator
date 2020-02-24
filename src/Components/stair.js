@@ -4,12 +4,6 @@ import '../Styles/fonts.css';
 
 const Stair = (props) => {
 
-  var FontFaceObserver = require('fontfaceobserver');
-  var font = new FontFaceObserver('Söhne Mono Buch');
-  font.load().then(function () {
-    console.log('My Family has loaded');
-  });
-
   let totalRun = parseInt(props.totalRunft) + parseInt(props.totalRunin) + parseFloat(props.totalRunfr);
   let totalRise = parseInt(props.totalRiseft) + parseInt(props.totalRisein) + parseFloat(props.totalRisefr);
 
@@ -123,18 +117,20 @@ const Stair = (props) => {
   let arrowWidth = 10 / 2;
   let arrowHeight = 10 / 2;
   let arrowOffset = 40;
+  let textLineOffset = 40;
+  let textNumOffset = 20;
 
   //This is the dimension string for the total rise
-  let dRiseval = 0;
   let dRise = [coordinates[coordinates.length-2]+arrowOffset, 0, coordinates[coordinates.length-2]+arrowOffset, coordinates[coordinates.length-9]];
   let dRiseArrowTop = [dRise[0]-arrowWidth, dRise[1]+arrowHeight, dRise[0], dRise[1], dRise[0]+arrowWidth, dRise[1]+arrowHeight];
   let dRiseArrowBot = [dRise[2]-arrowWidth, dRise[3]-arrowHeight, dRise[2], dRise[3], dRise[2]+arrowWidth, dRise[3]-arrowHeight];
-  let dRiseText = [];
+  let dRiseText = [dRise[0], (dRise[1]+dRise[3])/2];
   let dRiseDashedTop = [coordinates[coordinates.length-2], dRise[1], dRise[0], dRise[1]];
   let dRiseDashedBot = [coordinates[coordinates.length-10], dRise[3], dRise[0], dRise[3]];
+  let dRiseVal = [1, 2, 3];
 
   //This is the dimension string for the total run
-  let dRun = [];
+  let dRun = [coordinates[0]];
   //This is the dimension string for the stringer
   let dStringer = [];
   //This is the dimension string for the nosing
@@ -260,10 +256,98 @@ const Stair = (props) => {
               dash={[3, 4]}
             />
             <Text 
+              width={100}
+              x={move[0] + dRiseText[0] + textLineOffset}
+              y={move[1] + dRiseText[1] - 50}
               fontFamily="Söhne Mono Buch"
               fontSize={14}
               fill="#5541EA"
               text="Total Rise"
+              rotation={90}
+              align="center"
+            />
+            <Text 
+              width={100}
+              x={move[0] + dRiseText[0] + textNumOffset}
+              y={move[1] + dRiseText[1] - 50}
+              fontFamily="Söhne Mono Buch"
+              fontSize={14}
+              fill="#5541EA"
+              text={props.totalRiseft/12 + "' " + props.totalRisein + '" ' + props.totalRisefr*16 + "/16"}
+              rotation={90}
+              align="center"
+            />
+          </React.Fragment>
+        }
+        {props.dimensions &&
+          <React.Fragment>
+            <Line
+              x={move[0]}
+              y={move[1]}
+              points={dRise}
+              stroke="#5541EA"
+              strokeWidth={0.75}
+              lineCap='round'
+              lineJoin='round'
+            />
+            <Line
+              x={move[0]}
+              y={move[1]}
+              points={dRiseArrowTop}
+              stroke="#5541EA"
+              strokeWidth={0.75}
+              lineCap='round'
+              lineJoin='round'
+            />
+            <Line
+              x={move[0]}
+              y={move[1]}
+              points={dRiseArrowBot}
+              stroke="#5541EA"
+              strokeWidth={0.75}
+              lineCap='round'
+              lineJoin='round'
+            />
+            <Line
+              x={move[0]}
+              y={move[1]}
+              points={dRiseDashedTop}
+              stroke="black"
+              strokeWidth={0.75}
+              lineCap='sqare'
+              lineJoin='sqare'
+              dash={[3, 4]}
+            />
+            <Line
+              x={move[0]}
+              y={move[1]}
+              points={dRiseDashedBot}
+              stroke="black"
+              strokeWidth={0.75}
+              lineCap='sqare'
+              lineJoin='sqare'
+              dash={[3, 4]}
+            />
+            <Text 
+              width={100}
+              x={move[0] + dRiseText[0] + textLineOffset}
+              y={move[1] + dRiseText[1] - 50}
+              fontFamily="Söhne Mono Buch"
+              fontSize={14}
+              fill="#5541EA"
+              text="Total Rise"
+              rotation={90}
+              align="center"
+            />
+            <Text 
+              width={100}
+              x={move[0] + dRiseText[0] + textNumOffset}
+              y={move[1] + dRiseText[1] - 50}
+              fontFamily="Söhne Mono Buch"
+              fontSize={14}
+              fill="#5541EA"
+              text={props.totalRiseft/12 + "' " + props.totalRisein + '" ' + props.totalRisefr*16 + "/16"}
+              rotation={90}
               align="center"
             />
           </React.Fragment>
