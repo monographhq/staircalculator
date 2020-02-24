@@ -12,6 +12,7 @@ import FloorThickness from './Components/inputs/floorthickness';
 import Stair from './Components/stair';
 import Units from './Components/inputs/units';
 import Dimensions from './Components/inputs/dimensions';
+import DetailsToggle from './Components/inputs/detailsToggle';
 
 
 class App extends Component {
@@ -52,7 +53,8 @@ class App extends Component {
 
     runOn: true,
     dimensions: false,
-    units: true
+    units: true,
+    details: true
 
   }
 
@@ -224,6 +226,16 @@ class App extends Component {
       dimensions: false
     })
   }
+  changeDetailsOn = () => {
+    this.setState({
+      details: true
+    })
+  }
+  changeDetailsOff = () => {
+    this.setState({
+      details: false
+    })
+  }
 
   render(){
     return (
@@ -241,6 +253,11 @@ class App extends Component {
                   dimensions = {this.state.dimensions}
                   changeDimensionsOn = {this.changeDimensionsOn}
                   changeDimensionsOff = {this.changeDimensionsOff}
+                />
+                <DetailsToggle 
+                  details = {this.state.details}
+                  changeDetailsOn = {this.changeDetailsOn}
+                  changeDetailsOff = {this.changeDetailsOff}
                 />
               </div>
 
@@ -359,6 +376,7 @@ class App extends Component {
               riserfr={this.state.riserfr}
               nosingin={this.state.nosingin}
               nosingfr={this.state.nosingfr}
+              details={this.state.details}
             />
           </div>
         

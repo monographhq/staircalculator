@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stage, Layer, Line, Rect} from 'react-konva';
+import { Stage, Layer, Line, Rect, Arrow} from 'react-konva';
 
 const Stair = (props) => {
 
@@ -32,14 +32,14 @@ const Stair = (props) => {
 
 
   //This creates the stair drawing based on whether total rise or run is being selected
-  if (props.boolean === true){ //If total run is adjusted
+  if (props.boolean === true){ //If total run is selected (need to change so that total run changes ideal run)
     for (let i=0; i<count; i++){
       coordinates.push( (totalRun)-(idealRun*i), idealRise*i, (totalRun)-(idealRun*(i+1)), idealRise*i, (totalRun)-(idealRun*(i+1)), (idealRise*(i+1)) )
     }
     //This creates the landing and stringer
     coordinates.push( (coordinates[coordinates.length-2]+stringerB), coordinates[coordinates.length-1], coordinates[0], stringerA, coordinates[0], floorThickness, (coordinates[0]+landing), floorThickness, (coordinates[0]+landing), 0)
 
-  } else if (props.boolean === false){ //If total rise is adjusted
+  } else if (props.boolean === false){ //If total rise is selected (need to change so that total rise changes ideal rise)
     for (let i=0; i<count; i++){
       coordinates.push( (totalRise)-(idealRun*i), idealRise*i, (totalRise)-(idealRun*(i+1)), idealRise*i, (totalRise)-(idealRun*(i+1)), (idealRise*(i+1)) )
     }
@@ -52,6 +52,10 @@ const Stair = (props) => {
 
   // //This is for the floor opening dimension
   // let headroomDelta = coordinates[3] - (coordinates[coordinates.length-12]-idealRun + lengthH);
+
+  //Calculate total run from the pre-scaled coordinates
+  let preTotalRun = [];
+  let preTotalRise = [];
 
   //This scales the drawing
   let stairLength = ((headroomPts[0]) + landing + coordinates[0]);
@@ -107,6 +111,24 @@ const Stair = (props) => {
   //Coordinates and dimensions for the top tread
   let topTread = [treadsX[0], treadsY[0]];
 
+  //Dimension lines
+  //This is the dimension line for the total rise
+  let dRiseval = 0;
+  let dRise = [];
+  let dRisemov = 0;
+  //This is the dimension line for the total run
+  let dRun = [];
+  //This is the dimension line for the stringer
+  let dStringer = [];
+  //This is the dimension line for the nosing
+  let dNosing = []; 
+  //This is the dimension line for the headroom
+  let dHeadroom = [];
+  //This is the dimension line for the floor thickness
+  let dFloor = [];
+  //This is the dimension line for the stair angle
+  let dAngle = [];
+
   return (
     <Stage width={windowWidth} height={window.innerHeight}>
         <Layer>
@@ -130,6 +152,7 @@ const Stair = (props) => {
             lineJoin='sqare'
             closed='true'
           />
+          {props.details &&
           <Rect
               x={topTread[0]}
               y={topTread[1]}
@@ -139,7 +162,8 @@ const Stair = (props) => {
               stroke="black"
               strokeWidth={1.5}
             />
-          {
+          }
+          {props.details &&
           [...Array(count-1)].map((_, i) => (
             <Rect
               key={i}
@@ -153,7 +177,8 @@ const Stair = (props) => {
             />
           ))
           }
-          {[...Array(count)].map((_, i) => (
+          {props.details &&
+          [...Array(count)].map((_, i) => (
             <Rect
               key={i}
               x={treadsW[i]}
@@ -164,7 +189,11 @@ const Stair = (props) => {
               stroke="black"
               strokeWidth={1.5}
             />
-          ))}
+          ))
+          }
+        </Layer>
+        <Layer>
+          
         </Layer>
       </Stage>
   )
