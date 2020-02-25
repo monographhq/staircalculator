@@ -139,7 +139,10 @@ const Stair = (props) => {
   //This is the dimension string for the stringer
   let dStringer = [];
   //This is the dimension string for the nosing
-  let dNosing = []; 
+  let dNosing = [coordinates[2], 0, coordinates[2]-(nosing), 0]; 
+  let dNosingArrowLeft = [dNosing[0], dNosing[1], dNosing[0], dNosing[1]-arrowOffset];
+  let dNosingArrowRight = [dNosing[2], dNosing[1], dNosing[2], dNosing[1]-arrowOffset];
+  let dNosingText = [(dNosing[0]+dNosing[2])/2, dNosing[1]-28];
   //This is the dimension string for the headroom
   let dHeadroom = [];
   //This is the dimension string for the floor thickness
@@ -261,9 +264,9 @@ const Stair = (props) => {
               dash={[3, 4]}
             />
             <Text 
-              width={100}
+              width={150}
               x={move[0] + dRiseText[0] + textLineOffset}
-              y={move[1] + dRiseText[1] - 50}
+              y={move[1] + dRiseText[1] - 75}
               fontFamily="Söhne Mono Buch"
               fontSize={14}
               fill="#5541EA"
@@ -272,13 +275,13 @@ const Stair = (props) => {
               align="center"
             />
             <Text 
-              width={100}
+              width={150}
               x={move[0] + dRiseText[0] + textNumOffset}
-              y={move[1] + dRiseText[1] - 50}
+              y={move[1] + dRiseText[1] - 75}
               fontFamily="Söhne Mono Buch"
               fontSize={14}
               fill="#5541EA"
-              text={props.totalRiseft/12 + "' " + props.totalRisein + '" ' + props.totalRisefr*16 + "/16"}
+              text={props.totalRiseft/12 + "' " + props.totalRisein + '" ' + props.totalRisefr}
               rotation={90}
               align="center"
             />
@@ -334,8 +337,8 @@ const Stair = (props) => {
               dash={[3, 4]}
             />
             <Text 
-              width={100}
-              x={move[0] + dRunText[0] - 50}
+              width={150}
+              x={move[0] + dRunText[0] - 75}
               y={move[1] + dRunText[1] + textLineOffset}
               fontFamily="Söhne Mono Buch"
               fontSize={14}
@@ -344,13 +347,57 @@ const Stair = (props) => {
               align="center"
             />
             <Text 
-              width={100}
-              x={move[0] + dRunText[0] - 50 }
+              width={150}
+              x={move[0] + dRunText[0] - 75}
               y={move[1] + dRunText[1] + textNumOffset}
               fontFamily="Söhne Mono Buch"
               fontSize={14}
               fill="#5541EA"
               text={props.totalRunft/12 + "' " + props.totalRunin + '" ' + props.totalRunfr*16 + "/16"}
+              align="center"
+            />
+          </React.Fragment>
+        }
+        {props.dimensions &&
+          <React.Fragment>
+            <Line
+              x={move[0]}
+              y={move[1]}
+              points={dNosingArrowLeft}
+              stroke="black"
+              strokeWidth={0.75}
+              lineCap='sqare'
+              lineJoin='sqare'
+              dash={[3, 4]}
+            />
+            <Line
+              x={move[0]}
+              y={move[1]}
+              points={dNosingArrowRight}
+              stroke="black"
+              strokeWidth={0.75}
+              lineCap='sqare'
+              lineJoin='sqare'
+              dash={[3, 4]}
+            />
+            <Text 
+              width={150}
+              x={move[0] + dNosingText[0] - 75}
+              y={move[1] + dNosingText[1] - 14 - textLineOffset}
+              fontFamily="Söhne Mono Buch"
+              fontSize={14}
+              fill="#5541EA"
+              text="Nosing"
+              align="center"
+            />
+            <Text 
+              width={150}
+              x={move[0] + dNosingText[0] - 75}
+              y={move[1] + dNosingText[1] - 14 - textNumOffset}
+              fontFamily="Söhne Mono Buch"
+              fontSize={14}
+              fill="#5541EA"
+              text={props.nosingin + '" ' + (props.nosingfr*16) + "/16"}
               align="center"
             />
           </React.Fragment>

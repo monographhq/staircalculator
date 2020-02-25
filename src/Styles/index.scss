@@ -101,18 +101,17 @@
 }
 
 
-.dropdown__feet {
+.dropdown__feet, .dropdown__inch {
   margin-right: 6px;
-  width: 30%;
-}
-
-.dropdown__inch {
-  margin-right: 6px;
-  width: 30%;
+  width: 28%;
 }
 
 .dropdown__fraction {
-  width: 35%;
+  width: 42%;
+}
+
+.dropdown:hover {
+  cursor: pointer;
 }
 
 .stairangle__number {

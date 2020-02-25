@@ -5,7 +5,7 @@ const Details = (props) => {
     let stringerInches = Array.from({length:11-5+1},(v,k)=>k+5);
     let treadInches = 1 + 1;
     let nosingInches = 1 + 1;
-    let nosingFractions = 8 + 1;
+    let nosingFractions = 15 + 1;
     let selectFractions = 16;
 
     let detailsTrue = props.details;
