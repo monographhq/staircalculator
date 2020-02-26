@@ -126,7 +126,6 @@ const Stair = (props) => {
   let dRiseText = [dRise[0], (dRise[1]+dRise[3])/2];
   let dRiseDashedTop = [coordinates[coordinates.length-2], dRise[1], dRise[0], dRise[1]];
   let dRiseDashedBot = [coordinates[coordinates.length-10], dRise[3], dRise[0], dRise[3]];
-  let dRiseVal = [1, 2, 3];
 
   //This is the dimension string for the total run
   let dRun = [coordinates[coordinates.length-12], coordinates[coordinates.length-11]+arrowOffset, coordinates[0], coordinates[coordinates.length-11]+arrowOffset];
@@ -138,15 +137,24 @@ const Stair = (props) => {
 
   //This is the dimension string for the stringer
   let dStringer = [];
+
   //This is the dimension string for the nosing
   let dNosing = [coordinates[2], 0, coordinates[2]-(nosing), 0]; 
-  let dNosingArrowLeft = [dNosing[0], dNosing[1], dNosing[0], dNosing[1]-arrowOffset];
-  let dNosingArrowRight = [dNosing[2], dNosing[1], dNosing[2], dNosing[1]-arrowOffset];
+  let dNosingDashedLeft = [dNosing[0], dNosing[1], dNosing[0], dNosing[1]-arrowOffset];
+  let dNosingDashedRight = [dNosing[2], dNosing[1], dNosing[2], dNosing[1]-arrowOffset];
   let dNosingText = [(dNosing[0]+dNosing[2])/2, dNosing[1]-28];
+
   //This is the dimension string for the headroom
   let dHeadroom = [];
+
   //This is the dimension string for the floor thickness
-  let dFloor = [];
+  let dFloor = [headroomPts[6], headroomPts[7], headroomPts[4], headroomPts[5]];
+  let dFloorArrowTop = [dFloor[2]-arrowWidth, dFloor[3]+arrowWidth, dFloor[2], dFloor[3], dFloor[2]+arrowWidth, dFloor[3]+arrowWidth];
+  let dFloorArrowBot= [dFloor[0]-arrowWidth, dFloor[1]-arrowWidth, dFloor[0], dFloor[1], dFloor[0]+arrowWidth, dFloor[1]-arrowWidth];
+  let dFloorText = [dFloor[0], (dFloor[1]+dFloor[3])/2];
+  let dFloorDashedTop = [dFloor[2], dFloor[3], dFloor[2]+arrowOffset, dFloor[3]];
+  let dFloorDashedBot = [dFloor[0], dFloor[1], dFloor[0]+arrowOffset, dFloor[1]];
+
   //This is the dimension string for the stair angle
   let dAngle = [];
 
@@ -268,7 +276,7 @@ const Stair = (props) => {
               x={move[0] + dRiseText[0] + textLineOffset}
               y={move[1] + dRiseText[1] - 75}
               fontFamily="Söhne Mono Buch"
-              fontSize={14}
+              fontSize={12}
               fill="#5541EA"
               text="Total Rise"
               rotation={90}
@@ -279,7 +287,7 @@ const Stair = (props) => {
               x={move[0] + dRiseText[0] + textNumOffset}
               y={move[1] + dRiseText[1] - 75}
               fontFamily="Söhne Mono Buch"
-              fontSize={14}
+              fontSize={12}
               fill="#5541EA"
               text={props.totalRiseft/12 + "' " + props.totalRisein + '" ' + props.totalRisefr}
               rotation={90}
@@ -341,7 +349,7 @@ const Stair = (props) => {
               x={move[0] + dRunText[0] - 75}
               y={move[1] + dRunText[1] + textLineOffset}
               fontFamily="Söhne Mono Buch"
-              fontSize={14}
+              fontSize={12}
               fill="#5541EA"
               text="Total Run"
               align="center"
@@ -351,7 +359,7 @@ const Stair = (props) => {
               x={move[0] + dRunText[0] - 75}
               y={move[1] + dRunText[1] + textNumOffset}
               fontFamily="Söhne Mono Buch"
-              fontSize={14}
+              fontSize={12}
               fill="#5541EA"
               text={props.totalRunft/12 + "' " + props.totalRunin + '" ' + props.totalRunfr*16 + "/16"}
               align="center"
@@ -363,7 +371,7 @@ const Stair = (props) => {
             <Line
               x={move[0]}
               y={move[1]}
-              points={dNosingArrowLeft}
+              points={dNosingDashedLeft}
               stroke="black"
               strokeWidth={0.75}
               lineCap='sqare'
@@ -373,7 +381,7 @@ const Stair = (props) => {
             <Line
               x={move[0]}
               y={move[1]}
-              points={dNosingArrowRight}
+              points={dNosingDashedRight}
               stroke="black"
               strokeWidth={0.75}
               lineCap='sqare'
@@ -383,9 +391,9 @@ const Stair = (props) => {
             <Text 
               width={150}
               x={move[0] + dNosingText[0] - 75}
-              y={move[1] + dNosingText[1] - 14 - textLineOffset}
+              y={move[1] + dNosingText[1] - 12 - textLineOffset}
               fontFamily="Söhne Mono Buch"
-              fontSize={14}
+              fontSize={12}
               fill="#5541EA"
               text="Nosing"
               align="center"
@@ -393,11 +401,82 @@ const Stair = (props) => {
             <Text 
               width={150}
               x={move[0] + dNosingText[0] - 75}
-              y={move[1] + dNosingText[1] - 14 - textNumOffset}
+              y={move[1] + dNosingText[1] - 12 - textNumOffset}
               fontFamily="Söhne Mono Buch"
-              fontSize={14}
+              fontSize={12}
               fill="#5541EA"
               text={props.nosingin + '" ' + (props.nosingfr*16) + "/16"}
+              align="center"
+            />
+          </React.Fragment>
+        }
+        {props.dimensions &&
+          <React.Fragment>
+            <Line
+              x={move[0]}
+              y={move[1]}
+              points={dFloorDashedTop}
+              stroke="black"
+              strokeWidth={0.75}
+              lineCap='sqare'
+              lineJoin='sqare'
+              dash={[3, 4]}
+            />
+            <Line
+              x={move[0]}
+              y={move[1]}
+              points={dFloorDashedBot}
+              stroke="black"
+              strokeWidth={0.75}
+              lineCap='sqare'
+              lineJoin='sqare'
+              dash={[3, 4]}
+            />
+            <Line
+              x={move[0]+arrowOffset}
+              y={move[1]}
+              points={dFloorArrowTop}
+              stroke="#5541EA"
+              strokeWidth={0.75}
+              lineCap='round'
+              lineJoin='round'
+            />
+            <Line
+              x={move[0]+arrowOffset}
+              y={move[1]}
+              points={dFloorArrowBot}
+              stroke="#5541EA"
+              strokeWidth={0.75}
+              lineCap='round'
+              lineJoin='round'
+            />
+            <Line
+              x={move[0]+arrowOffset}
+              y={move[1]}
+              points={dFloor}
+              stroke="#5541EA"
+              strokeWidth={0.75}
+              lineCap='round'
+              lineJoin='round'
+            />
+            <Text 
+              width={150}
+              x={move[0] + dFloorText[0] + 25}
+              y={move[1] + dFloorText[1] - 12}
+              fontFamily="Söhne Mono Buch"
+              fontSize={12}
+              fill="#5541EA"
+              text="Floor thickness"
+              align="center"
+            />
+            <Text 
+              width={150}
+              x={move[0] + dFloorText[0] + 25}
+              y={move[1] + dFloorText[1] - 12 + textNumOffset}
+              fontFamily="Söhne Mono Buch"
+              fontSize={12}
+              fill="#5541EA"
+              text={props.floorft + "' " + props.floorin + '" ' + (props.floorfr*16) + "/16"}
               align="center"
             />
           </React.Fragment>
