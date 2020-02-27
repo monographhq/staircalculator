@@ -51,6 +51,9 @@ class App extends Component {
     nosingin: 0,
     nosingfr: 0,
 
+    stairAngle: 32.5,
+    stairToggle: false,
+
     runOn: true,
     dimensions: true,
     units: true,
@@ -58,49 +61,26 @@ class App extends Component {
 
   }
 
-  // //Retrieves run count
-  // runCount = () => {
-  //   let sumRuntotal = parseInt( parseInt(this.state.totalRunft) + parseInt(this.state.totalRunin) + parseFloat(this.state.totalRunfr) );
-  //   let sumRunideal = parseInt( parseInt(this.state.idealRunin) + parseFloat(this.state.idealRunfr) );
-  //   return ( sumRuntotal / sumRunideal )
-  // }
-
-  // //Retrieves rise count
-  // riseCount = () => {
-  //   let sumRisetotal = parseInt( parseInt(this.state.totalRiseft) + parseInt(this.state.totalRisein) + parseFloat(this.state.totalRisefr) );
-  //   let sumRiseideal = parseInt( parseInt(this.state.idealRisein) + parseFloat(this.state.idealRisefr) );
-  //   return ( sumRisetotal / sumRiseideal )
-  // }
-
-  // //Changes rise input values based on run
-  // riseChange = () => {
-  //   let totalRise = this.runCount * (parseInt( parseInt(this.state.idealRisein) + parseFloat(this.state.idealRisefr) ) );
-  //   return totalRise
-  // }
-
-  // //Changes run input values based on rise
-  // runChange = () => {
-  //   let totalRun = this.riseCount * (parseInt( parseInt(this.state.idealRunin) + parseFloat(this.state.idealRunfr) ) );
-  //   return totalRun
-  // }
-
   //Handlers for changing total run
   changetotalRunft = (event) => {
       this.setState({
         totalRunft:event.target.value,
-        runOn: true
+        runOn: true,
+        stairToggle: false
       })
   }
   changetotalRunin = (event) => {
       this.setState({
         totalRunin:event.target.value,
-        runOn: true
+        runOn: true,
+        stairToggle: false
       })
   }
   changetotalRunfr = (event) => {
       this.setState({
         totalRunfr:event.target.value,
-        runOn: true
+        runOn: true,
+        stairToggle: false
       })
   }
 
@@ -108,36 +88,51 @@ class App extends Component {
   changetotalRiseft = (event) => {
       this.setState({
         totalRiseft:event.target.value,
-        runOn: false
+        runOn: false,
+        stairToggle: false
       })
   }
   changetotalRisein = (event) => {
       this.setState({
         totalRisein:event.target.value,
-        runOn: false
+        runOn: false,
+        stairToggle: false
       })
   }
   changetotalRisefr = (event) => {
       this.setState({
         totalRisefr:event.target.value,
-        runOn: false
+        runOn: false,
+        stairToggle: false
       })
   }
 
   //Handlers for changing ideal run
   changeidealRunin = (event) => {
-    this.setState({idealRunin:event.target.value})
+    this.setState({
+      idealRunin:event.target.value,
+      stairToggle: false
+    })
   }
   changeidealRunfr = (event) => {
-      this.setState({idealRunfr:event.target.value})
+      this.setState({
+        idealRunfr:event.target.value,
+        stairToggle: false
+      })
   }
 
   //Handlers for changing ideal rise
   changeidealRisein = (event) => {
-      this.setState({idealRisein:event.target.value})
+      this.setState({
+        idealRisein:event.target.value,
+        stairToggle: false
+      })
   }
   changeidealRisefr = (event) => {
-      this.setState({idealRisefr:event.target.value})
+      this.setState({
+        idealRisefr:event.target.value,
+        stairToggle: false
+      })
   }
 
   //Handlers for changing stringer
@@ -234,6 +229,14 @@ class App extends Component {
   changeDetailsOff = () => {
     this.setState({
       details: false
+    })
+  }
+
+  //Handler for stair angle
+  changeStairAngle = (event) => {
+    this.setState({
+      stairToggle: true,
+      stairAngle: event.target.value
     })
   }
 
@@ -345,6 +348,8 @@ class App extends Component {
                 idealRunfr={this.state.idealRunfr}
                 idealRisein={this.state.idealRisein}
                 idealRisefr={this.state.idealRisefr}
+                changeStairAngle={this.changeStairAngle}
+                stairAngle={this.state.stairAngle}
               />
 
           </div>
@@ -379,6 +384,8 @@ class App extends Component {
               nosingfr={this.state.nosingfr}
               details={this.state.details}
               dimensions={this.state.dimensions}
+              stairAngle={this.state.stairAngle}
+              stairToggle={this.state.stairToggle}
             />
           </div>
         

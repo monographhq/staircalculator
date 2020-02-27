@@ -31,6 +31,12 @@ const Stair = (props) => {
 
   let floorThickness = (parseFloat(props.floorft) + parseFloat(props.floorin) + parseFloat(props.floorfr));
 
+  if (props.stairToggle === true){
+    idealRun = parseFloat(idealRise / Math.tan(props.stairAngle * (Math.PI / 180)));
+  }
+  console.log(props.stairToggle);
+
+
 
   //This creates the stair drawing based on whether total rise or run is being selected
   if (props.boolean === true){ //If total run is selected (need to change so that total run changes ideal run)
@@ -50,9 +56,7 @@ const Stair = (props) => {
 
   //This is for the headroom part
   let headroomPts = [ (coordinates[coordinates.length-12]-(idealRun*3)), floorThickness, (coordinates[coordinates.length-12]-(idealRun*3)), 0, coordinates[coordinates.length-12]-idealRun + lengthH, 0, coordinates[coordinates.length-12]-idealRun + lengthH, floorThickness ];
-
-  // //This is for the floor opening dimension
-  // let headroomDelta = coordinates[3] - (coordinates[coordinates.length-12]-idealRun + lengthH);
+  let headroomTrue = totalRise > 90 || (idealRise * count) > 90;
 
   //Calculate total run from the pre-scaled coordinates
   let preTotalRun = [];
@@ -73,7 +77,7 @@ const Stair = (props) => {
 
   //This moves the drawing to the center
   let moveCenter = ( (windowWidth/2) - (stairLength*ratio/2) );
-  let move = [moveCenter,200];
+  let move = [moveCenter,150];
 
   //Treads, risers, and nosing dimensions
   let treadThickness = ratio * (parseFloat(props.treadin) + parseFloat(props.treadfr));
@@ -136,7 +140,7 @@ const Stair = (props) => {
   let dRunDashedRight = [dRun[2], dRun[3], dRun[2], coordinates[1]];
 
   //This is the dimension string for the stringer
-  let dStringer = [];
+  let dStringer = [coordinates[Math.round(coordinates.length/2)], coordinates[Math.round(coordinates.length/2)+1], ];
 
   //This is the dimension string for the nosing
   let dNosing = [coordinates[2], 0, coordinates[2]-(nosing), 0]; 
@@ -145,7 +149,14 @@ const Stair = (props) => {
   let dNosingText = [(dNosing[0]+dNosing[2])/2, dNosing[1]-28];
 
   //This is the dimension string for the headroom
-  let dHeadroom = [];
+  let dHeadroomStepX = headroomPts[6];
+  let dHeadroomStepY = coordinates[coordinates.length-9];
+  for (var p=0; p<coordinates.length; p++){
+    if (dHeadroomStepX === coordinates[p]){
+      dHeadroomStepY = coordinates[p+1];
+    }
+  }
+  let dHeadroom = [dHeadroomStepX, headroomPts[7], dHeadroomStepX, dHeadroomStepY];
 
   //This is the dimension string for the floor thickness
   let dFloor = [headroomPts[6], headroomPts[7], headroomPts[4], headroomPts[5]];
@@ -156,7 +167,10 @@ const Stair = (props) => {
   let dFloorDashedBot = [dFloor[0], dFloor[1], dFloor[0]+arrowOffset, dFloor[1]];
 
   //This is the dimension string for the stair angle
-  let dAngle = [];
+  let dAngleStart = [coordinates[coordinates.length-12],coordinates[coordinates.length-11]];
+  let dAngle = [dAngleStart[0], dAngleStart[1], dAngleStart[0] - 36, dAngleStart[1], dAngleStart[0], dAngleStart[1]-(36*Math.tan(Math.atan(idealRise/idealRun)))];
+  let dAngleText = [dAngle[2], dAngle[3]];
+  let stairAngle = (Math.atan((idealRise/idealRun)) * (180/Math.PI)).toFixed(1);
 
   return (
     <Stage width={windowWidth} height={window.innerHeight}>
@@ -171,7 +185,8 @@ const Stair = (props) => {
             lineJoin='sqare'
             closed='true'
           />
-        <Line
+          {headroomTrue &&
+          <Line
             x={move[0]}
             y={move[1]}
             points={headroomPts}
@@ -181,6 +196,7 @@ const Stair = (props) => {
             lineJoin='sqare'
             closed='true'
           />
+          }
           {props.details &&
           <Rect
               x={topTread[0]}
@@ -367,6 +383,7 @@ const Stair = (props) => {
           </React.Fragment>
         }
         {props.dimensions &&
+          props.details &&
           <React.Fragment>
             <Line
               x={move[0]}
@@ -411,6 +428,7 @@ const Stair = (props) => {
           </React.Fragment>
         }
         {props.dimensions &&
+          headroomTrue &&
           <React.Fragment>
             <Line
               x={move[0]}
@@ -476,8 +494,31 @@ const Stair = (props) => {
               fontFamily="Söhne Mono Buch"
               fontSize={12}
               fill="#5541EA"
-              text={props.floorft + "' " + props.floorin + '" ' + (props.floorfr*16) + "/16"}
+              text={(props.floorft/12) + "' " + props.floorin + '" ' + (props.floorfr*16) + "/16"}
               align="center"
+            />
+          </React.Fragment>
+        }
+        {props.dimensions &&
+          <React.Fragment>
+            <Line
+              x={move[0] - (arrowWidth*4)}
+              y={move[1]}
+              points={dAngle}
+              stroke="#5541EA"
+              strokeWidth={0.75}
+              lineCap='round'
+              lineJoin='round'
+            />
+            <Text 
+              width={40}
+              x={move[0] + dAngleText[0] - 30 - textLineOffset}
+              y={move[1] + dAngleText[1] - 12}
+              fontFamily="Söhne Mono Buch"
+              fontSize={12}
+              fill="#5541EA"
+              text={stairAngle + '°'}
+              align="right"
             />
           </React.Fragment>
         }
