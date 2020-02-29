@@ -5,6 +5,7 @@ import TotalRun from './Components/inputs/totalrun';
 import TotalRise from './Components/inputs/totalrise';
 import IdealRun from './Components/inputs/idealrun';
 import IdealRise from './Components/inputs/idealrise';
+import Stringer from './Components/inputs/stringerwidth';
 import Details from './Components/inputs/details';
 import StairAngle from './Components/inputs/stairangle';
 import Height from './Components/inputs/height';
@@ -13,6 +14,16 @@ import Stair from './Components/stair';
 import Units from './Components/inputs/units';
 import Dimensions from './Components/inputs/dimensions';
 import DetailsToggle from './Components/inputs/detailsToggle';
+import WebFont from 'webfontloader';
+
+WebFont.load({
+	custom: {
+		families: [
+			'Söhne Mono Buch'
+			]
+		},
+		timeout: 2000
+});
 
 
 class App extends Component {
@@ -296,21 +307,23 @@ class App extends Component {
                     changeidealRisein = {this.changeidealRisein}
                     changeidealRisefr = {this.changeidealRisefr}
                 />
+                <Stringer 
+                  changestringerin={this.changestringerin}
+                  changestringerfr={this.changestringerfr}
+                  stringerin={this.state.stringerin}
+                  stringerfr={this.state.stringerfr}
+                />
               </div>
 
               <div className="sidebar__section--border"></div>
 
               <Details 
-                stringerin={this.state.stringerin}
-                stringerfr={this.state.stringerfr}
                 treadin={this.state.treadin}
                 treadfr={this.state.treadfr}
                 riserin={this.state.riserin}
                 riserfr={this.state.riserfr}
                 nosingin={this.state.nosingin}
                 nosingfr={this.state.nosingfr}
-                changestringerin={this.changestringerin}
-                changestringerfr={this.changestringerfr}
                 changetreadin={this.changetreadin}
                 changetreadfr={this.changetreadfr}
                 changeriserin={this.changeriserin}

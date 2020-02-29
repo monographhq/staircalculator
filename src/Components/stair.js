@@ -10,6 +10,9 @@ const Stair = (props) => {
   let idealRun = parseFloat(props.idealRunin) + parseFloat(props.idealRunfr);
   let idealRise = parseFloat(props.idealRisein) + parseFloat(props.idealRisefr);
 
+  let preTreadThickness = (parseFloat(props.treadin) + parseFloat(props.treadfr));
+  let preRiserThickness = (parseFloat(props.riserin) + parseFloat(props.riserfr));
+
   let count = 0;
 
   if (props.boolean === true){
@@ -25,6 +28,13 @@ const Stair = (props) => {
 
   let stringerA = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan(idealRun / idealRise));
   let stringerB = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan(idealRise / idealRun));
+  if (props.details){
+    stringerA = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan((idealRun-preRiserThickness) / (idealRise-preTreadThickness)));
+    stringerB = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan((idealRise-preTreadThickness) / (idealRun-preRiserThickness)));
+  } else {
+    stringerA = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan(idealRun / idealRise));
+    stringerB = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan(idealRise / idealRun));
+  }
 
   let coordinates = [];
 
@@ -40,26 +50,39 @@ const Stair = (props) => {
       coordinates.push( (totalRun)-(idealRun*i), idealRise*i, (totalRun)-(idealRun*(i+1)), idealRise*i, (totalRun)-(idealRun*(i+1)), (idealRise*(i+1)) )
     }
     //This creates the landing and stringer
-    coordinates.push( (coordinates[coordinates.length-2]+stringerB), coordinates[coordinates.length-1], coordinates[0], stringerA, coordinates[0], floorThickness, (coordinates[0]+landing), floorThickness, (coordinates[0]+landing), 0)
+    props.details ? (
+      coordinates.push( (coordinates[coordinates.length-2]+preRiserThickness + stringerB), coordinates[coordinates.length-1], coordinates[0], stringerA + preTreadThickness, coordinates[0], floorThickness, (coordinates[0]+landing), floorThickness, (coordinates[0]+landing), 0)
+    ) : (
+      coordinates.push( (coordinates[coordinates.length-2] + stringerB), coordinates[coordinates.length-1], coordinates[0], stringerA, coordinates[0], floorThickness, (coordinates[0]+landing), floorThickness, (coordinates[0]+landing), 0)
+    )
 
   } else if (props.boolean === false){ //If total rise is selected (need to change so that total rise changes ideal rise)
     for (let i=0; i<count; i++){
       coordinates.push( (totalRise)-(idealRun*i), idealRise*i, (totalRise)-(idealRun*(i+1)), idealRise*i, (totalRise)-(idealRun*(i+1)), (idealRise*(i+1)) )
     }
     //This creates the landing and stringer
-    coordinates.push( (coordinates[coordinates.length-2]+stringerB), coordinates[coordinates.length-1], coordinates[0], stringerA, coordinates[0], floorThickness, (coordinates[0]+landing), floorThickness, (coordinates[0]+landing), 0)
+    props.details ? (
+      coordinates.push( (coordinates[coordinates.length-2]+(stringerB+preRiserThickness)), coordinates[coordinates.length-1], coordinates[0], (stringerA+preTreadThickness), coordinates[0], floorThickness, (coordinates[0]+landing), floorThickness, (coordinates[0]+landing), 0)
+    ) : (
+      coordinates.push( (coordinates[coordinates.length-2]+(stringerB)), coordinates[coordinates.length-1], coordinates[0], (stringerA), coordinates[0], floorThickness, (coordinates[0]+landing), floorThickness, (coordinates[0]+landing), 0)
+    )
   }
+  
 
   //This is for the headroom part
-  let headroomPts = [ (coordinates[coordinates.length-12]-(idealRun*3)), floorThickness, (coordinates[coordinates.length-12]-(idealRun*3)), 0, coordinates[coordinates.length-12] - (idealRun/2) + lengthH, 0, coordinates[coordinates.length-12] - (idealRun/2) + lengthH, floorThickness ];
-  let headroomTrue = totalRise > 90 || (idealRise * count) > 90;
+  let headroomPts = [ (coordinates[coordinates.length-12]-(idealRun*3)), floorThickness, (coordinates[coordinates.length-12]-(idealRun*3)), 0, coordinates[coordinates.length-12] - (idealRun) + lengthH, 0, coordinates[coordinates.length-12] - (idealRun) + lengthH, floorThickness ];
+  //This part removes the headroom if the stair is too short
+  let headroomTrue = true;
+  if (totalRise < 84 || (idealRise * count) < 84 || totalRun < 84 || (idealRun * count) < 84){
+    headroomTrue = false;
+  }
 
-  //This scales the drawing
+  //This is the scale factor for the stair drawing
   let stairLength = ((headroomPts[0]) + landing + coordinates[0]);
   let wr = (windowWidth)/(Math.abs(headroomPts[0]) + landing + coordinates[0]);
   var ratio = wr*0.75;
 
-  //This transforms the drawing based on the scale
+  //This transforms the drawing based on the scale factor
   for (var m=0; m<coordinates.length; m++){
     coordinates[m] = coordinates[m]*ratio
   }
@@ -132,6 +155,24 @@ const Stair = (props) => {
   let dRunDashedRight = [dRun[2], dRun[3], dRun[2], coordinates[1]];
 
   //This is the dimension string for the stringer
+  let sZ = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) * ratio;
+  let sA = stringerA * ratio;
+  let sAlpha = Math.atan(idealRise / idealRun);
+  let sC = Math.sqrt( (sA*sA) - (sZ*sZ) );
+
+  let sX = coordinates[10] + riserThickness;
+  let sY = coordinates[11] + treadThickness;
+  if (count <= 3){
+    sX = coordinates[4] + riserThickness;
+    sY = coordinates[5] + treadThickness;
+  } 
+
+  let stringerTrue = count > 2;
+
+  let sX1 = sX + (sC * Math.cos(sAlpha));
+  let sY1 = (sY + sA) - (sC * Math.sin(sAlpha));
+  let dStringer = [sX, sY, sX1+(sZ/2), sY1+(sA/2)];
+
 
   //This is the dimension string for the nosing
   let dNosing = [coordinates[2], 0, coordinates[2]-(nosing), 0]; 
@@ -147,6 +188,13 @@ const Stair = (props) => {
       dHeadroomStepY = coordinates[p+1];
     }
   }
+
+  let dHeadroomDashed = [dHeadroomStepX, coordinates[coordinates.length-9], coordinates[coordinates.length-10], coordinates[coordinates.length-9]];
+  let headroomBoolean = false;
+  if (dHeadroomStepX < coordinates[coordinates.length-10]){
+    headroomBoolean = true;
+  }
+
   let dHeadroom = [dHeadroomStepX, headroomPts[7], dHeadroomStepX, dHeadroomStepY];
   let dHeadroomArrowTop = [dHeadroom[0]-arrowWidth, dHeadroom[1]+arrowWidth, dHeadroom[0], dHeadroom[1], dHeadroom[0]+arrowWidth, dHeadroom[1]+arrowWidth];
   let dHeadroomArrowBot = [dHeadroom[2]-arrowWidth, dHeadroom[3]-arrowWidth, dHeadroom[2], dHeadroom[3], dHeadroom[2]+arrowWidth, dHeadroom[3]-arrowWidth];
@@ -165,7 +213,11 @@ const Stair = (props) => {
   let dAngleStart = [coordinates[coordinates.length-12],coordinates[coordinates.length-11]];
   let dAngle = [dAngleStart[0], dAngleStart[1], dAngleStart[0] - (idealRun*ratio), dAngleStart[1], dAngleStart[0], dAngleStart[1]-(idealRise*ratio)];
   let dAngleText = [coordinates[coordinates.length-10]+(idealRun/2)*ratio, dAngle[1]];
-  let stairAngle = (Math.atan((idealRise/idealRun)) * (180/Math.PI)).toFixed(1);
+  let stairAngle = (Math.atan((idealRise/idealRun)) * (180/Math.PI)).toFixed(2);
+  if (stairAngle < 30 || count <= 3){
+    dAngleText = [coordinates[coordinates.length-10]+(idealRun/2)*ratio + 10, dAngle[1]];
+  }
+  
 
   return (
     <Stage width={windowWidth} height={window.innerHeight}>
@@ -474,31 +526,31 @@ const Stair = (props) => {
             />
             <Text 
               width={150}
-              x={move[0] + dFloorText[0] + 25}
+              x={move[0] + (arrowOffset/2) + dFloor[2]+arrowOffset}
               y={move[1] + dFloorText[1] - 12}
               fontFamily="Söhne Mono Buch"
               fontSize={12}
               fill="#5541EA"
               text="Floor thickness"
-              align="center"
+              align="left"
             />
             <Text 
               width={150}
-              x={move[0] + dFloorText[0] + 25}
+              x={move[0] + (arrowOffset/2) + dFloor[2]+arrowOffset}
               y={move[1] + dFloorText[1] - 12 + textNumOffset}
               fontFamily="Söhne Mono Buch"
               fontSize={12}
               fill="#5541EA"
               text={(props.floorft/12) + "' " + props.floorin + '" ' + (props.floorfr*16) + "/16"}
-              align="center"
+              align="left"
             />
           </React.Fragment>
         }
         {props.dimensions &&
           <React.Fragment>
             <Text 
-              width={40}
-              x={move[0] + dAngleText[0]}
+              width={100}
+              x={move[0] + dAngleText[0] + 14}
               y={move[1] + dAngleText[1] - 14}
               fontFamily="Söhne Mono Buch"
               fontSize={12}
@@ -559,6 +611,55 @@ const Stair = (props) => {
               text="Headroom height"
               align="center"
               rotation={90}
+            />
+          </React.Fragment>
+        }
+        {props.dimensions &&
+          headroomTrue &&
+          headroomBoolean &&
+          <Line
+            x={move[0]}
+            y={move[1]}
+            points={dHeadroomDashed}
+            stroke="black"
+            strokeWidth={0.75}
+            lineCap='sqare'
+            lineJoin='sqare'
+            dash={[3, 4]}
+          />
+        }
+        {props.dimensions &&
+          props.details &&
+          stringerTrue &&
+          <React.Fragment>
+            <Line
+              x={move[0]}
+              y={move[1]}
+              points={dStringer}
+              stroke="#5541EA"
+              strokeWidth={0.75}
+              lineCap='round'
+              lineJoin='round'
+            />
+            <Text 
+              width={100}
+              x={move[0] + dStringer[2]}
+              y={move[1] + dStringer[3]}
+              fontFamily="Söhne Mono Buch"
+              fontSize={12}
+              fill="#5541EA"
+              text="Stringer width"
+              align="left"
+            />
+            <Text 
+              width={100}
+              x={move[0] + dStringer[2]}
+              y={move[1] + dStringer[3] + textNumOffset}
+              fontFamily="Söhne Mono Buch"
+              fontSize={12}
+              fill="#5541EA"
+              text={props.stringerin + '" ' + Math.round(props.stringerfr*16) + '/16'}
+              align="left"
             />
           </React.Fragment>
         }
