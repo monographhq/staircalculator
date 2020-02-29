@@ -1,9 +1,6 @@
 import React from 'react';
 
 const StairAngle = (props) => {
-  
-    let idealRun = parseFloat(props.idealRunin) + parseFloat(props.idealRunfr);
-    let idealRise = parseFloat(props.idealRisein) + parseFloat(props.idealRisefr);
 
     return (
         <div className="sidebar__section--last sidebar__section">

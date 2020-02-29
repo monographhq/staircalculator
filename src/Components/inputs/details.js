@@ -6,11 +6,9 @@ const Details = (props) => {
     let treadInches = 1 + 1;
     let nosingInches = 1 + 1;
     let nosingFractions = 16;
-    let nosingFractions2 = 8;
     let selectFractions = 16;
 
     let detailsTrue = props.details;
-    let nosing = (props.nosing == 1);
 
     return (
         <div className="sidebar__section">
@@ -47,7 +45,7 @@ const Details = (props) => {
                     })}
                 </select>
             </div>
-            nosing ? (
+            
             <div>
                 <label className="subtitle d-flex">Nosing</label>
                 <select defaultValue="0" onChange={props.changenosingin} className="dropdown dropdown__inch">
@@ -61,21 +59,6 @@ const Details = (props) => {
                     })}
                 </select>
             </div>
-            ) : (
-            <div>
-                <label className="subtitle d-flex">Nosing</label>
-                <select defaultValue="0" onChange={props.changenosingin} className="dropdown dropdown__inch">
-                    {Array.from(Array(nosingInches), (e, i) => {
-                        return ( <option value={i} key={i}>{i +'"'}</option> )
-                    })}
-                </select>
-                <select defaultValue="0" onChange={props.changenosingfr} className="dropdown dropdown__fraction">
-                    {Array.from(Array(nosingFractions2), (e, i) => {
-                        return ( <option value={i * 0.0625} key={i * 0.0625}>{i + "/16"}</option> )
-                    })}
-                </select>
-            </div>
-            )
 
             <div>
                 <label className="subtitle d-flex">Stringer Width</label>
