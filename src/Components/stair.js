@@ -46,6 +46,15 @@ const Stair = (props) => {
     if (props.idealBoolean === true){ //If ideal is selected
       if (props.stairToggle === true){
         idealRun = parseFloat(idealRise / Math.tan(props.stairAngle * (Math.PI / 180)));
+        stringerA = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan(idealRun / idealRise));
+        stringerB = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan(idealRise / idealRun));
+        if (props.details){
+          stringerA = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan((idealRun-preRiserThickness) / (idealRise-preTreadThickness)));
+          stringerB = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan((idealRise-preTreadThickness) / (idealRun-preRiserThickness)));
+        } else {
+          stringerA = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan(idealRun / idealRise));
+          stringerB = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan(idealRise / idealRun));
+        }
       }
       for (let i=0; i<count; i++){
         coordinates.push( (totalRun)-(idealRun*i), idealRise*i, (totalRun)-(idealRun*(i+1)), idealRise*i, (totalRun)-(idealRun*(i+1)), (idealRise*(i+1)) )
@@ -61,6 +70,15 @@ const Stair = (props) => {
       idealRun = totalRun/count;
       if (props.stairToggle === true){
         idealRun = parseFloat(idealRise / Math.tan(props.stairAngle * (Math.PI / 180)));
+        stringerA = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan(idealRun / idealRise));
+        stringerB = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan(idealRise / idealRun));
+        if (props.details){
+          stringerA = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan((idealRun-preRiserThickness) / (idealRise-preTreadThickness)));
+          stringerB = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan((idealRise-preTreadThickness) / (idealRun-preRiserThickness)));
+        } else {
+          stringerA = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan(idealRun / idealRise));
+          stringerB = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan(idealRise / idealRun));
+        }
       }
       for (let i=0; i<count; i++){
         coordinates.push( (totalRun)-(idealRun*i), idealRise*i, (totalRun)-(idealRun*(i+1)), idealRise*i, (totalRun)-(idealRun*(i+1)), (idealRise*(i+1)) )
@@ -77,6 +95,15 @@ const Stair = (props) => {
     if (props.idealBoolean === true){
       if (props.stairToggle === true){
         idealRun = parseFloat(idealRise / Math.tan(props.stairAngle * (Math.PI / 180)));
+        stringerA = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan(idealRun / idealRise));
+        stringerB = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan(idealRise / idealRun));
+        if (props.details){
+          stringerA = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan((idealRun-preRiserThickness) / (idealRise-preTreadThickness)));
+          stringerB = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan((idealRise-preTreadThickness) / (idealRun-preRiserThickness)));
+        } else {
+          stringerA = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan(idealRun / idealRise));
+          stringerB = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan(idealRise / idealRun));
+        }
       }
       for (let i=0; i<count; i++){
         coordinates.push( (totalRise)-(idealRun*i), idealRise*i, (totalRise)-(idealRun*(i+1)), idealRise*i, (totalRise)-(idealRun*(i+1)), (idealRise*(i+1)) )
@@ -92,6 +119,15 @@ const Stair = (props) => {
     idealRise = totalRise/count;
     if (props.stairToggle === true){
       idealRun = parseFloat(idealRise / Math.tan(props.stairAngle * (Math.PI / 180)));
+      stringerA = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan(idealRun / idealRise));
+        stringerB = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan(idealRise / idealRun));
+        if (props.details){
+          stringerA = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan((idealRun-preRiserThickness) / (idealRise-preTreadThickness)));
+          stringerB = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan((idealRise-preTreadThickness) / (idealRun-preRiserThickness)));
+        } else {
+          stringerA = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan(idealRun / idealRise));
+          stringerB = (parseFloat(props.stringerin) + parseFloat(props.stringerfr)) / Math.sin(Math.atan(idealRise / idealRun));
+        }
     }
     for (let i=0; i<count; i++){
       coordinates.push( (totalRise)-(idealRun*i), idealRise*i, (totalRise)-(idealRun*(i+1)), idealRise*i, (totalRise)-(idealRun*(i+1)), (idealRise*(i+1)) )
@@ -129,7 +165,7 @@ const Stair = (props) => {
 
   //This moves the drawing to the center
   let moveCenter = ( (windowWidth/2) - (stairLength*ratio/2) );
-  let move = [moveCenter, 175];
+  let move = [moveCenter, 150];
 
   //Treads, risers, and nosing dimensions
   let treadThickness = ratio * (parseFloat(props.treadin) + parseFloat(props.treadfr));
