@@ -66,6 +66,7 @@ class App extends Component {
     stairToggle: false,
 
     runOn: true,
+    idealOn: false,
     dimensions: true,
     units: true,
     details: true
@@ -77,21 +78,24 @@ class App extends Component {
       this.setState({
         totalRunft:event.target.value,
         runOn: true,
-        stairToggle: false
+        stairToggle: false,
+        idealOn: false
       })
   }
   changetotalRunin = (event) => {
       this.setState({
         totalRunin:event.target.value,
         runOn: true,
-        stairToggle: false
+        stairToggle: false,
+        idealOn: false
       })
   }
   changetotalRunfr = (event) => {
       this.setState({
         totalRunfr:event.target.value,
         runOn: true,
-        stairToggle: false
+        stairToggle: false,
+        idealOn: false
       })
   }
 
@@ -100,21 +104,24 @@ class App extends Component {
       this.setState({
         totalRiseft:event.target.value,
         runOn: false,
-        stairToggle: false
+        stairToggle: false,
+        idealOn: false
       })
   }
   changetotalRisein = (event) => {
       this.setState({
         totalRisein:event.target.value,
         runOn: false,
-        stairToggle: false
+        stairToggle: false,
+        idealOn: false
       })
   }
   changetotalRisefr = (event) => {
       this.setState({
         totalRisefr:event.target.value,
         runOn: false,
-        stairToggle: false
+        stairToggle: false,
+        idealOn: false
       })
   }
 
@@ -122,13 +129,15 @@ class App extends Component {
   changeidealRunin = (event) => {
     this.setState({
       idealRunin:event.target.value,
-      stairToggle: false
+      stairToggle: false,
+      idealOn: true
     })
   }
   changeidealRunfr = (event) => {
       this.setState({
         idealRunfr:event.target.value,
-        stairToggle: false
+        stairToggle: false,
+        idealOn: true
       })
   }
 
@@ -136,13 +145,15 @@ class App extends Component {
   changeidealRisein = (event) => {
       this.setState({
         idealRisein:event.target.value,
-        stairToggle: false
+        stairToggle: false,
+        idealOn: true
       })
   }
   changeidealRisefr = (event) => {
       this.setState({
         idealRisefr:event.target.value,
-        stairToggle: false
+        stairToggle: false,
+        idealOn: true
       })
   }
 
@@ -379,7 +390,7 @@ class App extends Component {
               idealRunfr={this.state.idealRunfr}
               idealRisein={this.state.idealRisein}
               idealRisefr={this.state.idealRisefr}
-              boolean={this.state.runOn}
+              totalBoolean={this.state.runOn}
               runCount={this.state.runCount}
               riseCount={this.state.riseCount}
               stringerin={this.state.stringerin}
@@ -399,6 +410,7 @@ class App extends Component {
               dimensions={this.state.dimensions}
               stairAngle={this.state.stairAngle}
               stairToggle={this.state.stairToggle}
+              idealBoolean={this.state.idealOn}
             />
           </div>
         

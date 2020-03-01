@@ -9,12 +9,12 @@ const IdealRise = (props) => {
         <div className="select-wrapper">
             <label className="subtitle d-flex">Ideal rise</label>
             <div className="dropdown__parent d-flex justify-content-start">
-                <select defaultValue={props.idealRisein} onChange={props.changeidealRisein} className="dropdown dropdown__inch">
+                <select value={props.idealRisein} onChange={props.changeidealRisein} className="dropdown dropdown__inch">
                     {Array.from(selectInches, (i) => {
                         return ( <option value={i} key={i}>{i +'"'}</option> )
                     })}
                 </select>
-                <select defaultValue={props.idealRisefr} onChange={props.changeidealRisefr} className="dropdown dropdown__fraction">
+                <select value={props.idealRisefr} onChange={props.changeidealRisefr} className="dropdown dropdown__fraction">
                     {Array.from(Array(selectFractions), (e, i) => {
                         return ( <option value={i * 0.0625} key={i * 0.0625}>{i + "/16"}</option> )
                     })}

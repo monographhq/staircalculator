@@ -5,8 +5,6 @@ const TotalRun = (props) => {
     let selectFeet = Array.from({length:15-1+1},(v,k)=>k+1);
     let selectInches = 11 + 1;
     let selectFractions = 16;
-    let inchesRestrict = Array.from({length:11-1+1},(v,k)=>k+11);
-    let minimumSelected = false;
 
     return (
         <div>
@@ -17,18 +15,17 @@ const TotalRun = (props) => {
                         return ( <option value={i*12} key={i*12}>{i +"'"}</option> )
                     })}
                 </select>
-                {minimumSelected ? (
+                {props.totalRunft === 12 ? (
                     <select id="totalRunInches" defaultValue={props.totalRunin} onChange={props.changetotalRunin} className="dropdown dropdown__inch">
-                        {Array.from(inchesRestrict, (i) => {
-                            return ( <option value={i} key={i}>{i +'"'}</option> )
-                        })}
+                        <option value={10} key={10}></option>
+                        <option value={11} key={11}></option>
                     </select>
                 ) : (
                     <select id="totalRunInches" defaultValue={props.totalRunin} onChange={props.changetotalRunin} className="dropdown dropdown__inch">
                     {Array.from(Array(selectInches), (e, i) => {
                         return ( <option value={i} key={i}>{i +'"'}</option> )
                     })}
-                </select>
+                    </select>
                 )
                 }
                 <select id="totalRunFraction" defaultValue={props.totalRunfr} onChange={props.changetotalRunfr} className="dropdown dropdown__fraction">
