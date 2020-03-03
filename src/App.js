@@ -5,7 +5,6 @@ import TotalRun from './Components/inputs/totalrun';
 import TotalRise from './Components/inputs/totalrise';
 import IdealRun from './Components/inputs/idealrun';
 import IdealRise from './Components/inputs/idealrise';
-import Stringer from './Components/inputs/stringerwidth';
 import Details from './Components/inputs/details';
 import StairAngle from './Components/inputs/stairangle';
 import Height from './Components/inputs/height';
@@ -267,8 +266,8 @@ class App extends Component {
       <div className="container-fluid">
         <div className="row">
 
-          <div id="sidebar" className="col-2 ">
-              <div className="sidebar__section">
+          <div id="sidebar" className="col-lg-2">
+              <div className="sidebar__section sidebar__section--first">
                 <Units 
                   units = {this.state.units}
                   changeUnitsIn = {this.changeUnitsIn}
@@ -288,7 +287,7 @@ class App extends Component {
 
               <div className="sidebar__section--border"></div>
 
-              <div className="sidebar__section">
+              <div className="sidebar__section sidebar__section--second">
                 <div className="title">Rise-run</div>
                 <TotalRun 
                     totalRunft = {this.state.totalRunft}
@@ -318,12 +317,6 @@ class App extends Component {
                     changeidealRisein = {this.changeidealRisein}
                     changeidealRisefr = {this.changeidealRisefr}
                 />
-                <Stringer 
-                  changestringerin={this.changestringerin}
-                  changestringerfr={this.changestringerfr}
-                  stringerin={this.state.stringerin}
-                  stringerfr={this.state.stringerfr}
-                />
               </div>
 
               <div className="sidebar__section--border"></div>
@@ -346,7 +339,7 @@ class App extends Component {
 
               <div className="sidebar__section--border"></div>
 
-              <div className="sidebar__section">
+              <div className="sidebar__section sidebar__section--fourth">
                   <div className="title">Headroom</div>
                   <Height 
                     totalRunft={this.state.totalRunft}
@@ -378,7 +371,7 @@ class App extends Component {
 
           </div>
 
-          <div id="container" className="col-10">
+          <div id="container" className="col-12 col-lg-10">
             <Stair 
               totalRunft={this.state.totalRunft}
               totalRunin={this.state.totalRunin}

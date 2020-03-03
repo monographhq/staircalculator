@@ -241,6 +241,14 @@ const Stair = (props) => {
 
   let sX = coordinates[10] + riserThickness;
   let sY = coordinates[11] + treadThickness;
+  if (props.details){
+    sX = coordinates[10] + riserThickness;
+    sY = coordinates[11] + treadThickness;
+  } else {
+    sX = coordinates[10];
+    sY = coordinates[11];
+  }
+
   if (count <= 3){
     sX = coordinates[4] + riserThickness;
     sY = coordinates[5] + treadThickness;
@@ -767,7 +775,6 @@ const Stair = (props) => {
           />
         }
         {props.dimensions &&
-          props.details &&
           stringerTrue &&
           <React.Fragment>
             <Line

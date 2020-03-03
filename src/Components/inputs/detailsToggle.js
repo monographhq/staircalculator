@@ -6,7 +6,7 @@ const DetailsToggle = (props) => {
 
     return (
         <div>
-            <div className="subtitle">Details</div>
+            <div className="subtitle">Treads & Risers</div>
             {detailsTrue ? (
                 <div className="toggle-group d-flex justify-content-between">
                     <button className="toggle toggle__left toggle--active" onClick={props.changeDetailsOn}>ON</button>
