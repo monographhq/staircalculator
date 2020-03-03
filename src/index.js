@@ -15,6 +15,7 @@ WebFont.load({
     families: ["Söhne Mono Buch"]
   },
   active: () => {
+    console.log("font loaded");
     initApp();
   }
 });
