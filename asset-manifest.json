@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/staircalculator/static/css/main.414ab4d7.chunk.css",
-    "main.js": "/staircalculator/static/js/main.1fe73c28.chunk.js",
-    "main.js.map": "/staircalculator/static/js/main.1fe73c28.chunk.js.map",
+    "main.css": "/staircalculator/static/css/main.068a83d4.chunk.css",
+    "main.js": "/staircalculator/static/js/main.47cd819f.chunk.js",
+    "main.js.map": "/staircalculator/static/js/main.47cd819f.chunk.js.map",
     "runtime-main.js": "/staircalculator/static/js/runtime-main.8a23d2d3.js",
     "runtime-main.js.map": "/staircalculator/static/js/runtime-main.8a23d2d3.js.map",
-    "static/css/2.67123b20.chunk.css": "/staircalculator/static/css/2.67123b20.chunk.css",
-    "static/js/2.cab6a45f.chunk.js": "/staircalculator/static/js/2.cab6a45f.chunk.js",
-    "static/js/2.cab6a45f.chunk.js.map": "/staircalculator/static/js/2.cab6a45f.chunk.js.map",
+    "static/css/2.64a99b10.chunk.css": "/staircalculator/static/css/2.64a99b10.chunk.css",
+    "static/js/2.ec8db199.chunk.js": "/staircalculator/static/js/2.ec8db199.chunk.js",
+    "static/js/2.ec8db199.chunk.js.map": "/staircalculator/static/js/2.ec8db199.chunk.js.map",
     "index.html": "/staircalculator/index.html",
-    "precache-manifest.e2a32d17bb4944f5b45c64595c68762e.js": "/staircalculator/precache-manifest.e2a32d17bb4944f5b45c64595c68762e.js",
+    "precache-manifest.96859fd88be8e5d352a2844d1a4389d4.js": "/staircalculator/precache-manifest.96859fd88be8e5d352a2844d1a4389d4.js",
     "service-worker.js": "/staircalculator/service-worker.js",
-    "static/css/2.67123b20.chunk.css.map": "/staircalculator/static/css/2.67123b20.chunk.css.map",
-    "static/css/main.414ab4d7.chunk.css.map": "/staircalculator/static/css/main.414ab4d7.chunk.css.map",
-    "static/js/2.cab6a45f.chunk.js.LICENSE.txt": "/staircalculator/static/js/2.cab6a45f.chunk.js.LICENSE.txt",
+    "static/css/2.64a99b10.chunk.css.map": "/staircalculator/static/css/2.64a99b10.chunk.css.map",
+    "static/css/main.068a83d4.chunk.css.map": "/staircalculator/static/css/main.068a83d4.chunk.css.map",
+    "static/js/2.ec8db199.chunk.js.LICENSE.txt": "/staircalculator/static/js/2.ec8db199.chunk.js.LICENSE.txt",
     "static/media/fonts.css": "/staircalculator/static/media/soehne-web-halbfett.48ff4863.woff",
     "static/media/index.scss": "/staircalculator/static/media/dropdown-arrow.e2af81f0.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.8a23d2d3.js",
-    "static/css/2.67123b20.chunk.css",
-    "static/js/2.cab6a45f.chunk.js",
-    "static/css/main.414ab4d7.chunk.css",
-    "static/js/main.1fe73c28.chunk.js"
+    "static/css/2.64a99b10.chunk.css",
+    "static/js/2.ec8db199.chunk.js",
+    "static/css/main.068a83d4.chunk.css",
+    "static/js/main.47cd819f.chunk.js"
   ]
 }
