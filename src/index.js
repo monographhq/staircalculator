@@ -12,7 +12,7 @@ function initApp() {
 
 WebFont.load({
   custom: {
-    families: ["Söhne Mono Buch"]
+    families: ["Sohne Mono Buch"]
   },
   active: () => {
     console.log("font loaded");
