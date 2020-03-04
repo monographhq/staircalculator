@@ -1,11 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './Styles/index.scss';
-import './Styles/fonts.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./Styles/index.scss";
+import "./Styles/fonts.css";
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
+import WebFont from "webfontloader";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+function initApp() {
+  ReactDOM.render(<App />, document.getElementById("root"));
+}
+
+WebFont.load({
+  custom: {
+    families: ["Sohne Mono Buch"]
+  },
+  active: () => {
+    console.log("font loaded");
+    initApp();
+  }
+});
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

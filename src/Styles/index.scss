@@ -22,7 +22,7 @@ $xl: 1140px;
 }
 
 .title {
-  font-family: Söhne Mono Halbfett;
+  font-family: "Sohne Mono Halbfett";
   font-style: normal;
   font-size: 20px;
   font-weight: 600;
@@ -31,7 +31,7 @@ $xl: 1140px;
 }
 
 .subtitle {
-  font-family: Söhne Mono Buch;
+  font-family: "Sohne Mono Buch";
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -55,7 +55,7 @@ $xl: 1140px;
     min-width: 75vw;
     padding-top: 80px;
     padding-right: 2.5rem;
-    padding-left: 1rem;
+    padding-left: 0.5rem;
     border-right: 1px solid rgba(255, 255, 255, 0.8);
   }
 }
@@ -82,6 +82,9 @@ $xl: 1140px;
 }
 
 .sidebar__section--border {
+  @media only screen and (max-width: $lg){
+    display: none;
+  }
   @media only screen and (min-width: $lg){
     border-top: 1px solid rgba(255, 255, 255, 0.8);
     margin: 0 -2rem;
@@ -97,7 +100,7 @@ $xl: 1140px;
 /* These styles are for the toggles */
 .toggle-group {
   vertical-align: center;
-  font-family: Söhne Mono Halbfett;
+  font-family: "Sohne Mono Halbfett";
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
@@ -131,7 +134,7 @@ $xl: 1140px;
 
 /*These styles are for the dropdown inputs*/
 .dropdown {
-  font-family: Söhne Mono Halbfett;
+  font-family: "Sohne Mono Halbfett";
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
@@ -139,8 +142,9 @@ $xl: 1140px;
   border-radius: 3px;
   padding: 13px 8px;
   background: white;
+  height: 45px;
   border: none;
-  margin: 0;      
+  margin: 0;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -153,11 +157,11 @@ $xl: 1140px;
 }
 
 .dropdown:focus {
-  border: 2px solid #40EAD3;
+  border: 2px solid #40ead3;
 }
 
-
-.dropdown__feet, .dropdown__inch {
+.dropdown__feet,
+.dropdown__inch {
   margin-right: 6px;
   width: 28%;
 }
@@ -191,13 +195,13 @@ $xl: 1140px;
 
 /* The slider itself */
 .slider {
-  -webkit-appearance: none;  /* Override default CSS styles */
+  -webkit-appearance: none; /* Override default CSS styles */
   appearance: none;
   height: 2px; /* Specified height */
   background: rgba(255, 255, 255, 0.5); /* Grey background */
   outline: none; /* Remove outline */
-  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
-  transition: opacity .2s;
+  -webkit-transition: 0.2s; /* 0.2 seconds transition on hover */
+  transition: opacity 0.2s;
 }
 
 /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
@@ -206,18 +210,18 @@ $xl: 1140px;
   appearance: none;
   width: 8px; /* Set a specific slider handle width */
   height: 20px; /* Slider handle height */
-  background: #41EAD4; /* Green background */
+  background: #41ead4; /* Green background */
   cursor: pointer; /* Cursor on hover */
 }
 
 .slider::-moz-range-thumb {
   width: 8px; /* Set a specific slider handle width */
   height: 20px; /* Slider handle height */
-  background: #41EAD4; /* Green background */
+  background: #41ead4; /* Green background */
   cursor: pointer; /* Cursor on hover */
 }
 
-/* Scrollbar style */ 
+/* Scrollbar style */
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
@@ -230,7 +234,7 @@ $xl: 1140px;
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #C4C4C4;
+  background: #c4c4c4;
   border-radius: 1em;
 }
 

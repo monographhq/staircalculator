@@ -9,6 +9,7 @@ const Details = (props) => {
     let stringerInches = Array.from({length:11-5+1},(v,k)=>k+5);
 
     let detailsTrue = props.details;
+    console.log(props.stringerfr);
 
     return (
         <div className="sidebar__section  sidebar__section--third">
@@ -115,7 +116,7 @@ const Details = (props) => {
                         return ( <option value={i} key={i}>{i +'"'}</option> )
                     })}
                 </select>
-                <select defaultValue="0" onChange={props.changenosingfr} className="dropdown dropdown__fraction disabled">
+                <select defaultValue={props.nosingfr} onChange={props.changenosingfr} className="dropdown dropdown__fraction disabled">
                     {Array.from(Array(nosingFractions), (e, i) => {
                         return ( <option value={i * 0.0625} key={i * 0.0625}>{i + "/16"}</option> )
                     })}
