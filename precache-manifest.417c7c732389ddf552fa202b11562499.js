@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "143f0d26e5015e9264d5d3c9f4885de9",
+    "revision": "bb0f684afe3aa6642a23ca6ee1f976d6",
     "url": "/staircalculator/index.html"
   },
   {
-    "revision": "15c3a960c8d2842b9e92",
-    "url": "/staircalculator/static/css/2.64a99b10.chunk.css"
+    "revision": "2cdfc908c4c981118104",
+    "url": "/staircalculator/static/css/2.67123b20.chunk.css"
   },
   {
-    "revision": "f85eb15356c6d87c64b3",
-    "url": "/staircalculator/static/css/main.068a83d4.chunk.css"
+    "revision": "00773436e9b0a7b3f604",
+    "url": "/staircalculator/static/css/main.bf395ad6.chunk.css"
   },
   {
-    "revision": "15c3a960c8d2842b9e92",
-    "url": "/staircalculator/static/js/2.ec8db199.chunk.js"
+    "revision": "2cdfc908c4c981118104",
+    "url": "/staircalculator/static/js/2.cab6a45f.chunk.js"
   },
   {
     "revision": "1bc405a2f9ca5b8136d11cf29f9b2788",
-    "url": "/staircalculator/static/js/2.ec8db199.chunk.js.LICENSE.txt"
+    "url": "/staircalculator/static/js/2.cab6a45f.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f85eb15356c6d87c64b3",
-    "url": "/staircalculator/static/js/main.47cd819f.chunk.js"
+    "revision": "00773436e9b0a7b3f604",
+    "url": "/staircalculator/static/js/main.970b0719.chunk.js"
   },
   {
     "revision": "9506cb289127363473e5",
