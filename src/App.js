@@ -48,7 +48,7 @@ class App extends Component {
     riserfr: 0,
 
     nosingin: 0,
-    nosingfr: 0,
+    nosingfr: 0.0625 * 8,
 
     stairAngle: 32.5,
     stairToggle: false,
@@ -300,6 +300,8 @@ class App extends Component {
                 changetotalRunft={this.changetotalRunft}
                 changetotalRunin={this.changetotalRunin}
                 changetotalRunfr={this.changetotalRunfr}
+                changetotalRunSwitchOn={this.changetotalRunSwitchOn}
+                changetotalRunSwitchOff={this.changetotalRunSwitchOff}
               />
               <TotalRise
                 totalRiseft={this.state.totalRiseft}
@@ -411,6 +413,7 @@ class App extends Component {
               stairAngle={this.state.stairAngle}
               stairToggle={this.state.stairToggle}
               idealBoolean={this.state.idealOn}
+              topStair={this.state.topStair}
             />
           </div>
         </div>

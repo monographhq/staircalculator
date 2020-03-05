@@ -4,12 +4,11 @@ const Details = (props) => {
     
     let treadInches = 1 + 1;
     let nosingInches = 1 + 1;
-    let nosingFractions = 16;
+    let nosingFractionsMin = Array.from({length:12-5+1},(v,k)=>k+8);
+    let nosingFractionsMax = Array.from({length:13-5+1},(v,k)=>k+0);
     let selectFractions = 16;
     let stringerInches = Array.from({length:11-5+1},(v,k)=>k+5);
-
     let detailsTrue = props.details;
-    console.log(props.stringerfr);
 
     return (
         <div className="sidebar__section  sidebar__section--third">
@@ -46,20 +45,41 @@ const Details = (props) => {
                     })}
                 </select>
             </div>
+
+            {props.nosingin === 0 ? (
             
             <div>
                 <label className="subtitle d-flex">Nosing</label>
-                <select defaultValue="0" onChange={props.changenosingin} className="dropdown dropdown__inch">
+                <select defaultValue={0} onChange={props.changenosingin} className="dropdown dropdown__inch">
                     {Array.from(Array(nosingInches), (e, i) => {
                         return ( <option value={i} key={i}>{i +'"'}</option> )
                     })}
                 </select>
-                <select defaultValue="0" onChange={props.changenosingfr} className="dropdown dropdown__fraction">
-                    {Array.from(Array(nosingFractions), (e, i) => {
+                <select defaultValue={props.nosingfr} onChange={props.changenosingfr} className="dropdown dropdown__fraction">
+                    {Array.from(nosingFractionsMin, (i) => {
                         return ( <option value={i * 0.0625} key={i * 0.0625}>{i + "/16"}</option> )
                     })}
                 </select>
             </div>
+            
+            ):
+            (
+
+            <div>
+                <label className="subtitle d-flex">Nosing</label>
+                <select defaultValue={0} onChange={props.changenosingin} className="dropdown dropdown__inch">
+                    {Array.from(Array(nosingInches), (e, i) => {
+                        return ( <option value={i} key={i}>{i +'"'}</option> )
+                    })}
+                </select>
+                <select defaultValue={props.nosingfr} onChange={props.changenosingfr} className="dropdown dropdown__fraction">
+                    {Array.from(nosingFractionsMax, (i) => {
+                        return ( <option value={i * 0.0625} key={i * 0.0625}>{i + "/16"}</option> )
+                    })}
+                </select>
+            </div>
+
+            )}
 
             <div>
                 <label className="subtitle d-flex">Stringer Width</label>
@@ -117,7 +137,7 @@ const Details = (props) => {
                     })}
                 </select>
                 <select defaultValue={props.nosingfr} onChange={props.changenosingfr} className="dropdown dropdown__fraction disabled">
-                    {Array.from(Array(nosingFractions), (e, i) => {
+                    {Array.from(Array(16), (e, i) => {
                         return ( <option value={i * 0.0625} key={i * 0.0625}>{i + "/16"}</option> )
                     })}
                 </select>

@@ -20,9 +20,15 @@ const Stair = props => {
 
   
   let totalRun =
-    parseInt(props.totalRunft) +
-    parseInt(props.totalRunin) +
-    parseFloat(props.totalRunfr);
+    parseInt(props.totalRunft) === 12 ? (
+      22
+    ):
+    (
+      parseInt(props.totalRunft) +
+      parseInt(props.totalRunin) +
+      parseFloat(props.totalRunfr)
+    );
+      
   let totalRise =
     parseInt(props.totalRiseft) +
     parseInt(props.totalRisein) +
@@ -407,7 +413,10 @@ const Stair = props => {
   }
 
   //This is the scale factor for the stair drawing
-  let windowWidth = lgMin.matches ? (window.innerWidth * 0.82 - 15) : (window.innerWidth);
+  let windowWidth = 
+    lgMin.matches 
+      ? (window.innerWidth * 0.82 - 15)
+      : (window.innerWidth);
   let stairLength = (headroomPts[0] + landing + coordinates[0]);
   let wr = windowWidth / (Math.abs(headroomPts[0]) + landing + coordinates[0]);
   let ratio = lgMin.matches ? (wr * 0.75) : (wr * 0.75);
@@ -421,7 +430,7 @@ const Stair = props => {
   }
 
   //This moves the drawing to the center
-  let moveCenter = windowWidth / 2 - (stairLength * ratio) / 2;
+  let moveCenter = (windowWidth / 2) - (stairLength * ratio) / 2;
   let move = lgMin.matches ? [moveCenter, 150] : [moveCenter, 100];
 
   //Treads, risers, and nosing dimensions
@@ -471,7 +480,10 @@ const Stair = props => {
   let textLineOffset = 25;
   let textNumOffset = 10;
 
-  let textSize = lgMax.matches ? 6 : 12;
+  let textSize = 
+    lgMax.matches 
+      ? 6 
+      : 12;
 
 
   //This is the dimension string for the total rise
@@ -663,6 +675,8 @@ const Stair = props => {
         dHeadroomInches
     ) * 16;
 
+  
+
   //This is the dimension string for the floor thickness
   let dFloor = [headroomPts[6], headroomPts[7], headroomPts[4], headroomPts[5]];
   let dFloorArrowTop = [
@@ -723,8 +737,8 @@ const Stair = props => {
   }
 
   //These are coordinates for the rise and run dimension strings
-  let dRiseStep = [coordinates[8], coordinates[9] - ((coordinates[9] - coordinates[11]) / 2)];
-  let dRunStep = [coordinates[8] - ((coordinates[8] - coordinates[10]) / 2), coordinates[9]];
+  let dStep = [coordinates[coordinates.length - 2], coordinates[coordinates.length - 11]];
+  let runCount = props.topStair ? (count - 1) : (count);
 
   //Error message texts
   let errors = [];
@@ -1250,25 +1264,24 @@ const Stair = props => {
         {props.dimensions && (
           <React.Fragment>
             <Text
-              width={50}
-              x={move[0] + dRiseStep[0] - 52}
-              y={move[1] + dRiseStep[1] - 6}
+              width={200}
+              x={move[0] + dStep[0] - 200}
+              y={move[1] + dStep[1] + textSize / 2}
               fontFamily="Sohne Mono Buch"
               fontSize={textSize}
               fill="#5541EA"
-              text={idealRise.toFixed(1) + '"'}
+              text={runCount + " steps at " + idealRun.toFixed(1) + '"'}
               align="right"
             />
             <Text
-              width={50}
-              x={move[0] + dRunStep[0]}
-              y={move[1] + dRunStep[1] - 16}
+              width={200}
+              x={move[0] + dStep[0] - 200}
+              y={move[1] + dStep[1] + textSize / 2 + textSize + 4}
               fontFamily="Sohne Mono Buch"
               fontSize={textSize}
               fill="#5541EA"
-              text={
-                idealRun.toFixed(1) + '"'}
-              align="center"
+              text={count + " steps at " + idealRise.toFixed(1) + '"'}
+              align="right"
             />
           </React.Fragment>
         )}
