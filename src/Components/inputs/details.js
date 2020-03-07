@@ -8,13 +8,12 @@ const Details = (props) => {
     let nosingFractionsMax = Array.from({length:13-5+1},(v,k)=>k+0);
     let selectFractions = 16;
     let stringerInches = Array.from({length:11-5+1},(v,k)=>k+5);
-    let detailsTrue = props.details;
 
     return (
         <div className="sidebar__section  sidebar__section--third">
             <div className="title">Details</div>
 
-            {detailsTrue ? (
+            {props.details ? (
                 <React.Fragment>
             <div>
                 <label className="subtitle d-flex">Tread thickness</label>

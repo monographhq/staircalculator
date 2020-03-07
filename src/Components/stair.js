@@ -21,7 +21,12 @@ const Stair = props => {
   
   let totalRun =
     parseInt(props.totalRunft) === 12 ? (
-      22
+      parseInt(props.totalRunin) === 11 ? (
+        23
+      ):
+      (
+        22
+      )
     ):
     (
       parseInt(props.totalRunft) +
@@ -37,8 +42,8 @@ const Stair = props => {
   let idealRun = parseFloat(props.idealRunin) + parseFloat(props.idealRunfr);
   let idealRise = parseFloat(props.idealRisein) + parseFloat(props.idealRisefr);
 
-  let preTreadThickness = parseFloat(props.treadin) + parseFloat(props.treadfr);
-  let preRiserThickness = parseFloat(props.riserin) + parseFloat(props.riserfr);
+  let preTreadThickness = props.details ? parseFloat(props.treadin) + parseFloat(props.treadfr) : 0;
+  let preRiserThickness = props.details ? parseFloat(props.riserin) + parseFloat(props.riserfr) : 0;
 
   let count = 0;
 
@@ -85,10 +90,20 @@ const Stair = props => {
 
   let coordinates = [];
 
-  let floorThickness =
-    parseFloat(props.floorft) +
-    parseFloat(props.floorin) +
-    parseFloat(props.floorfr);
+  let floorThickness = 
+    props.floorft === 0 ? (
+      props.floorin < 6 ? (
+        6
+      ):
+      (
+        props.floorin
+      )
+    ):
+    (
+      parseFloat(props.floorft) +
+      parseFloat(props.floorin) +
+      parseFloat(props.floorfr)
+    )
 
   //This creates the stair drawing based on whether total rise or run is being selected
   if (props.totalBoolean === true) {
@@ -129,6 +144,7 @@ const Stair = props => {
             Math.sin(Math.atan(idealRise / idealRun));
         }
       }
+
       for (let i = 0; i < count; i++) {
         coordinates.push(
           totalRun - idealRun * i,
@@ -139,10 +155,11 @@ const Stair = props => {
           idealRise * (i + 1)
         );
       }
+
       //This creates the landing and stringer
-      props.details
-        ? coordinates.push(
-            coordinates[coordinates.length - 2] + preRiserThickness + stringerB,
+      props.topStair ? (
+        coordinates.push(
+            coordinates[coordinates.length - 2] + (stringerB + preRiserThickness),
             coordinates[coordinates.length - 1],
             coordinates[0],
             stringerA + preTreadThickness,
@@ -153,18 +170,23 @@ const Stair = props => {
             coordinates[0] + landing,
             0
           )
-        : coordinates.push(
-            coordinates[coordinates.length - 2] + stringerB,
-            coordinates[coordinates.length - 1],
-            coordinates[0],
-            stringerA,
-            coordinates[0],
-            floorThickness,
-            coordinates[0] + landing,
-            floorThickness,
-            coordinates[0] + landing,
-            0
-          );
+      ):
+      (
+        coordinates.push(
+          coordinates[coordinates.length - 2] + (stringerB + preRiserThickness),
+          coordinates[coordinates.length - 1],
+          coordinates[2],
+          coordinates[5] + stringerA + preTreadThickness,
+          coordinates[2],
+          floorThickness,
+          coordinates[2] + landing,
+          floorThickness,
+          coordinates[2] + landing,
+          0
+        )
+      )
+  
+
     } else {
       count = Math.round(totalRun / 11);
       idealRun = totalRun / count;
@@ -202,6 +224,7 @@ const Stair = props => {
             Math.sin(Math.atan(idealRise / idealRun));
         }
       }
+
       for (let i = 0; i < count; i++) {
         coordinates.push(
           totalRun - idealRun * i,
@@ -212,10 +235,11 @@ const Stair = props => {
           idealRise * (i + 1)
         );
       }
+
       //This creates the landing and stringer
-      props.details
-        ? coordinates.push(
-            coordinates[coordinates.length - 2] + preRiserThickness + stringerB,
+      props.topStair ? (
+        coordinates.push(
+            coordinates[coordinates.length - 2] + (stringerB + preRiserThickness),
             coordinates[coordinates.length - 1],
             coordinates[0],
             stringerA + preTreadThickness,
@@ -226,18 +250,23 @@ const Stair = props => {
             coordinates[0] + landing,
             0
           )
-        : coordinates.push(
-            coordinates[coordinates.length - 2] + stringerB,
-            coordinates[coordinates.length - 1],
-            coordinates[0],
-            stringerA,
-            coordinates[0],
-            floorThickness,
-            coordinates[0] + landing,
-            floorThickness,
-            coordinates[0] + landing,
-            0
-          );
+      ):
+      (
+        coordinates.push(
+          coordinates[coordinates.length - 2] + (stringerB + preRiserThickness),
+          coordinates[coordinates.length - 1],
+          coordinates[2],
+          coordinates[5] + stringerA + preTreadThickness,
+          coordinates[2],
+          floorThickness,
+          coordinates[2] + landing,
+          floorThickness,
+          coordinates[2] + landing,
+          0
+        )
+      )
+        
+
     }
   } else if (props.totalBoolean === false) {
     //If total rise is selected (need to change so that total rise changes ideal rise)
@@ -276,6 +305,7 @@ const Stair = props => {
             Math.sin(Math.atan(idealRise / idealRun));
         }
       }
+
       for (let i = 0; i < count; i++) {
         coordinates.push(
           totalRise - idealRun * i,
@@ -286,11 +316,11 @@ const Stair = props => {
           idealRise * (i + 1)
         );
       }
+
       //This creates the landing and stringer
-      props.details
-        ? coordinates.push(
-            coordinates[coordinates.length - 2] +
-              (stringerB + preRiserThickness),
+      props.topStair ? (
+        coordinates.push(
+            coordinates[coordinates.length - 2] + (stringerB + preRiserThickness),
             coordinates[coordinates.length - 1],
             coordinates[0],
             stringerA + preTreadThickness,
@@ -301,18 +331,23 @@ const Stair = props => {
             coordinates[0] + landing,
             0
           )
-        : coordinates.push(
-            coordinates[coordinates.length - 2] + stringerB,
-            coordinates[coordinates.length - 1],
-            coordinates[0],
-            stringerA,
-            coordinates[0],
-            floorThickness,
-            coordinates[0] + landing,
-            floorThickness,
-            coordinates[0] + landing,
-            0
-          );
+      ):
+      (
+        coordinates.push(
+          coordinates[coordinates.length - 2] + (stringerB + preRiserThickness),
+          coordinates[coordinates.length - 1],
+          coordinates[2],
+          coordinates[5] + stringerA + preTreadThickness,
+          coordinates[2],
+          floorThickness,
+          coordinates[2] + landing,
+          floorThickness,
+          coordinates[2] + landing,
+          0
+        )
+      )
+        
+
     } else {
       count = Math.round(totalRise / 7);
       idealRise = totalRise / count;
@@ -350,6 +385,7 @@ const Stair = props => {
             Math.sin(Math.atan(idealRise / idealRun));
         }
       }
+
       for (let i = 0; i < count; i++) {
         coordinates.push(
           totalRise - idealRun * i,
@@ -360,11 +396,11 @@ const Stair = props => {
           idealRise * (i + 1)
         );
       }
+
       //This creates the landing and stringer
-      props.details
-        ? coordinates.push(
-            coordinates[coordinates.length - 2] +
-              (stringerB + preRiserThickness),
+      props.topStair ? (
+        coordinates.push(
+            coordinates[coordinates.length - 2] + (stringerB + preRiserThickness),
             coordinates[coordinates.length - 1],
             coordinates[0],
             stringerA + preTreadThickness,
@@ -375,18 +411,22 @@ const Stair = props => {
             coordinates[0] + landing,
             0
           )
-        : coordinates.push(
-            coordinates[coordinates.length - 2] + stringerB,
-            coordinates[coordinates.length - 1],
-            coordinates[0],
-            stringerA,
-            coordinates[0],
-            floorThickness,
-            coordinates[0] + landing,
-            floorThickness,
-            coordinates[0] + landing,
-            0
-          );
+      ):
+      (
+        coordinates.push(
+          coordinates[coordinates.length - 2] + (stringerB + preRiserThickness),
+          coordinates[coordinates.length - 1],
+          coordinates[2],
+          coordinates[5] + stringerA + preTreadThickness,
+          coordinates[2],
+          floorThickness,
+          coordinates[2] + landing,
+          floorThickness,
+          coordinates[2] + landing,
+          
+        )
+      )
+
     }
   }
 
@@ -427,6 +467,9 @@ const Stair = props => {
   }
   for (var n = 0; n < headroomPts.length; n++) {
     headroomPts[n] = headroomPts[n] * ratio;
+  }
+  if (props.topStair === false){
+    coordinates = coordinates.slice(4, coordinates.length - 4);
   }
 
   //This moves the drawing to the center
@@ -473,26 +516,27 @@ const Stair = props => {
   //Coordinates and dimensions for the top tread
   let topTread = [treadsX[0], treadsY[0]];
 
+  //This is for the line between the top stair and landing
+  let topStairLanding = [coordinates[0], coordinates[1], coordinates[0], coordinates[1] + (idealRise * ratio)];
+
   //Dimension strings
-  //This is the arrow dimensions
-  let arrowWidth = 10 / 2;
+  //These are the settings for arrows, text, and stroke width
+  let arrowWidth = lgMin.matches ? (10 / 2) : (10 / 4);
   let arrowOffset = 40;
   let textLineOffset = 25;
   let textNumOffset = 10;
-
-  let textSize = 
-    lgMax.matches 
-      ? 6 
-      : 12;
+  let textSize = lgMin.matches ? 12 : 6;
+  let strokeWidth = lgMin.matches ? 1.5 : 0.75;
 
 
   //This is the dimension string for the total rise
-  let dRise = [
-    coordinates[coordinates.length - 2] + arrowOffset,
-    0,
-    coordinates[coordinates.length - 2] + arrowOffset,
-    coordinates[coordinates.length - 9]
-  ];
+  let dRise = 
+    [
+      coordinates[coordinates.length - 2] + arrowOffset,
+      0,
+      coordinates[coordinates.length - 2] + arrowOffset,
+      coordinates[coordinates.length - 9]
+    ];
   let dRiseArrowTop = [
     dRise[0] - arrowWidth,
     dRise[1] + arrowWidth,
@@ -561,7 +605,7 @@ const Stair = props => {
   ];
   let dRunText = [(dRun[0] + dRun[2]) / 2, dRun[1]];
   let dRunDashedLeft = [dRun[0], dRun[1], dRun[0], dRun[1] - arrowOffset];
-  let dRunDashedRight = [dRun[2], dRun[3], dRun[2], coordinates[1]];
+  let dRunDashedRight = [dRun[2], dRun[3], dRun[2], coordinates[5]];
   let dRunFeet = Math.floor(
     (coordinates[0] - coordinates[coordinates.length - 12]) / ratio / 12
   );
@@ -663,8 +707,10 @@ const Stair = props => {
   ];
   let dHeadroomText = [dHeadroom[0], (dHeadroom[1] + dHeadroom[3]) / 2];
   let dHeadroomValue =
-    (parseFloat(dHeadroomStepY) - parseFloat(dHeadroom[1])) / ratio;
-  let dHeadroomFeet = Math.floor((dHeadroomStepY - dHeadroom[1]) / ratio / 12);
+    ((parseFloat(dHeadroomStepY) - parseFloat(dHeadroom[1])) / ratio).toFixed(2);
+  let dHeadroomFeet = Math.floor(
+      (dHeadroomStepY - dHeadroom[1]) / ratio / 12
+  );
   let dHeadroomInches = Math.floor(
     (dHeadroomStepY - dHeadroom[1]) / ratio - dHeadroomFeet * 12
   );
@@ -675,7 +721,22 @@ const Stair = props => {
         dHeadroomInches
     ) * 16;
 
+  //These are for the weird dimension string bugs
+  if (dHeadroomFraction === 16){
   
+    dHeadroomInches += 1;
+    dHeadroomFraction = 0;
+
+    if (dHeadroomInches === 12){
+      dHeadroomFeet += 1;
+      dHeadroomInches = 0;
+    } else if (dHeadroomInches === 11){
+      dHeadroomFeet += 1;
+      dHeadroomInches = 0;
+      dHeadroomFraction = 0;
+    }
+
+  }
 
   //This is the dimension string for the floor thickness
   let dFloor = [headroomPts[6], headroomPts[7], headroomPts[4], headroomPts[5]];
@@ -736,9 +797,14 @@ const Stair = props => {
     ];
   }
 
-  //These are coordinates for the rise and run dimension strings
+  //These are coordinates for the rise and run dimension text
   let dStep = [coordinates[coordinates.length - 2], coordinates[coordinates.length - 11]];
   let runCount = props.topStair ? (count - 1) : (count);
+
+  let idealRunParsedIn = props.idealRunin;
+  let idealRunParsedFr = props.idealRunfr * 16;
+  let idealRiseParsedIn = props.idealRisein;
+  let idealRiseParsedFr = props.idealRisefr * 16;
 
   //Error message texts
   let errors = [];
@@ -797,6 +863,18 @@ const Stair = props => {
   return (
     <Stage width={windowWidth} height={window.innerHeight}>
       <Layer>
+        {props.topStair && (
+          <Line
+            x={move[0]}
+            y={move[1]}
+            points={topStairLanding}
+            stroke="black"
+            strokeWidth={strokeWidth}
+            lineCap="sqare"
+            lineJoin="sqare"
+            closed="true"
+          />
+        )}
         {props.dimensions && (
           <Text
             x={ePosition[0]}
@@ -813,7 +891,7 @@ const Stair = props => {
           y={move[1]}
           points={coordinates}
           stroke="black"
-          strokeWidth={1.5}
+          strokeWidth={strokeWidth}
           lineCap="sqare"
           lineJoin="sqare"
           closed="true"
@@ -824,7 +902,7 @@ const Stair = props => {
             y={move[1]}
             points={headroomPts}
             stroke="black"
-            strokeWidth={1.5}
+            strokeWidth={strokeWidth}
             lineCap="sqare"
             lineJoin="sqare"
             closed="true"
@@ -834,11 +912,11 @@ const Stair = props => {
           <Rect
             x={topTread[0]}
             y={topTread[1]}
-            width={treadLength + landing * ratio - riserThickness}
+            width={treadLength - riserThickness}
             height={treadThickness}
             fill="white"
             stroke="black"
-            strokeWidth={1.5}
+            strokeWidth={strokeWidth}
           />
         )}
         {props.details &&
@@ -851,7 +929,7 @@ const Stair = props => {
               height={treadThickness}
               fill="white"
               stroke="black"
-              strokeWidth={1.5}
+              strokeWidth={strokeWidth}
             />
           ))}
         {props.details &&
@@ -864,7 +942,7 @@ const Stair = props => {
               height={riserHeight}
               fill="white"
               stroke="black"
-              strokeWidth={1.5}
+              strokeWidth={strokeWidth}
             />
           ))}
       </Layer>
@@ -1270,7 +1348,7 @@ const Stair = props => {
               fontFamily="Sohne Mono Buch"
               fontSize={textSize}
               fill="#5541EA"
-              text={runCount + " steps at " + idealRun.toFixed(1) + '"'}
+              text={runCount + " runs at " + idealRunParsedIn + '" ' + idealRunParsedFr + "/16"}
               align="right"
             />
             <Text
@@ -1280,7 +1358,7 @@ const Stair = props => {
               fontFamily="Sohne Mono Buch"
               fontSize={textSize}
               fill="#5541EA"
-              text={count + " steps at " + idealRise.toFixed(1) + '"'}
+              text={count + " rises at " + idealRiseParsedIn + '" ' + idealRiseParsedFr + "/16"}
               align="right"
             />
           </React.Fragment>

@@ -267,6 +267,7 @@ class App extends Component {
         <div className="row">
           <div id="sidebar" className="col-12 col-lg-2">
             <div className="sidebar__section sidebar__section--first">
+              <div className="title">Toggles</div>
               <Units
                 units={this.state.units}
                 changeUnitsIn={this.changeUnitsIn}
