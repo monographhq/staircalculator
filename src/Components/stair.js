@@ -489,8 +489,14 @@ const Stair = props => {
 
   //Coordinates for treads, risers, and nosing
   let treadsX = [];
-  for (let k = 2; k < coordinates.length; k += 6) {
-    treadsX.push(move[0] + coordinates[k] - nosing);
+  if (props.topStair){
+    for (let k = 2; k < coordinates.length; k += 6) {
+      treadsX.push(move[0] + coordinates[k] - nosing);
+    }
+  } else {
+    for (let k = 6; k < coordinates.length; k += 6) {
+      treadsX.push(move[0] + coordinates[k] - nosing);
+    }
   }
   let treadsY = [];
   let risersY = [];
@@ -513,11 +519,16 @@ const Stair = props => {
     treadsY2.push(treadsY[t]);
   }
 
+  let detailCount = props.topStair ? count : count - 1;
+
   //Coordinates and dimensions for the top tread
   let topTread = [treadsX[0], treadsY[0]];
 
   //This is for the line between the top stair and landing
-  let topStairLanding = [coordinates[0], coordinates[1], coordinates[0], coordinates[1] + (idealRise * ratio)];
+  let topStairLine = [coordinates[0], coordinates[1], coordinates[0], coordinates[5]];
+
+  //This is the landing when the top stair is toggled off
+  let topStairLanding = [coordinates[2], coordinates[3]];
 
   //Dimension strings
   //These are the settings for arrows, text, and stroke width
@@ -531,12 +542,23 @@ const Stair = props => {
 
   //This is the dimension string for the total rise
   let dRise = 
-    [
-      coordinates[coordinates.length - 2] + arrowOffset,
-      0,
-      coordinates[coordinates.length - 2] + arrowOffset,
-      coordinates[coordinates.length - 9]
-    ];
+    props.topStair ? (
+      [
+        coordinates[coordinates.length - 2] + arrowOffset,
+        0,
+        coordinates[coordinates.length - 2] + arrowOffset,
+        coordinates[coordinates.length - 9]
+      ]
+    ):
+    (
+      [
+        coordinates[2] + landing*ratio + arrowOffset,
+        0,
+        coordinates[2] + landing*ratio + arrowOffset,
+        coordinates[coordinates.length - 5]
+      ]
+    )
+
   let dRiseArrowTop = [
     dRise[0] - arrowWidth,
     dRise[1] + arrowWidth,
@@ -581,12 +603,24 @@ const Stair = props => {
   );
 
   //This is the dimension string for the total run
-  let dRun = [
-    coordinates[coordinates.length - 12],
-    coordinates[coordinates.length - 11] + arrowOffset,
-    coordinates[0],
-    coordinates[coordinates.length - 11] + arrowOffset
-  ];
+  let dRun = 
+    props.topStair ? (
+      [
+        coordinates[coordinates.length - 12],
+        coordinates[coordinates.length - 11] + arrowOffset,
+        coordinates[0],
+        coordinates[coordinates.length - 11] + arrowOffset
+      ]
+    ):
+    (
+      [
+        coordinates[coordinates.length - 8],
+        coordinates[coordinates.length - 7] + arrowOffset,
+        coordinates[0],
+        coordinates[coordinates.length - 7] + arrowOffset
+      ]
+    )
+
   let dRunArrowLeft = [
     dRun[0] + arrowWidth,
     dRun[1] - arrowWidth,
@@ -627,15 +661,16 @@ const Stair = props => {
   let sAlpha = Math.atan(idealRise / idealRun);
   let sC = Math.sqrt(sA * sA - sZ * sZ);
 
-  let sX = coordinates[10] + riserThickness;
-  let sY = coordinates[11] + treadThickness;
-  if (props.details === false){
-    sX = coordinates[10];
-    sY = coordinates[11];
-  }
+  let sX = props.details ? (coordinates[10] + riserThickness) : (coordinates[10]);
+  let sY = props.details ? (coordinates[11] + treadThickness) : (coordinates[11]);
+
   if (count <= 3) {
     sX = coordinates[4] + riserThickness;
     sY = coordinates[5] + treadThickness;
+  }
+
+  if (props.topStair === false){
+    sY += (idealRise * ratio);
   }
 
   let stringerTrue = count > 2;
@@ -645,7 +680,7 @@ const Stair = props => {
   let dStringer = [sX, sY, sX1 + sZ / 2, sY1 + sA / 2];
 
   //This is the dimension string for the nosing
-  let dNosing = [coordinates[2], 0, coordinates[2] - nosing, 0];
+  let dNosing = props.topStair ? [coordinates[2], 0, coordinates[2] - nosing, 0] : [coordinates[4], idealRise*ratio, coordinates[4] - nosing, idealRise*ratio];
   let dNosingDashedLeft = [
     dNosing[0],
     dNosing[1],
@@ -662,7 +697,7 @@ const Stair = props => {
 
   //This is the dimension string for the headroom
   let dHeadroomStepX = headroomPts[6];
-  let dHeadroomStepY = coordinates[coordinates.length - 9];
+  let dHeadroomStepY = props.topStair ? coordinates[coordinates.length - 9] : coordinates[coordinates.length - 5];
   for (var p = 0; p < coordinates.length; p += 2) {
     if (
       dHeadroomStepX > coordinates[p + 2] &&
@@ -672,12 +707,22 @@ const Stair = props => {
     }
   }
 
-  let dHeadroomDashed = [
-    dHeadroomStepX,
-    coordinates[coordinates.length - 9],
-    coordinates[coordinates.length - 10],
-    coordinates[coordinates.length - 9]
-  ];
+  let dHeadroomDashed = 
+    props.topStair ?
+      [
+        dHeadroomStepX,
+        coordinates[coordinates.length - 9],
+        coordinates[coordinates.length - 10],
+        coordinates[coordinates.length - 9]
+      ]
+  :
+      [
+        dHeadroomStepX,
+        coordinates[coordinates.length - 5],
+        coordinates[coordinates.length - 6],
+        coordinates[coordinates.length - 5]
+      ]
+
   let headroomBoolean = false;
   if (dHeadroomStepX < coordinates[coordinates.length - 10]) {
     headroomBoolean = true;
@@ -771,10 +816,18 @@ const Stair = props => {
   ];
 
   //This is the dimension string for the stair angle
-  let dAngleStart = [
-    coordinates[coordinates.length - 12],
-    coordinates[coordinates.length - 11]
-  ];
+  let dAngleStart = 
+    props.topStair ?
+      [
+        coordinates[coordinates.length - 12],
+        coordinates[coordinates.length - 11]
+      ]
+    :
+      [
+        coordinates[coordinates.length - 8],
+        coordinates[coordinates.length - 7]
+      ]
+  
   let dAngle = [
     dAngleStart[0],
     dAngleStart[1],
@@ -783,24 +836,45 @@ const Stair = props => {
     dAngleStart[0],
     dAngleStart[1] - idealRise * ratio
   ];
-  let dAngleText = [
-    coordinates[coordinates.length - 10] + (idealRun / 2) * ratio,
-    dAngle[1]
-  ];
-  let stairAngle = (Math.atan(idealRise / idealRun) * (180 / Math.PI)).toFixed(
-    2
-  );
-  if (stairAngle < 30 || count <= 3) {
-    dAngleText = [
-      coordinates[coordinates.length - 10] + (idealRun / 2) * ratio + 10,
+
+  let dAngleText = 
+    props.topStair ?
+      [
+        coordinates[coordinates.length - 10] + (idealRun / 2) * ratio,
+        dAngle[1]
+      ]
+    :
+    [
+      coordinates[coordinates.length - 6] + (idealRun / 2) * ratio,
       dAngle[1]
-    ];
+    ]
+
+  let stairAngle = (Math.atan(idealRise / idealRun) * (180 / Math.PI)).toFixed(2)
+
+  if (stairAngle < 30 || count <= 3) {
+    if (props.topStair){
+      dAngleText = [
+        coordinates[coordinates.length - 10] + (idealRun / 2) * ratio + 10,
+        dAngle[1]
+      ];
+    } else {
+      dAngleText = [
+        coordinates[coordinates.length - 6] + (idealRun / 2) * ratio + 10,
+        dAngle[1]
+      ];
+    }
   }
 
   //These are coordinates for the rise and run dimension text
-  let dStep = [coordinates[coordinates.length - 2], coordinates[coordinates.length - 11]];
-  let runCount = props.topStair ? (count - 1) : (count);
+  let dStep = 
+    props.topStair ? (
+      [coordinates[coordinates.length - 2], coordinates[coordinates.length - 11]]
+    ): 
+    (
+      [coordinates[2] + landing*ratio, coordinates[coordinates.length - 7]]
+    );
 
+  let runCount = props.topStair ? (count) : (count - 1);
   let idealRunParsedIn = props.idealRunin;
   let idealRunParsedFr = props.idealRunfr * 16;
   let idealRiseParsedIn = props.idealRisein;
@@ -863,11 +937,22 @@ const Stair = props => {
   return (
     <Stage width={windowWidth} height={window.innerHeight}>
       <Layer>
+        {props.topStair === false && (
+          <Rect
+            x={move[0] + topStairLanding[0]}
+            y={move[1] + topStairLanding[1] - (idealRise * ratio)}
+            width={landing * ratio}
+            height={floorThickness * ratio}
+            fill="white"
+            stroke="black"
+            strokeWidth={strokeWidth}
+          />
+        )}
         {props.topStair && (
           <Line
             x={move[0]}
             y={move[1]}
-            points={topStairLanding}
+            points={topStairLine}
             stroke="black"
             strokeWidth={strokeWidth}
             lineCap="sqare"
@@ -920,7 +1005,7 @@ const Stair = props => {
           />
         )}
         {props.details &&
-          [...Array(count - 1)].map((_, i) => (
+          [...Array(detailCount - 1)].map((_, i) => (
             <Rect
               key={i}
               x={treadsX2[i]}
@@ -933,7 +1018,7 @@ const Stair = props => {
             />
           ))}
         {props.details &&
-          [...Array(count)].map((_, i) => (
+          [...Array(detailCount)].map((_, i) => (
             <Rect
               key={i}
               x={treadsW[i]}
