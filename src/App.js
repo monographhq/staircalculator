@@ -362,7 +362,7 @@ class App extends Component {
                 changetotalRunft={this.changetotalRunft}
                 changetotalRunin={this.changetotalRunin}
                 changetotalRunfr={this.changetotalRunfr}
-                changetotalRunmm={this.state.changetotalRunmm}
+                changetotalRunmm={this.changetotalRunmm}
                 changetotalRunSwitchOn={this.changetotalRunSwitchOn}
                 changetotalRunSwitchOff={this.changetotalRunSwitchOff}
                 units={this.state.units}
@@ -375,7 +375,7 @@ class App extends Component {
                 changetotalRiseft={this.changetotalRiseft}
                 changetotalRisein={this.changetotalRisein}
                 changetotalRisefr={this.changetotalRisefr}
-                changetotalRisemm={this.state.changetotalRisemm}
+                changetotalRisemm={this.changetotalRisemm}
                 units={this.state.units}
               />
               <IdealRun

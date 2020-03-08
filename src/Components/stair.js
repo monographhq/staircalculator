@@ -36,7 +36,7 @@ const Stair = props => {
     (
       parseFloat(props.totalRunmm) / 25.4
     )
-      
+
   let totalRise =
     props.units ? (
       parseInt(props.totalRiseft) +
@@ -554,6 +554,10 @@ const Stair = props => {
     lgMin.matches 
       ? (window.innerWidth * 0.82 - 15)
       : (window.innerWidth);
+  let windowHeight = 
+    lgMin.matches
+      ? (window.innerHeight)
+      : (window.innerHeight * 0.5);
   let stairLength = (headroomPts[0] + landing + coordinates[0]);
   let wr = windowWidth / (Math.abs(headroomPts[0]) + landing + coordinates[0]);
   let ratio = lgMin.matches ? wr * 0.75 : wr* 0.8;
@@ -1112,7 +1116,7 @@ const Stair = props => {
   
 
   return (
-    <Stage width={windowWidth} height={window.innerHeight}>
+    <Stage width={windowWidth} height={windowHeight}>
       <Layer>
         {props.topStair === false && (
           <Rect
