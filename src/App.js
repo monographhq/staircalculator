@@ -440,6 +440,7 @@ class App extends Component {
                 totalRunmm={this.state.totalRunmm}
                 headroomLength={this.state.headroomLength}
                 changeheadroomlength={this.changeheadroomlength}
+                units={this.state.units}
               />
               <FloorThickness
                 floorft={this.state.floorft}

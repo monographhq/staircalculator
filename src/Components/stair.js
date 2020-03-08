@@ -556,7 +556,7 @@ const Stair = props => {
       : (window.innerWidth);
   let stairLength = (headroomPts[0] + landing + coordinates[0]);
   let wr = windowWidth / (Math.abs(headroomPts[0]) + landing + coordinates[0]);
-  let ratio = wr * 0.75;
+  let ratio = lgMin.matches ? wr * 0.75 : wr* 0.8;
 
   //This transforms the drawing based on the scale factor
   for (var m = 0; m < coordinates.length; m++) {
@@ -571,7 +571,7 @@ const Stair = props => {
 
   //This moves the drawing to the center
   let moveCenter = (windowWidth / 2) - (stairLength * ratio) / 2;
-  let move = lgMin.matches ? [moveCenter, 150] : [moveCenter - 15, 100];
+  let move = lgMin.matches ? [moveCenter, 150] : [moveCenter - 30, 100];
 
   //Treads, risers, and nosing dimensions
   let treadThickness =
@@ -698,6 +698,13 @@ const Stair = props => {
       dRiseInches) *
       16
   );
+  let dRiseValue = 
+    props.units ? (
+      dRiseFeet + "' " + dRiseInches + '" ' + dRiseFraction + "/16"
+    ):
+    (
+      Math.round(((coordinates[coordinates.length - 11] - coordinates[1]) * 25.4) / ratio) + " MM"
+    )
 
   //This is the dimension string for the total run
   let dRun = 
@@ -750,6 +757,13 @@ const Stair = props => {
       dRunInches) *
       16
   );
+  let dRunValue =
+    props.units ? (
+      dRunFeet + "' " + dRunInches + '" ' + dRunFraction + "/16"
+    ):
+    (
+      Math.round(((coordinates[0] - coordinates[coordinates.length - 12]) * 25.4) / ratio) + " MM"
+    )
 
   //This is the dimension string for the stringer
   let sZ =
@@ -775,6 +789,13 @@ const Stair = props => {
   let sX1 = sX + sC * Math.cos(sAlpha);
   let sY1 = sY + sA - sC * Math.sin(sAlpha);
   let dStringer = [sX, sY, sX1 + sZ / 2, sY1 + sA / 2];
+  let dStringerValue = 
+    props.units ? (
+      props.stringerin + '" ' + Math.round(props.stringerfr * 16) + "/16"
+    ):
+    (
+      Math.round(props.stringermm) + " MM"
+    )
 
   //This is the dimension string for the nosing
   let dNosing = props.topStair ? [coordinates[2], 0, coordinates[2] - nosing, 0] : [coordinates[4], idealRise*ratio, coordinates[4] - nosing, idealRise*ratio];
@@ -791,6 +812,13 @@ const Stair = props => {
     dNosing[1] - arrowOffset
   ];
   let dNosingText = [(dNosing[0] + dNosing[2]) / 2, dNosing[1] - 28];
+  let dNosingValue = 
+    props.units ? (
+      props.nosingin + '" ' + props.nosingfr * 16 + "/16"
+    ):
+    (
+      Math.round(props.nosingmm) + " MM"
+    )
 
   //This is the dimension string for the headroom
   let dHeadroomStepX = headroomPts[6];
@@ -862,6 +890,13 @@ const Stair = props => {
         dHeadroomFeet * 12 -
         dHeadroomInches
     ) * 16;
+  let dHeadroomValueText = 
+    props.units ? (
+      dHeadroomFeet + "' " + dHeadroomInches + '" ' + dHeadroomFraction + "/16"
+    ):
+    (
+      Math.round(((dHeadroomStepY - dHeadroom[1]) * 25.4) / ratio) + " MM"
+    )
 
   //These are for the weird dimension string bugs
   if (dHeadroomFraction === 16){
@@ -911,6 +946,13 @@ const Stair = props => {
     dFloor[0] + arrowOffset,
     dFloor[1]
   ];
+  let dFloorValue = 
+    props.units ? (
+      props.floorft / 12 + "' " + props.floorin + '" ' + props.floorfr * 16 + "/16"
+    ):
+    (
+      Math.round(props.floormm) + " MM"
+    )
 
   //This is the dimension string for the stair angle
   let dAngleStart = 
@@ -972,10 +1014,31 @@ const Stair = props => {
     );
 
   let runCount = props.topStair ? (count) : (count - 1);
-  let idealRunParsedIn = props.idealRunin;
-  let idealRunParsedFr = props.idealRunfr * 16;
-  let idealRiseParsedIn = props.idealRisein;
-  let idealRiseParsedFr = props.idealRisefr * 16;
+
+  let idealRunParsedIn = Math.floor((coordinates[12] - coordinates[14]) / ratio);
+  let idealRunParsedFr = Math.round((((coordinates[12] - coordinates[14]) / ratio) - idealRunParsedIn) * 0.0625);
+  let idealRunParsedMM = Math.round(((coordinates[12] - coordinates[14]) / ratio) * 25.4);
+
+  let idealRiseParsedIn = Math.floor((coordinates[11] - coordinates[9]) / ratio);
+  let idealRiseParsedFr = Math.round((((coordinates[11] - coordinates[9]) / ratio) - idealRunParsedIn) * 0.0625);
+  let idealRiseParsedMM = Math.round(((coordinates[11] - coordinates[9]) / ratio) * 25.4);
+
+
+  let riseCountValue = 
+      props.units ? (
+        runCount + " rises at " + idealRiseParsedIn + '" ' + idealRiseParsedFr + "/16"
+      ):
+      (
+        runCount + " rises at " + idealRiseParsedMM + " MM"
+      )
+
+  let runCountValue = 
+      props.units ? (
+        runCount + " runs at " + idealRunParsedIn + '" ' + idealRunParsedFr + "/16"
+      ):
+      (
+        runCount + " runs at " + idealRunParsedMM + " MM"
+      )
 
   //Error message texts
   let errors = [];
@@ -999,7 +1062,7 @@ const Stair = props => {
   }
   let eRunText = "";
   if (idealRun < 11 && withNosing) {
-    eRunText = "Stair run too short";
+    eRunText = 'Stair run is short';
     errors.push(eRunText);
   }
 
@@ -1015,7 +1078,7 @@ const Stair = props => {
   //Rise error
   let eRiseText = "";
   if (idealRise > 7){
-    eRiseText = 'Stair rise too tall"'
+    eRiseText = 'Stair rise is steep'
     errors.push(eRiseText);
   }
 
@@ -1198,7 +1261,7 @@ const Stair = props => {
               fontSize={textSize}
               fill="#5541EA"
               text={
-                dRiseFeet + "' " + dRiseInches + '" ' + dRiseFraction + "/16"
+                dRiseValue
               }
               rotation={90}
               align="center"
@@ -1271,7 +1334,7 @@ const Stair = props => {
               fontFamily="Sohne Mono Buch"
               fontSize={textSize}
               fill="#5541EA"
-              text={dRunFeet + "' " + dRunInches + '" ' + dRunFraction + "/16"}
+              text={dRunValue}
               align="center"
             />
           </React.Fragment>
@@ -1315,7 +1378,7 @@ const Stair = props => {
               fontFamily="Sohne Mono Buch"
               fontSize={textSize}
               fill="#5541EA"
-              text={props.nosingin + '" ' + props.nosingfr * 16 + "/16"}
+              text={dNosingValue}
               align="center"
             />
           </React.Fragment>
@@ -1386,14 +1449,7 @@ const Stair = props => {
               fontFamily="Sohne Mono Buch"
               fontSize={textSize}
               fill="#5541EA"
-              text={
-                props.floorft / 12 +
-                "' " +
-                props.floorin +
-                '" ' +
-                props.floorfr * 16 +
-                "/16"
-              }
+              text={dFloorValue}
               align="left"
             />
           </React.Fragment>
@@ -1448,14 +1504,7 @@ const Stair = props => {
               fontFamily="Sohne Mono Buch"
               fontSize={textSize}
               fill={eHeadroomColor}
-              text={
-                dHeadroomFeet +
-                "' " +
-                dHeadroomInches +
-                '" ' +
-                dHeadroomFraction +
-                "/16"
-              }
+              text={dHeadroomValueText}
               align="center"
               rotation={90}
             />
@@ -1512,12 +1561,7 @@ const Stair = props => {
               fontFamily="Sohne Mono Buch"
               fontSize={textSize}
               fill="#5541EA"
-              text={
-                props.stringerin +
-                '" ' +
-                Math.round(props.stringerfr * 16) +
-                "/16"
-              }
+              text={dStringerValue}
               align="left"
             />
           </React.Fragment>
@@ -1531,7 +1575,7 @@ const Stair = props => {
               fontFamily="Sohne Mono Buch"
               fontSize={textSize}
               fill="#5541EA"
-              text={runCount + " runs at " + idealRunParsedIn + '" ' + idealRunParsedFr + "/16"}
+              text={runCountValue}
               align="right"
             />
             <Text
@@ -1541,7 +1585,7 @@ const Stair = props => {
               fontFamily="Sohne Mono Buch"
               fontSize={textSize}
               fill="#5541EA"
-              text={runCount + " rises at " + idealRiseParsedIn + '" ' + idealRiseParsedFr + "/16"}
+              text={riseCountValue}
               align="right"
             />
           </React.Fragment>
