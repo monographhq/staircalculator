@@ -630,12 +630,22 @@ const Stair = props => {
   //Dimension strings
   //These are the settings for arrows, text, and stroke width
   let arrowWidth = lgMin.matches ? (10 / 2) : (10 / 4);
-  let arrowOffset = lgMin.matches ? 40 : (20);
+  let arrowOffset = lgMin.matches ? 40 : 20;
   let textLineOffset = lgMin.matches ? 25 : 12.5;
   let textNumOffset = lgMin.matches ? 10 : 5;
   let textSize = lgMin.matches ? 12 : 6;
   let strokeWidth = lgMin.matches ? 1.5 : 0.75;
   let strokeDash = lgMin.matches ? [3, 4] : [1, 2];
+
+  if (mdMin.matches){
+    arrowWidth = 10 / 3;
+    arrowOffset = 30;
+    textLineOffset = 8.3;
+    textNumOffset = 7.5;
+    textSize = 9;
+    strokeWidth = 1;
+    strokeDash = [2, 3];
+  }
 
   //This is the dimension string for the total rise
   let dRise = 
@@ -798,7 +808,13 @@ const Stair = props => {
     )
 
   //This is the dimension string for the nosing
-  let dNosing = props.topStair ? [coordinates[2], 0, coordinates[2] - nosing, 0] : [coordinates[4], idealRise*ratio, coordinates[4] - nosing, idealRise*ratio];
+  let dNosing = 
+    props.topStair ? (
+      [coordinates[2], 0, coordinates[2] - nosing, 0] 
+    ):
+    ( 
+      [coordinates[4], idealRise*ratio, coordinates[4] - nosing, idealRise*ratio]
+    )
   let dNosingDashedLeft = [
     dNosing[0],
     dNosing[1],
@@ -811,7 +827,7 @@ const Stair = props => {
     dNosing[2],
     dNosing[1] - arrowOffset
   ];
-  let dNosingText = [(dNosing[0] + dNosing[2]) / 2, dNosing[1] - 28];
+  let dNosingText = [(dNosing[0] + dNosing[2]) / 2, dNosing[1] - (textSize * 2.5)];
   let dNosingValue = 
     props.units ? (
       props.nosingin + '" ' + props.nosingfr * 16 + "/16"
@@ -1364,7 +1380,7 @@ const Stair = props => {
             <Text
               width={150}
               x={move[0] + dNosingText[0] - 75}
-              y={move[1] + dNosingText[1] - 12 - textLineOffset}
+              y={move[1] + dNosingText[1] - textSize - textLineOffset}
               fontFamily="Sohne Mono Buch"
               fontSize={textSize}
               fill="#5541EA"
@@ -1374,7 +1390,7 @@ const Stair = props => {
             <Text
               width={150}
               x={move[0] + dNosingText[0] - 75}
-              y={move[1] + dNosingText[1] - 12 - textNumOffset}
+              y={move[1] + dNosingText[1] - textSize - textNumOffset}
               fontFamily="Sohne Mono Buch"
               fontSize={textSize}
               fill="#5541EA"
@@ -1445,7 +1461,7 @@ const Stair = props => {
             <Text
               width={150}
               x={move[0] + arrowOffset / 2 + dFloor[2] + arrowOffset}
-              y={move[1] + dFloorText[1] + 15}
+              y={move[1] + dFloorText[1] + textSize + 2}
               fontFamily="Sohne Mono Buch"
               fontSize={textSize}
               fill="#5541EA"
@@ -1458,8 +1474,8 @@ const Stair = props => {
           <React.Fragment>
             <Text
               width={100}
-              x={move[0] + dAngleText[0] + 14}
-              y={move[1] + dAngleText[1] - 14}
+              x={move[0] + dAngleText[0] + (textSize + 2)}
+              y={move[1] + dAngleText[1] - (textSize + 2)}
               fontFamily="Sohne Mono Buch"
               fontSize={textSize}
               fill={eAngleColor}
@@ -1557,7 +1573,7 @@ const Stair = props => {
             <Text
               width={150}
               x={move[0] + dStringer[2]}
-              y={move[1] + dStringer[3] + 15}
+              y={move[1] + dStringer[3] + textSize + 2}
               fontFamily="Sohne Mono Buch"
               fontSize={textSize}
               fill="#5541EA"
@@ -1571,7 +1587,7 @@ const Stair = props => {
             <Text
               width={200}
               x={move[0] + dStep[0] - 200}
-              y={move[1] + dStep[1] + textSize / 2}
+              y={move[1] + dStep[1] + (textSize / 2)}
               fontFamily="Sohne Mono Buch"
               fontSize={textSize}
               fill="#5541EA"
@@ -1581,7 +1597,7 @@ const Stair = props => {
             <Text
               width={200}
               x={move[0] + dStep[0] - 200}
-              y={move[1] + dStep[1] + textSize / 2 + textSize + 4}
+              y={move[1] + dStep[1] + (textSize / 2) + textSize + 2}
               fontFamily="Sohne Mono Buch"
               fontSize={textSize}
               fill="#5541EA"
