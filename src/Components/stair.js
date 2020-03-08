@@ -637,7 +637,7 @@ const Stair = props => {
   let strokeWidth = lgMin.matches ? 1.5 : 0.75;
   let strokeDash = lgMin.matches ? [3, 4] : [1, 2];
 
-  if (mdMin.matches){
+  if (mdMin.matches && lgMax.matches){
     arrowWidth = 10 / 3;
     arrowOffset = 30;
     textLineOffset = 8.3;
