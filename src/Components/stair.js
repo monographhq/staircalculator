@@ -184,8 +184,8 @@ const Stair = props => {
 
   let floorThickness = 
     props.units ? (
-      props.floorft === 0 ? (
-        props.floorin < 6 ? (
+      parseInt(props.floorft) === 0 ? (
+        parseInt(props.floorin) < 6 ? (
           6
         ):
         (
@@ -1062,7 +1062,13 @@ const Stair = props => {
 
   //Error message texts
   let errors = [];
-  let ePosition = [80, 80];
+  let ePosition = 
+    lgMin.matches ? (
+      [80, 80]
+    ):
+    (
+      [8, 40]
+    )
 
   //Headroom errors
   let eHeadroomText = "";

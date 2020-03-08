@@ -103,7 +103,7 @@ class App extends Component {
       idealOn: false
     })
   }
-
+  
   //Handlers for changing total rise
   changetotalRiseft = event => {
     this.setState({

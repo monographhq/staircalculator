@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 
 const StairAngle = (props) => {
 
+    // const [fieldValue, setFieldValue] = useState(props.stairAngle);
+    // const parseField = (inputValue) => {
+    //     if(inputValue >= 25 && inputValue <= 45) {
+    //         setFieldValue(inputValue);
+    //         props.changeStairAngle;
+    //     }
+    // }
+    
     return (
         <div className="sidebar__section--last sidebar__section">
             <label className="title d-flex">Stair Angle</label>
