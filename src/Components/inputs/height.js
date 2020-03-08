@@ -2,7 +2,14 @@ import React from 'react';
 
 const Height = (props) => {
 
-    let totalRun = parseInt(props.totalRunft) + parseInt(props.totalRunin) + parseFloat(props.totalRunfr);
+    let totalRun = 
+        props.units ? (
+            parseInt(props.totalRunft) + parseInt(props.totalRunin) + parseFloat(props.totalRunfr)
+        ):
+        (
+            parseFloat(props.totalRunmm)
+        )
+
     let headroomMax = parseFloat(totalRun / 3);
 
     return (

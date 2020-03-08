@@ -53,10 +53,13 @@ $xl: 1140px;
 .sidebar__section--first {
   @media only screen and (max-width: $lg){
     min-width: 75vw;
-    padding-top: 80px;
+    padding-top: 48px;
     padding-right: 2.5rem;
     padding-left: 0.5rem;
     border-right: 1px solid rgba(255, 255, 255, 0.8);
+  }
+  @media only screen and (min-width: $lg){
+    padding-top: 80px;
   }
 }
 
@@ -151,23 +154,30 @@ $xl: 1140px;
   -webkit-appearance: none;
   -moz-appearance: none;
   position: relative;
-  background-image: url("../images/dropdown-arrow.svg");
-  background-repeat: no-repeat;
-  background-position: 90% center;
 }
 
 .dropdown:focus {
   border: 2px solid #40ead3;
 }
 
+.dropdown__mm {
+  width: 98%;
+}
+
 .dropdown__feet,
 .dropdown__inch {
   margin-right: 6px;
   width: 28%;
+  background-image: url("../images/dropdown-arrow.svg");
+  background-repeat: no-repeat;
+  background-position: 90% center;
 }
 
 .dropdown__fraction {
   width: 42%;
+  background-image: url("../images/dropdown-arrow.svg");
+  background-repeat: no-repeat;
+  background-position: 90% center;
 }
 
 .dropdown:hover {

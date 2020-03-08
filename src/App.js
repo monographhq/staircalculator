@@ -20,35 +20,44 @@ class App extends Component {
     totalRunft: 12 * 12,
     totalRunin: 0,
     totalRunfr: 0,
+    totalRunmm: 144 * 25.4,
 
     totalRiseft: 9 * 12,
     totalRisein: 0,
     totalRisefr: 0,
+    totalRisemm: 108 * 25.4,
 
     idealRisein: 7,
     idealRisefr: 0,
+    idealRisemm: 7 * 25.4,
 
     idealRunin: 11,
     idealRunfr: 0,
+    idealRunmm: 11 * 25.4,
 
     stringerin: 5,
     stringerfr: 0.0625 * 15,
+    stringermm: (5 + (0.0625 * 15)) * 25.4,
 
     floorft: 0,
     floorin: 7,
     floorfr: 0,
+    floormm: 7 * 25.4,
 
     headroomMax: 0,
     headroomLength: 0,
 
     treadin: 1,
     treadfr: 0,
+    treadmm: 1 * 25.4,
 
     riserin: 1,
     riserfr: 0,
+    risermm: 1 * 25.4,
 
     nosingin: 0,
     nosingfr: 0.0625 * 8,
+    nosingmm: 0.0625 * 8 * 25.4,
 
     stairAngle: 32.5,
     stairToggle: false,
@@ -86,6 +95,14 @@ class App extends Component {
       idealOn: false
     });
   };
+  changetotalRunmm = event => {
+    this.setState({
+      totalRunmm: event.target.value,
+      runOn: true,
+      stairToggle: false,
+      idealOn: false
+    })
+  }
 
   //Handlers for changing total rise
   changetotalRiseft = event => {
@@ -112,6 +129,14 @@ class App extends Component {
       idealOn: false
     });
   };
+  changetotalRisemm = event => {
+    this.setState({
+      totalRisemm: event.target.value,
+      runOn: false,
+      stairToggle: false,
+      idealOn: false
+    });
+  };
 
   //Handlers for changing ideal run
   changeidealRunin = event => {
@@ -124,6 +149,13 @@ class App extends Component {
   changeidealRunfr = event => {
     this.setState({
       idealRunfr: event.target.value,
+      stairToggle: false,
+      idealOn: true
+    });
+  };
+  changeidealRunmm = event => {
+    this.setState({
+      idealRunmm: event.target.value,
       stairToggle: false,
       idealOn: true
     });
@@ -144,6 +176,13 @@ class App extends Component {
       idealOn: true
     });
   };
+  changeidealRisemm = event => {
+    this.setState({
+      idealRisemm: event.target.value,
+      stairToggle: false,
+      idealOn: true
+    });
+  };
 
   //Handlers for changing stringer
   changestringerin = event => {
@@ -152,6 +191,9 @@ class App extends Component {
 
   changestringerfr = event => {
     this.setState({ stringerfr: event.target.value });
+  };
+  changestringermm = event => {
+    this.setState({ stringermm: event.target.value });
   };
 
   //Handlers for changing floor thickness
@@ -165,6 +207,9 @@ class App extends Component {
 
   changefloorfr = event => {
     this.setState({ floorfr: event.target.value });
+  };
+  changefloormm = event => {
+    this.setState({ floormm: event.target.value });
   };
 
   //Handlers for headroom
@@ -185,6 +230,11 @@ class App extends Component {
       treadfr: event.target.value
     });
   };
+  changetreadmm = event => {
+    this.setState({
+      treadmm: event.target.value
+    });
+  };
 
   //Handlers for riser
   changeriserin = event => {
@@ -197,6 +247,11 @@ class App extends Component {
       riserfr: event.target.value
     });
   };
+  changerisermm = event => {
+    this.setState({
+      risermm: event.target.value
+    });
+  };
 
   //Handlers for nosing
   changenosingin = event => {
@@ -207,6 +262,11 @@ class App extends Component {
   changenosingfr = event => {
     this.setState({
       nosingfr: event.target.value
+    });
+  };
+  changenosingmm = event => {
+    this.setState({
+      nosingmm: event.target.value
     });
   };
 
@@ -298,31 +358,43 @@ class App extends Component {
                 totalRunft={this.state.totalRunft}
                 totalRunin={this.state.totalRunin}
                 totalRunfr={this.state.totalRunfr}
+                totalRunmm={this.state.totalRunmm}
                 changetotalRunft={this.changetotalRunft}
                 changetotalRunin={this.changetotalRunin}
                 changetotalRunfr={this.changetotalRunfr}
+                changetotalRunmm={this.state.changetotalRunmm}
                 changetotalRunSwitchOn={this.changetotalRunSwitchOn}
                 changetotalRunSwitchOff={this.changetotalRunSwitchOff}
+                units={this.state.units}
               />
               <TotalRise
                 totalRiseft={this.state.totalRiseft}
                 totalRisein={this.state.totalRisein}
                 totalRisefr={this.state.totalRisefr}
+                totalRisemm={this.state.totalRisemm}
                 changetotalRiseft={this.changetotalRiseft}
                 changetotalRisein={this.changetotalRisein}
                 changetotalRisefr={this.changetotalRisefr}
+                changetotalRisemm={this.state.changetotalRisemm}
+                units={this.state.units}
               />
               <IdealRun
                 idealRunin={this.state.idealRunin}
                 idealRunfr={this.state.idealRunfr}
+                idealRunmm={this.state.idealRunmm}
                 changeidealRunin={this.changeidealRunin}
                 changeidealRunfr={this.changeidealRunfr}
+                changeidealRunmm={this.changeidealRunmm}
+                units={this.state.units}
               />
               <IdealRise
                 idealRisein={this.state.idealRisein}
                 idealRisefr={this.state.idealRisefr}
+                idealRisemm={this.state.idealRisemm}
                 changeidealRisein={this.changeidealRisein}
                 changeidealRisefr={this.changeidealRisefr}
+                changeidealRisemm={this.changeidealRisemm}
+                units={this.state.units}
               />
             </div>
 
@@ -331,21 +403,30 @@ class App extends Component {
             <Details
               treadin={this.state.treadin}
               treadfr={this.state.treadfr}
+              treadmm={this.state.treadmm}
               riserin={this.state.riserin}
               riserfr={this.state.riserfr}
+              risermm={this.state.risermm}
               nosingin={this.state.nosingin}
               nosingfr={this.state.nosingfr}
+              nosingmm={this.state.nosingmm}
               changetreadin={this.changetreadin}
               changetreadfr={this.changetreadfr}
+              changetreadmm={this.changetreadmm}
               changeriserin={this.changeriserin}
               changeriserfr={this.changeriserfr}
+              changerisermm={this.changerisermm}
               changenosingin={this.changenosingin}
               changenosingfr={this.changenosingfr}
+              changenosingmm={this.changenosingmm}
               changestringerin={this.changestringerin}
               changestringerfr={this.changestringerfr}
+              changestringermm={this.changestringermm}
               stringerin={this.state.stringerin}
               stringerfr={this.state.stringerfr}
+              stringermm={this.state.stringermm}
               details={this.state.details}
+              units={this.state.units}
             />
 
             <div className="sidebar__section--border"></div>
@@ -356,6 +437,7 @@ class App extends Component {
                 totalRunft={this.state.totalRunft}
                 totalRunin={this.state.totalRunin}
                 totalRunfr={this.state.totalRunfr}
+                totalRunmm={this.state.totalRunmm}
                 headroomLength={this.state.headroomLength}
                 changeheadroomlength={this.changeheadroomlength}
               />
@@ -363,9 +445,12 @@ class App extends Component {
                 floorft={this.state.floorft}
                 floorin={this.state.floorin}
                 floorfr={this.state.floorfr}
+                floormm={this.state.floormm}
                 changefloorft={this.changefloorft}
                 changefloorin={this.changefloorin}
                 changefloorfr={this.changefloorfr}
+                changefloormm={this.changefloormm}
+                units={this.state.units}
               />
             </div>
 
@@ -383,32 +468,42 @@ class App extends Component {
 
           <div id="container" className="col-12 col-lg-10">
             <Stair
+              units={this.state.units}
               totalRunft={this.state.totalRunft}
               totalRunin={this.state.totalRunin}
               totalRunfr={this.state.totalRunfr}
+              totalRunmm={this.state.totalRunmm}
               totalRiseft={this.state.totalRiseft}
               totalRisein={this.state.totalRisein}
               totalRisefr={this.state.totalRisefr}
+              totalRisemm={this.state.totalRisemm}
               idealRunin={this.state.idealRunin}
               idealRunfr={this.state.idealRunfr}
+              idealRunmm={this.state.idealRunmm}
               idealRisein={this.state.idealRisein}
               idealRisefr={this.state.idealRisefr}
+              idealRisemm={this.state.idealRisemm}
               totalBoolean={this.state.runOn}
               runCount={this.state.runCount}
               riseCount={this.state.riseCount}
               stringerin={this.state.stringerin}
               stringerfr={this.state.stringerfr}
+              stringermm={this.state.stringermm}
               floorft={this.state.floorft}
               floorin={this.state.floorin}
               floorfr={this.state.floorfr}
+              floormm={this.state.floormm}
               headroomLength={this.state.headroomLength}
               headroomDelta={this.state.headroomDelta}
               treadin={this.state.treadin}
               treadfr={this.state.treadfr}
+              treadmm={this.state.treadmm}
               riserin={this.state.riserin}
               riserfr={this.state.riserfr}
+              risermm={this.state.risermm}
               nosingin={this.state.nosingin}
               nosingfr={this.state.nosingfr}
+              nosingmm={this.state.nosingmm}
               details={this.state.details}
               dimensions={this.state.dimensions}
               stairAngle={this.state.stairAngle}
