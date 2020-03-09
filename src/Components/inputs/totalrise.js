@@ -22,11 +22,11 @@ const TotalRise = (props) => {
                             })}
                         </select>
                         <select id="totalRisein" defaultValue={props.totalRisein} onChange={props.changetotalRisein} className="dropdown dropdown__inch">
-                            <option key={11}>{11 +'"'}</option>
+                            <option value={11} key={11}>{11 +'"'}</option>
                         </select>
                         <select id="totalRiseft" defaultValue={props.totalRisefr} onChange={props.changetotalRisefr} className="dropdown dropdown__fraction">
                             {Array.from(Array(selectFractions), (e, i) => {
-                                return ( <option key={i * 0.0625}>{i + "/16"}</option> )
+                                return ( <option value={i * 0.0625} key={i * 0.0625}>{i + "/16"}</option> )
                             })}
                         </select>
                     </React.Fragment>
@@ -40,19 +40,24 @@ const TotalRise = (props) => {
                         </select>
                         <select id="totalRisein" defaultValue={props.totalRisein} onChange={props.changetotalRisein} className="dropdown dropdown__inch">
                             {Array.from(Array(selectInches), (e, i) => {
-                                return ( <option key={i}>{i +'"'}</option> )
+                                return ( <option value={i} key={i}>{i +'"'}</option> )
                             })}
                         </select>
                         <select id="totalRiseft" defaultValue={props.totalRisefr} onChange={props.changetotalRisefr} className="dropdown dropdown__fraction">
                             {Array.from(Array(selectFractions), (e, i) => {
-                                return ( <option key={i * 0.0625}>{i + "/16"}</option> )
+                                return ( <option value={i * 0.0625} key={i * 0.0625}>{i + "/16"}</option> )
                             })}
                         </select>
                     </React.Fragment>
                 )
             ):
             (
-                <input type="number" defaultValue={Math.round(props.totalRisemm)} min={min} max={max} onChange={props.changetotalRisemm} className="dropdown dropdown__mm" />
+                parseFloat(props.totalRisemm) >= 279.4 && parseFloat(props.totalRisemm) <= 3351.2125 ? (
+                    <input type="number" defaultValue={Math.round(props.totalRisemm)} min={min} max={max} onChange={props.changetotalRisemm} className="dropdown dropdown__mm" />
+                ):
+                (
+                    <input type="number" defaultValue={Math.round(props.totalRisemm)} min={min} max={max} onChange={props.changetotalRisemm} className="dropdown--red dropdown__mm" />
+                )
             )}
             </div>
         </div>  

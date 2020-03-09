@@ -27,7 +27,12 @@ const IdealRise = (props) => {
                     </React.Fragment>
                 ):
                 (
-                    <input type="number" defaultValue={Math.round(props.idealRisemm)} min={idealMin} max={idealMax} onChange={props.changeidealRisemm} className="dropdown dropdown__mm" />
+                    parseFloat(props.idealRisemm) >= 101.6 && parseFloat(props.idealRisemm) <= 196.85 ? (
+                        <input type="number" defaultValue={Math.round(props.idealRisemm)} min={idealMin} max={idealMax} onChange={props.changeidealRisemm} className="dropdown dropdown__mm" />
+                    ):
+                    (
+                        <input type="number" defaultValue={Math.round(props.idealRisemm)} min={idealMin} max={idealMax} onChange={props.changeidealRisemm} className="dropdown--red dropdown__mm" />
+                    )
                 )}
             </div>
         </div>  

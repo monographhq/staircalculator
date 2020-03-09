@@ -27,7 +27,12 @@ const IdealRun = (props) => {
                     </React.Fragment>
                 ):
                 (
-                    <input type="number" defaultValue={Math.round(props.idealRunmm)} min={idealMin} max={idealMax} onChange={props.changeidealRunmm} className="dropdown dropdown__mm" />
+                    parseFloat(props.idealRunmm) >= 254 && parseFloat(props.idealRunmm) <=  288.9375? (
+                        <input type="number" defaultValue={Math.round(props.idealRunmm)} min={idealMin} max={idealMax} onChange={props.changeidealRunmm} className="dropdown dropdown__mm" />
+                    ):
+                    (
+                        <input type="number" defaultValue={Math.round(props.idealRunmm)} min={idealMin} max={idealMax} onChange={props.changeidealRunmm} className="dropdown--red dropdown__mm" />
+                    )
                 )}
             </div>
         </div>  

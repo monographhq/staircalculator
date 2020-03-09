@@ -4,17 +4,17 @@ import "../Styles/fonts.css";
 
 const Stair = props => {
 
-  let smMax = window.matchMedia("(max-width: 540px)");
-  let smMin = window.matchMedia("(min-width: 540px)");
+  const smMax = window.matchMedia("(max-width: 540px)");
+  const smMin = window.matchMedia("(min-width: 540px)");
 
-  let mdMax = window.matchMedia("(max-width: 720px)");
-  let mdMin = window.matchMedia("(min-width: 720px)");
+  const mdMax = window.matchMedia("(max-width: 720px)");
+  const mdMin = window.matchMedia("(min-width: 720px)");
 
-  let lgMax = window.matchMedia("(max-width: 960px)");
-  let lgMin = window.matchMedia("(min-width: 960px)");
+  const lgMax = window.matchMedia("(max-width: 960px)");
+  const lgMin = window.matchMedia("(min-width: 960px)");
 
-  let xlMax = window.matchMedia("(max-width: 1140px)");
-  let xlMin = window.matchMedia("(min-width: 1140px)");
+  const xlMax = window.matchMedia("(max-width: 1140px)");
+  const xlMin = window.matchMedia("(min-width: 1140px)");
 
   
   let totalRun =
@@ -34,7 +34,12 @@ const Stair = props => {
       )
     ):
     (
-      parseFloat(props.totalRunmm) / 25.4
+      parseFloat(props.totalRunmm) >= 558.8 && parseFloat(props.totalRunmm) <= 4875.2125 ? (
+        parseFloat(props.totalRunmm) / 25.4
+      ):
+      (
+        3658 / 25.4
+      )
     )
 
   let totalRise =
@@ -49,7 +54,12 @@ const Stair = props => {
       )
     ):
     (
-      parseFloat(props.totalRisemm) / 25.4
+      parseFloat(props.totalRisemm) >= 279.4 && parseFloat(props.totalRisemm) <= 3351.2125 ? (
+        parseFloat(props.totalRisemm) / 25.4
+      ):
+      (
+        2743 / 25.4
+      )
     )
 
   let idealRun = 
@@ -57,7 +67,12 @@ const Stair = props => {
       parseFloat(props.idealRunin) + parseFloat(props.idealRunfr)
     ):
     (
-      parseFloat(props.idealRunmm) / 25.4
+      parseFloat(props.idealRunmm) >= 254 && parseFloat(props.idealRunmm) <=  288.9375 ? (
+        parseFloat(props.idealRunmm) / 25.4
+      ):
+      (
+        279.4 / 25.4
+      )
     )
 
   let idealRise = 
@@ -65,7 +80,12 @@ const Stair = props => {
       parseFloat(props.idealRisein) + parseFloat(props.idealRisefr)
     ):
     (
-      parseFloat(props.idealRisemm) / 25.4
+      parseFloat(props.idealRisemm) >= 101.6 && parseFloat(props.idealRisemm) <= 196.85 ? (
+        parseFloat(props.idealRisemm) / 25.4
+      ):
+      (
+        177.8 / 25.4
+      )
     )
 
   let preTreadThickness = 
@@ -79,7 +99,12 @@ const Stair = props => {
     ):
     (
       props.details ? (
-        (parseFloat(props.treadmm) / 25.4)
+        (parseFloat(props.treadmm) < 49.2125) ? (
+          (parseFloat(props.treadmm) / 25.4)
+        ):
+        (
+          1
+        )
       ):
       ( 
         0
@@ -97,7 +122,12 @@ const Stair = props => {
     ):
     (
       props.details ? (
-        (parseFloat(props.risermm) / 25.4)
+        (parseFloat(props.risermm) < 49.2125) ? (
+          (parseFloat(props.risermm) / 25.4)
+        ):
+        (
+          1
+        )
       ):
       (
         0
@@ -207,6 +237,8 @@ const Stair = props => {
       parseFloat(props.floormm) / 25.4
     )
 
+  let preStairAngle = props.stairAngle >=25 && props.stairAngle <= 45 ? props.stairAngle : 32.5;
+
   //This creates the stair drawing based on whether total rise or run is being selected
   if (props.totalBoolean === true) {
     //If total run is selected (need to change so that total run changes ideal run)
@@ -214,7 +246,7 @@ const Stair = props => {
       //If ideal is selected
       if (props.stairToggle === true) {
         idealRun = parseFloat(
-          idealRise / Math.tan(props.stairAngle * (Math.PI / 180))
+          idealRise / Math.tan(preStairAngle * (Math.PI / 180))
         );
         stringerA =
           stringerTotal /
@@ -294,7 +326,7 @@ const Stair = props => {
       idealRun = totalRun / count;
       if (props.stairToggle === true) {
         idealRun = parseFloat(
-          idealRise / Math.tan(props.stairAngle * (Math.PI / 180))
+          idealRise / Math.tan(preStairAngle * (Math.PI / 180))
         );
         stringerA =
           stringerTotal /
@@ -375,7 +407,7 @@ const Stair = props => {
     if (props.idealBoolean === true) {
       if (props.stairToggle === true) {
         idealRun = parseFloat(
-          idealRise / Math.tan(props.stairAngle * (Math.PI / 180))
+          idealRise / Math.tan(preStairAngle * (Math.PI / 180))
         );
         stringerA =
           stringerTotal /
@@ -455,7 +487,7 @@ const Stair = props => {
       idealRise = totalRise / count;
       if (props.stairToggle === true) {
         idealRun = parseFloat(
-          idealRise / Math.tan(props.stairAngle * (Math.PI / 180))
+          idealRise / Math.tan(preStairAngle * (Math.PI / 180))
         );
         stringerA =
           stringerTotal /
@@ -562,7 +594,7 @@ const Stair = props => {
   let windowHeight = 
     lgMin.matches
       ? (window.innerHeight)
-      : (window.innerHeight * 0.5);
+      : (window.innerHeight * 0.6);
   let stairLength = (headroomPts[0] + landing + coordinates[0]);
   let wr = windowWidth / (Math.abs(headroomPts[0]) + landing + coordinates[0]);
   let ratio = lgMin.matches ? wr * 0.75 : wr* 0.8;
@@ -722,7 +754,7 @@ const Stair = props => {
       dRiseFeet + "' " + dRiseInches + '" ' + dRiseFraction + "/16"
     ):
     (
-      Math.round(((coordinates[coordinates.length - 11] - coordinates[1]) * 25.4) / ratio) + " MM"
+      Math.abs(Math.round(((coordinates[coordinates.length - 11] - coordinates[1]) * 25.4) / ratio)) + " MM"
     )
 
   //This is the dimension string for the total run
@@ -781,7 +813,7 @@ const Stair = props => {
       dRunFeet + "' " + dRunInches + '" ' + dRunFraction + "/16"
     ):
     (
-      Math.round(((coordinates[0] - coordinates[coordinates.length - 12]) * 25.4) / ratio) + " MM"
+      Math.abs(Math.round(((coordinates[0] - coordinates[coordinates.length - 12]) * 25.4) / ratio)) + " MM"
     )
 
   //This is the dimension string for the stringer

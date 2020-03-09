@@ -13,10 +13,10 @@ const Details = (props) => {
     let nosingMax = (1 + (0.0625 * 8)) * 25.4;
 
     let treadMin = 0;
-    let treadMax = (1 + (0.0625 * 8)) * 25.4;
+    let treadMax = 49.2125;
 
     let riserMin = 0;
-    let riserMax = (1 + (0.0625 * 8)) * 25.4;
+    let riserMax = 49.2125;
 
     let stringerMin = 5 * 25.4;
     let stringerMax = (11 + (0.0625 * 15)) * 25.4;
@@ -44,7 +44,12 @@ const Details = (props) => {
                         </React.Fragment>
                     ):
                     (
-                        <input type="number" defaultValue={Math.round(props.treadmm)} min={treadMin} max={treadMax} onChange={props.changetreadmm} className="dropdown dropdown__mm" />
+                        parseFloat(props.treadmm) <= 49.2125 ? (
+                            <input type="number" defaultValue={Math.round(props.treadmm)} min={treadMin} max={treadMax} onChange={props.changetreadmm} className="dropdown dropdown__mm" />
+                        ):
+                        (
+                            <input type="number" defaultValue={Math.round(props.treadmm)} min={treadMin} max={treadMax} onChange={props.changetreadmm} className="dropdown--red dropdown__mm" />
+                        )
                     )}
                 </div>
             </div>
@@ -66,7 +71,12 @@ const Details = (props) => {
                     </React.Fragment>
                 ):
                 (
-                    <input type="number" defaultValue={Math.round(props.risermm)} min={riserMin} max={riserMax} onChange={props.changerisermm} className="dropdown dropdown__mm" />
+                    parseFloat(props.risermm) <= 49.2125 ? (
+                        <input type="number" defaultValue={Math.round(props.risermm)} min={riserMin} max={riserMax} onChange={props.changerisermm} className="dropdown dropdown__mm" />
+                    ):
+                    (
+                        <input type="number" defaultValue={Math.round(props.risermm)} min={riserMin} max={riserMax} onChange={props.changerisermm} className="dropdown--red dropdown__mm" />
+                    )
                 )}
             </div>
             {props.units  ? (

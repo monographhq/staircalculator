@@ -22,8 +22,8 @@ class App extends Component {
     totalRunfr: 0,
     totalRunmm: 144 * 25.4,
 
-    totalRiseft: 9 * 12,
-    totalRisein: 0,
+    totalRiseft: 7 * 12,
+    totalRisein: 7,
     totalRisefr: 0,
     totalRisemm: 108 * 25.4,
 

@@ -133,7 +133,7 @@ $xl: 1140px;
 }
 
 /*These styles are for the dropdown inputs*/
-.dropdown {
+.dropdown, .dropdown--red {
   font-family: "Sohne Mono Halbfett";
   font-style: normal;
   font-weight: 600;
@@ -155,6 +155,10 @@ $xl: 1140px;
 
 .dropdown:focus {
   border: 3px solid #40ead3;
+}
+
+.dropdown--red {
+  border: 3px solid red;
 }
 
 .dropdown__mm {

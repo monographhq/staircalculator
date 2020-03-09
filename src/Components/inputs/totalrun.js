@@ -55,7 +55,12 @@ const TotalRun = (props) => {
                 )
             ):
             (
-                <input type="number" defaultValue={Math.round(props.totalRunmm)} min={min} max={max} onChange={props.changetotalRunmm} className="dropdown dropdown__mm" />
+                parseFloat(props.totalRunmm) >= 558.8 && parseFloat(props.totalRunmm) <= 4875.2125 ? (
+                    <input type="number" defaultValue={Math.round(props.totalRunmm)} min={min} max={max} onChange={props.changetotalRunmm} className="dropdown dropdown__mm" />
+                ):
+                (
+                    <input type="number" defaultValue={Math.round(props.totalRunmm)} min={min} max={max} onChange={props.changetotalRunmm} className="dropdown--red dropdown__mm" />
+                )
             )}
 
             </div>
