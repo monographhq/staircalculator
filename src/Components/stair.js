@@ -520,7 +520,7 @@ const Stair = props => {
           coordinates[2] + landing,
           floorThickness,
           coordinates[2] + landing,
-          
+          0
         )
       )
 
