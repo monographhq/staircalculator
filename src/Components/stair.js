@@ -4,17 +4,17 @@ import "../Styles/fonts.css";
 
 const Stair = props => {
 
-  var smMax = window.matchMedia("(max-width: 540px)");
-  var smMin = window.matchMedia("(min-width: 540px)");
+  let smMax = window.matchMedia("(max-width: 540px)");
+  let smMin = window.matchMedia("(min-width: 540px)");
 
-  var mdMax = window.matchMedia("(max-width: 720px)");
-  var mdMin = window.matchMedia("(min-width: 720px)");
+  let mdMax = window.matchMedia("(max-width: 720px)");
+  let mdMin = window.matchMedia("(min-width: 720px)");
 
-  var lgMax = window.matchMedia("(max-width: 960px)");
-  var lgMin = window.matchMedia("(min-width: 960px)");
+  let lgMax = window.matchMedia("(max-width: 960px)");
+  let lgMin = window.matchMedia("(min-width: 960px)");
 
-  var xlMax = window.matchMedia("(max-width: 1140px)");
-  var xlMin = window.matchMedia("(min-width: 1140px)");
+  let xlMax = window.matchMedia("(max-width: 1140px)");
+  let xlMin = window.matchMedia("(min-width: 1140px)");
 
   
   let totalRun =
@@ -39,9 +39,14 @@ const Stair = props => {
 
   let totalRise =
     props.units ? (
-      parseInt(props.totalRiseft) +
-      parseInt(props.totalRisein) +
-      parseFloat(props.totalRisefr)
+      parseInt(props.totalRiseft) === 0 ? (
+        11 + (parseFloat(props.totalRisefr) / 16)
+      ):
+      (
+        parseInt(props.totalRiseft) +
+        parseInt(props.totalRisein) +
+        parseFloat(props.totalRisefr)
+      )
     ):
     (
       parseFloat(props.totalRisemm) / 25.4
