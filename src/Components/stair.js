@@ -99,7 +99,7 @@ const Stair = props => {
     ):
     (
       props.details ? (
-        (parseFloat(props.treadmm) < 49.2125) ? (
+        parseFloat(props.treadmm) >= 0 && parseFloat(props.treadmm) <= 49.2125 ? (
           (parseFloat(props.treadmm) / 25.4)
         ):
         (
@@ -122,7 +122,7 @@ const Stair = props => {
     ):
     (
       props.details ? (
-        (parseFloat(props.risermm) < 49.2125) ? (
+        parseFloat(props.risermm) >= 0 && parseFloat(props.risermm) <= 49.2125 ? (
           (parseFloat(props.risermm) / 25.4)
         ):
         (
@@ -156,7 +156,12 @@ const Stair = props => {
       parseFloat(props.stringerin) + parseFloat(props.stringerfr)
     ):
     (
-      (parseFloat(props.stringermm) / 25.4)
+      parseFloat(props.stringermm) >= (5 * 25.4) && parseFloat(props.treadmm) <= ((11 + (0.0625 * 15)) * 25.4) ? (
+        (parseFloat(props.stringermm) / 25.4)
+      ):
+      (
+        1
+      )
     )
   
   let treadTotal =
@@ -164,7 +169,12 @@ const Stair = props => {
       parseFloat(props.treadin) + parseFloat(props.treadfr)
     ):
     (
-      (parseFloat(props.treadmm) / 25.4)
+      parseFloat(props.treadmm) >= 0 && parseFloat(props.treadmm) <= 49.2125 ? (
+        (parseFloat(props.treadmm) / 25.4)
+      ):
+      (
+        1
+      )
     )
   
   let riserTotal =
@@ -172,7 +182,12 @@ const Stair = props => {
       parseFloat(props.riserin) + parseFloat(props.riserfr)
     ):
     (
-      (parseFloat(props.risermm) / 25.4)
+      parseFloat(props.treadmm) >= 0 && parseFloat(props.treadmm) <= 49.2125 ? (
+        (parseFloat(props.risermm) / 25.4)
+      ):
+      (
+        1
+      )
     )
 
   let nosingTotal =
@@ -180,7 +195,12 @@ const Stair = props => {
       parseFloat(props.nosingin) + parseFloat(props.nosingfr)
     ):
     (
-      (parseFloat(props.nosingmm) / 25.4)
+      parseFloat(props.nosingmm) >= 0 && parseFloat(props.nosingmm) <= 12.7 ? (
+        (parseFloat(props.nosingmm) / 25.4)
+      ):
+      (
+        0.5
+      )
     )
 
   let stringerA =
@@ -234,7 +254,12 @@ const Stair = props => {
       )
     ):
     (
-      parseFloat(props.floormm) / 25.4
+      parseFloat(props.floormm) >= 152.4 && parseFloat(props.floormm) <= 608.0125 ? (
+        parseFloat(props.floormm) / 25.4
+      ):
+      (
+        177.8
+      )
     )
 
   let preStairAngle = props.stairAngle >=25 && props.stairAngle <= 45 ? props.stairAngle : 32.5;
@@ -678,15 +703,7 @@ const Stair = props => {
   let strokeWidth = lgMin.matches ? 1.5 : 0.75;
   let strokeDash = lgMin.matches ? [3, 4] : [1, 2];
 
-  if (mdMin.matches && lgMax.matches){
-    arrowWidth = 10 / 3;
-    arrowOffset = 30;
-    textLineOffset = 8.3;
-    textNumOffset = 7.5;
-    textSize = 9;
-    strokeWidth = 1;
-    strokeDash = [2, 3];
-  }
+
 
   //This is the dimension string for the total rise
   let dRise = 

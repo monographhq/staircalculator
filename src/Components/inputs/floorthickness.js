@@ -7,8 +7,8 @@ const FloorThickness = (props) => {
     let selectFractions = 16;
     let selectInchesMin = Array.from({length:6-1+1},(v,k)=>k+6);
 
-    let floorMin = 6 * 25.4;
-    let floorMax =( 23 + (0.0625 * 15)) * 25.4;
+    let floorMin = 152.4;
+    let floorMax = 608.0125;
 
     return (
         <div>
@@ -43,7 +43,12 @@ const FloorThickness = (props) => {
                     </React.Fragment>
                 ):
                 (
-                    <input type="number" defaultValue={Math.round(props.floormm)} min={floorMin} max={floorMax} onChange={props.changefloormm} className="dropdown dropdown__mm" />
+                    parseFloat(props.floormm) >= floorMin && parseFloat(props.floormm) <= floorMax ? (
+                        <input type="number" defaultValue={Math.round(props.floormm)} min={floorMin} max={floorMax} onChange={props.changefloormm} className="dropdown dropdown__mm" />
+                    ):
+                    (
+                        <input type="number" defaultValue={Math.round(props.floormm)} min={floorMin} max={floorMax} onChange={props.changefloormm} className="dropdown--red dropdown__mm" />
+                    )
                 )}
             </div>
         </div>  
