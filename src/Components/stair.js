@@ -260,13 +260,14 @@ const Stair = props => {
       )
     ):
     (
-      parseFloat(props.floormm) >= 152.4 && parseFloat(props.floormm) <= 608.0125 ? (
-        parseFloat(props.floormm) / 25.4
-      ):
-      (
-        177.8
-      )
+      parseFloat(props.floormm) / 25.4
     )
+
+  if (parseFloat(props.floormm) >= 152.4 && parseFloat(props.floormm) <= 608.0125){
+    floorThickness = parseFloat(props.floormm) / 25.4;
+  } else {
+    floorThickness = 177.8 / 25.4;
+  }
 
   let preStairAngle = props.stairAngle >=25 && props.stairAngle <= 45 ? props.stairAngle : 32.5;
 
@@ -810,6 +811,23 @@ const Stair = props => {
 		)
   )
 
+  //These are for the weird dimension string bugs
+  if (dRiseFraction === 16){
+  
+    dRiseInches += 1;
+    dRiseFraction = 0;
+
+    if (dRiseInches === 12){
+      dRiseFeet += 1;
+      dRiseInches = 0;
+    } else if (dRiseInches === 11){
+      dRiseFeet += 1;
+      dRiseInches = 0;
+      dRiseFraction = 0;
+    }
+
+  }
+
   let dRiseMM = 
 	props.topStair ? (
 		Math.abs(Math.round(((coordinates[coordinates.length - 11] - coordinates[1]) * 25.4) / ratio)) 
@@ -908,6 +926,23 @@ const Stair = props => {
 		    16
 		)
   )
+
+  //These are for the weird dimension string bugs
+  if (dRunFraction === 16){
+  
+    dRunInches += 1;
+    dRunFraction = 0;
+
+    if (dRunInches === 12){
+      dRunFeet += 1;
+      dRunInches = 0;
+    } else if (dRunInches === 11){
+      dRunFeet += 1;
+      dRunInches = 0;
+      dRunFraction = 0;
+    }
+
+  }
   
   let dRunMM = 
     props.topStair ? (
@@ -1043,6 +1078,7 @@ const Stair = props => {
     dHeadroom[2] + arrowWidth,
     dHeadroom[3] - arrowWidth
   ];
+
   let dHeadroomText = [dHeadroom[0], (dHeadroom[1] + dHeadroom[3]) / 2];
   let dHeadroomValue =
     ((parseFloat(dHeadroomStepY) - parseFloat(dHeadroom[1])) / ratio).toFixed(2);
@@ -1052,6 +1088,7 @@ const Stair = props => {
   let dHeadroomInches = Math.floor(
     (dHeadroomStepY - dHeadroom[1]) / ratio - dHeadroomFeet * 12
   );
+
   let dHeadroomFraction =
     Math.round(
       (dHeadroomStepY - dHeadroom[1]) / ratio -
@@ -1119,7 +1156,7 @@ const Stair = props => {
       props.floorft / 12 + "' " + props.floorin + '" ' + props.floorfr * 16 + "/16"
     ):
     (
-      Math.round(props.floormm) + " MM"
+      Math.round(floorThickness * 25.4) + " MM"
     )
 
   //This is the dimension string for the stair angle
@@ -1201,10 +1238,10 @@ const Stair = props => {
 
   let idealRunParsedMM = 
     props.topStair ? (
-      Math.round(Math.round((coordinates[12] - coordinates[14]) / ratio) * 25.4)
+      Math.round(((coordinates[12] - coordinates[14]) / ratio) * 25.4)
     ):
     (
-      Math.round(Math.round((coordinates[6] - coordinates[10]) / ratio) * 25.4)
+      Math.round(((coordinates[6] - coordinates[10]) / ratio) * 25.4)
     )
 
   let idealRiseParsedIn = 
@@ -1225,11 +1262,13 @@ const Stair = props => {
 
   let idealRiseParsedMM = 
     props.topStair ? (
-      Math.round(Math.round((coordinates[11] - coordinates[7]) / ratio) * 25.4)
+      Math.round(((coordinates[11] - coordinates[7]) / ratio) * 25.4)
     ):
     (
-      Math.round(Math.round((coordinates[15] - coordinates[11]) / ratio) * 25.4)
+      Math.round(((coordinates[15] - coordinates[11]) / ratio) * 25.4)
     )
+
+  console.log(idealRiseParsedMM)
 
 
   let riseCountValue = 
