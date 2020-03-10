@@ -25,7 +25,7 @@ class App extends Component {
     totalRiseft: 7 * 12,
     totalRisein: 7,
     totalRisefr: 0,
-    totalRisemm: 108 * 25.4,
+    totalRisemm: 91 * 25.4,
 
     idealRisein: 7,
     idealRisefr: 0,
@@ -377,6 +377,7 @@ class App extends Component {
                 changetotalRisefr={this.changetotalRisefr}
                 changetotalRisemm={this.changetotalRisemm}
                 units={this.state.units}
+                topStair={this.state.topStair}
               />
               <IdealRun
                 idealRunin={this.state.idealRunin}

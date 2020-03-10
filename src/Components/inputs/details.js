@@ -44,7 +44,7 @@ const Details = (props) => {
                         </React.Fragment>
                     ):
                     (
-                        parseFloat(props.treadmm) >= treadMin && parseFloat(props.treadmm) <= treadMax ? (
+                        parseFloat(props.treadmm) <= 49.2125 ? (
                             <input type="number" defaultValue={Math.round(props.treadmm)} min={treadMin} max={treadMax} onChange={props.changetreadmm} className="dropdown dropdown__mm" />
                         ):
                         (
@@ -71,7 +71,7 @@ const Details = (props) => {
                     </React.Fragment>
                 ):
                 (
-                    parseFloat(props.risermm) >= riserMin && parseFloat(props.risermm) <= riserMax ? (
+                    parseFloat(props.risermm) <= 49.2125 ? (
                         <input type="number" defaultValue={Math.round(props.risermm)} min={riserMin} max={riserMax} onChange={props.changerisermm} className="dropdown dropdown__mm" />
                     ):
                     (
@@ -173,7 +173,12 @@ const Details = (props) => {
                             </React.Fragment>
                         ):
                         (
-                            <input type="number" defaultValue={Math.round(props.treadmm)} min={treadMin} max={treadMax} onChange={props.changetreadmm} className="dropdown dropdown__mm" />
+                            parseFloat(props.treadmm) <= 49.2125 ? (
+                                <input type="number" defaultValue={Math.round(props.treadmm)} min={treadMin} max={treadMax} onChange={props.changetreadmm} className="dropdown dropdown__mm" />
+                            ):
+                            (
+                                <input type="number" defaultValue={Math.round(props.treadmm)} min={treadMin} max={treadMax} onChange={props.changetreadmm} className="dropdown--red dropdown__mm" />
+                            )
                         )}
                     </div>                                                          
                 </div>
@@ -195,7 +200,12 @@ const Details = (props) => {
                         </React.Fragment>
                     ):
                     (
-                        <input type="number" defaultValue={Math.round(props.risermm)} min={riserMin} max={riserMax} onChange={props.changerisermm} className="dropdown dropdown__mm" />        
+                        parseFloat(props.risermm) <= 49.2125 ? (
+                            <input type="number" defaultValue={Math.round(props.risermm)} min={riserMin} max={riserMax} onChange={props.changerisermm} className="dropdown dropdown__mm" />
+                        ):
+                        (
+                            <input type="number" defaultValue={Math.round(props.risermm)} min={riserMin} max={riserMax} onChange={props.changerisermm} className="dropdown--red dropdown__mm" />
+                        )   
                     )}
                 </div>
                 

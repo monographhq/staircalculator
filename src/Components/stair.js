@@ -99,12 +99,7 @@ const Stair = props => {
     ):
     (
       props.details ? (
-        parseFloat(props.treadmm) >= 0 && parseFloat(props.treadmm) <= 49.2125 ? (
-          (parseFloat(props.treadmm) / 25.4)
-        ):
-        (
-          1
-        )
+        (parseFloat(props.treadmm) / 25.4)
       ):
       ( 
         0
@@ -122,17 +117,24 @@ const Stair = props => {
     ):
     (
       props.details ? (
-        parseFloat(props.risermm) >= 0 && parseFloat(props.risermm) <= 49.2125 ? (
-          (parseFloat(props.risermm) / 25.4)
-        ):
-        (
-          1
-        )
+        (parseFloat(props.risermm) / 25.4)
       ):
       (
         0
       )
     )
+
+  if (parseFloat(props.treadmm) >= 0 && parseFloat(props.treadmm) <= 49.2125){
+    preTreadThickness = parseFloat(props.treadmm) / 25.4;
+  } else {
+    preTreadThickness = 1;
+  }
+  
+  if (parseFloat(props.risermm) >= 0 && parseFloat(props.risermm) <= 49.2125){
+    preRiserThickness = parseFloat(props.risermm) / 25.4;
+  } else {
+    preRiserThickness = 1;
+  }
 
   let count = 0;
 
@@ -156,52 +158,56 @@ const Stair = props => {
       parseFloat(props.stringerin) + parseFloat(props.stringerfr)
     ):
     (
-      parseFloat(props.stringermm) >= (5 * 25.4) && parseFloat(props.treadmm) <= ((11 + (0.0625 * 15)) * 25.4) ? (
-        (parseFloat(props.stringermm) / 25.4)
-      ):
-      (
-        1
-      )
+      (parseFloat(props.stringermm) / 25.4)
     )
+
+  if (parseFloat(props.stringermm) >= (5 * 25.4) && parseFloat(props.stringermm) <= ((11 + (0.0625 * 15)) * 25.4)){
+    stringerTotal = (parseFloat(props.stringermm) / 25.4);
+  } else {
+    stringerTotal = (5 + (0.0625 * 15));
+  }
   
   let treadTotal =
     props.units ? (
       parseFloat(props.treadin) + parseFloat(props.treadfr)
     ):
     (
-      parseFloat(props.treadmm) >= 0 && parseFloat(props.treadmm) <= 49.2125 ? (
-        (parseFloat(props.treadmm) / 25.4)
-      ):
-      (
-        1
-      )
+      (parseFloat(props.treadmm) / 25.4)
     )
+
+  if (parseFloat(props.treadmm) >= 0 && parseFloat(props.treadmm) <= 49.2125){
+    treadTotal = parseFloat(props.treadmm) / 25.4;
+  } else {
+    treadTotal = 1;
+  }
   
   let riserTotal =
     props.units ? (
       parseFloat(props.riserin) + parseFloat(props.riserfr)
     ):
     (
-      parseFloat(props.treadmm) >= 0 && parseFloat(props.treadmm) <= 49.2125 ? (
-        (parseFloat(props.risermm) / 25.4)
-      ):
-      (
-        1
-      )
+      (parseFloat(props.risermm) / 25.4)
     )
+  
+  if (parseFloat(props.risermm) >= 0 && parseFloat(props.risermm) <= 49.2125){
+    riserTotal = parseFloat(props.risermm) / 25.4;
+  } else {
+    riserTotal = 1;
+  }
 
   let nosingTotal =
     props.units ? (
       parseFloat(props.nosingin) + parseFloat(props.nosingfr)
     ):
     (
-      parseFloat(props.nosingmm) >= 0 && parseFloat(props.nosingmm) <= 12.7 ? (
-        (parseFloat(props.nosingmm) / 25.4)
-      ):
-      (
-        0.5
-      )
+      (parseFloat(props.nosingmm) / 25.4)
     )
+
+  if (parseFloat(props.nosingmm) >= 0 && parseFloat(props.nosingmm) <= 12.7){
+    nosingTotal = parseFloat(props.nosingmm) / 25.4;
+  } else {
+    nosingTotal = 0.5
+  }
 
   let stringerA =
     stringerTotal / 
@@ -508,7 +514,13 @@ const Stair = props => {
         
 
     } else {
-      count = Math.round(totalRise / 7);
+      count = 
+        props.totalRise === 8 ? (
+          Math.round(totalRise / 4)
+        ):
+        (
+          Math.round(totalRise / 7)
+        )
       idealRise = totalRise / count;
       if (props.stairToggle === true) {
         idealRun = parseFloat(
@@ -753,25 +765,65 @@ const Stair = props => {
     dRise[0],
     dRise[3]
   ];
-  let dRiseFeet = Math.floor(
-    (coordinates[coordinates.length - 11] - coordinates[1]) / ratio / 12
-  );
-  let dRiseInches = Math.floor(
-    (coordinates[coordinates.length - 11] - coordinates[1]) / ratio -
-      dRiseFeet * 12
-  );
-  let dRiseFraction = Math.round(
-    ((coordinates[coordinates.length - 11] - coordinates[1]) / ratio -
-      dRiseFeet * 12 -
-      dRiseInches) *
-      16
-  );
+
+  let dRiseFeet = 
+	props.topStair ? (
+		Math.floor(
+	    (coordinates[coordinates.length - 11] - coordinates[1]) / ratio / 12
+	  )
+	):
+	(
+		Math.floor(
+	    (coordinates[coordinates.length - 7] - coordinates[1] + (coordinates[7]-coordinates[3])) / ratio / 12
+	  )
+  )
+  
+  let dRiseInches = 
+	props.topStair ? (
+		Math.floor(
+		  (coordinates[coordinates.length - 11] - coordinates[1]) / ratio -
+	    dRiseFeet * 12
+		)
+	):
+	(
+		Math.floor(
+		  (coordinates[coordinates.length - 7] - coordinates[1] + (coordinates[7]-coordinates[3])) / ratio -
+	    dRiseFeet * 12
+		)
+  )
+  
+  let dRiseFraction = 
+	props.topStair ? (
+		Math.round(
+		  ((coordinates[coordinates.length - 11] - coordinates[1]) / ratio -
+		    dRiseFeet * 12 -
+		    dRiseInches) *
+		    16
+		)
+	):
+	(
+		Math.round(
+		  ((coordinates[coordinates.length - 7] - coordinates[1] + (coordinates[7]-coordinates[3])) / ratio -
+		    dRiseFeet * 12 -
+		    dRiseInches) *
+		    16
+		)
+  )
+
+  let dRiseMM = 
+	props.topStair ? (
+		Math.abs(Math.round(((coordinates[coordinates.length - 11] - coordinates[1]) * 25.4) / ratio)) 
+	):
+	(
+		Math.abs(Math.round(((coordinates[coordinates.length - 7] - coordinates[1] + (coordinates[7]-coordinates[3])) * 25.4) / ratio)) 
+	)
+  
   let dRiseValue = 
     props.units ? (
       dRiseFeet + "' " + dRiseInches + '" ' + dRiseFraction + "/16"
     ):
     (
-      Math.abs(Math.round(((coordinates[coordinates.length - 11] - coordinates[1]) * 25.4) / ratio)) + " MM"
+      dRiseMM + " MM"
     )
 
   //This is the dimension string for the total run
@@ -812,25 +864,67 @@ const Stair = props => {
   let dRunText = [(dRun[0] + dRun[2]) / 2, dRun[1]];
   let dRunDashedLeft = [dRun[0], dRun[1], dRun[0], dRun[1] - arrowOffset];
   let dRunDashedRight = [dRun[2], dRun[3], dRun[2], coordinates[5]];
-  let dRunFeet = Math.floor(
-    (coordinates[0] - coordinates[coordinates.length - 12]) / ratio / 12
-  );
-  let dRunInches = Math.floor(
-    (coordinates[0] - coordinates[coordinates.length - 12]) / ratio -
-      dRunFeet * 12
-  );
-  let dRunFraction = Math.round(
-    ((coordinates[0] - coordinates[coordinates.length - 12]) / ratio -
-      dRunFeet * 12 -
-      dRunInches) *
-      16
-  );
+
+  let dRunFeet = 
+    props.topStair ? (
+      Math.floor(
+        (coordinates[0] - coordinates[coordinates.length - 12]) / ratio / 12
+      )
+    ):
+    (
+      Math.floor(
+        (coordinates[0] - coordinates[coordinates.length - 8]) / ratio / 12
+      )
+    )
+
+    let dRunInches = 
+    props.topStair ? (
+      Math.floor(
+        (coordinates[0] - coordinates[coordinates.length - 12]) / ratio -
+        dRunFeet * 12
+      )
+    ):
+    (
+      Math.floor(
+        (coordinates[0] - coordinates[coordinates.length - 8]) / ratio -
+        dRunFeet * 12
+      )
+    )
+
+  let dRunFraction = 
+	props.topStair ? (
+		Math.round(
+		  ((coordinates[0] - coordinates[coordinates.length - 12]) / ratio -
+		    dRunFeet * 12 -
+		    dRunInches) *
+		    16
+		)
+	):
+	(
+		Math.round(
+		  ((coordinates[0] - coordinates[coordinates.length - 8]) / ratio -
+		    dRunFeet * 12 -
+		    dRunInches) *
+		    16
+		)
+  )
+  
+  let dRunMM = 
+    props.topStair ? (
+      Math.abs(Math.round(
+        ((coordinates[0] - coordinates[coordinates.length - 12]) * 25.4) / ratio))
+    ):
+    (
+      Math.abs(Math.round(
+        ((coordinates[0] - coordinates[coordinates.length - 8]) * 25.4 / ratio)))
+    )
+
   let dRunValue =
     props.units ? (
       dRunFeet + "' " + dRunInches + '" ' + dRunFraction + "/16"
     ):
     (
-      Math.abs(Math.round(((coordinates[0] - coordinates[coordinates.length - 12]) * 25.4) / ratio)) + " MM"
+      dRunMM + " MM"
     )
 
   //This is the dimension string for the stringer
@@ -862,7 +956,7 @@ const Stair = props => {
       props.stringerin + '" ' + Math.round(props.stringerfr * 16) + "/16"
     ):
     (
-      Math.round(props.stringermm) + " MM"
+      Math.round(stringerTotal * 25.4) + " MM"
     )
 
   //This is the dimension string for the nosing
@@ -891,7 +985,7 @@ const Stair = props => {
       props.nosingin + '" ' + props.nosingfr * 16 + "/16"
     ):
     (
-      Math.round(props.nosingmm) + " MM"
+      Math.round(nosingTotal * 25.4) + " MM"
     )
 
   //This is the dimension string for the headroom
@@ -1089,13 +1183,53 @@ const Stair = props => {
 
   let runCount = props.topStair ? (count) : (count - 1);
 
-  let idealRunParsedIn = Math.floor((coordinates[12] - coordinates[14]) / ratio);
-  let idealRunParsedFr = Math.round((((coordinates[12] - coordinates[14]) / ratio) - idealRunParsedIn) * 0.0625);
-  let idealRunParsedMM = Math.round(((coordinates[12] - coordinates[14]) / ratio) * 25.4);
+  let idealRunParsedIn = 
+    props.topStair ? (
+      Math.floor((coordinates[12] - coordinates[14]) / ratio)
+    ):
+    (
+      Math.floor((coordinates[6] - coordinates[10]) / ratio)
+    )
 
-  let idealRiseParsedIn = Math.floor((coordinates[11] - coordinates[9]) / ratio);
-  let idealRiseParsedFr = Math.round((((coordinates[11] - coordinates[9]) / ratio) - idealRunParsedIn) * 0.0625);
-  let idealRiseParsedMM = Math.round(((coordinates[11] - coordinates[9]) / ratio) * 25.4);
+  let idealRunParsedFr = 
+    props.topStair ? (
+      Math.round((((coordinates[12] - coordinates[14]) / ratio) - idealRunParsedIn) * 0.0625)
+    ):
+    (
+      Math.round((((coordinates[6] - coordinates[10]) / ratio) - idealRunParsedIn) * 0.0625)
+    )
+
+  let idealRunParsedMM = 
+    props.topStair ? (
+      Math.round(Math.round((coordinates[12] - coordinates[14]) / ratio) * 25.4)
+    ):
+    (
+      Math.round(Math.round((coordinates[6] - coordinates[10]) / ratio) * 25.4)
+    )
+
+  let idealRiseParsedIn = 
+    props.topStair ? (
+      Math.floor((coordinates[11] - coordinates[7]) / ratio)
+    ):
+    (
+      Math.floor((coordinates[15] - coordinates[11]) / ratio)
+    )
+
+  let idealRiseParsedFr =
+    props.topStair ? (
+      Math.round((((coordinates[11] - coordinates[7]) / ratio) - idealRunParsedIn) * 0.0625)
+    ):
+    (
+      Math.round((((coordinates[15] - coordinates[11]) / ratio) - idealRunParsedIn) * 0.0625)
+    )
+
+  let idealRiseParsedMM = 
+    props.topStair ? (
+      Math.round(Math.round((coordinates[11] - coordinates[7]) / ratio) * 25.4)
+    ):
+    (
+      Math.round(Math.round((coordinates[15] - coordinates[11]) / ratio) * 25.4)
+    )
 
 
   let riseCountValue = 
@@ -1135,13 +1269,13 @@ const Stair = props => {
     eHeadroomColor = "#5541EA";
   }
 
-  //Tread length errors
+  //Run length errors
   let withNosing = false;
   if (idealRun === 10 && props.nosingin === 0) {
     withNosing = true;
   }
   let eRunText = "";
-  if (idealRun < 11 && withNosing) {
+  if (idealRun < 10 && withNosing) {
     eRunText = 'Stair run is short';
     errors.push(eRunText);
   }
