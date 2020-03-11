@@ -1268,9 +1268,6 @@ const Stair = props => {
       Math.round(((coordinates[15] - coordinates[11]) / ratio) * 25.4)
     )
 
-  console.log(idealRiseParsedMM)
-
-
   let riseCountValue = 
       props.units ? (
         runCount + " rises at " + idealRiseParsedIn + '" ' + idealRiseParsedFr + "/16"
