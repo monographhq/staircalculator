@@ -51,8 +51,15 @@ $xl: 1140px;
 }
 
 .sidebar__section--first {
-  @media only screen and (max-width: $lg){
+  @media only screen and (max-width: $md){
     min-width: 75vw;
+    padding-top: 48px;
+    padding-right: 2.5rem;
+    padding-left: 0.5rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.8);
+  }
+  @media only screen and (min-width: $md) and (max-width: $lg){
+    min-width: 30vw;
     padding-top: 48px;
     padding-right: 2.5rem;
     padding-left: 0.5rem;
@@ -61,8 +68,15 @@ $xl: 1140px;
 }
 
 .sidebar__section--second, .sidebar__section--third, .sidebar__section--fourth {
-  @media only screen and (max-width: $lg){
+  @media only screen and (max-width: $md){
     min-width: 75vw;
+    padding-right: 2.5rem;
+    padding-left: 2.5rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.8);
+  }
+  @media only screen and (min-width: $md) and (max-width: $lg){
+    min-width: 50vw;
+    padding-top: 48px;
     padding-right: 2.5rem;
     padding-left: 2.5rem;
     border-right: 1px solid rgba(255, 255, 255, 0.8);
@@ -70,11 +84,18 @@ $xl: 1140px;
 }
 
 .sidebar__section--last {
-  @media only screen and (min-width: $lg){
+  @media only screen and (min-width: $md){
     padding-bottom: 4rem;
   }
-  @media only screen and (max-width: $lg){
+  @media only screen and (max-width: $md){
     min-width: 75vw;
+    padding-right: 2.5rem;
+    padding-left: 2.5rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.8);
+  }
+  @media only screen and (min-width: $md) and (max-width: $lg){
+    min-width: 50vw;
+    padding-top: 48px;
     padding-right: 2.5rem;
     padding-left: 2.5rem;
     border-right: 1px solid rgba(255, 255, 255, 0.8);
