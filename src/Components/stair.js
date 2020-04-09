@@ -263,10 +263,12 @@ const Stair = props => {
       parseFloat(props.floormm) / 25.4
     )
 
-  if (parseFloat(props.floormm) >= 152.4 && parseFloat(props.floormm) <= 608.0125){
-    floorThickness = parseFloat(props.floormm) / 25.4;
-  } else {
-    floorThickness = 177.8 / 25.4;
+  if (props.units === false){
+    if (parseFloat(props.floormm) >= 152.4 && parseFloat(props.floormm) <= 608.0125){
+      floorThickness = parseFloat(props.floormm) / 25.4;
+    } else {
+      floorThickness = 177.8 / 25.4;
+    }
   }
 
   let preStairAngle = props.stairAngle >=25 && props.stairAngle <= 45 ? props.stairAngle : 32.5;
@@ -604,15 +606,18 @@ const Stair = props => {
 
   //This is for the headroom part
   let headroomPts = [
-    coordinates[coordinates.length - 12] - idealRun * 3,
+    coordinates[coordinates.length - 12] - (idealRun * 3),
     floorThickness,
-    coordinates[coordinates.length - 12] - idealRun * 3,
+    coordinates[coordinates.length - 12] - (idealRun * 3),
     0,
-    coordinates[coordinates.length - 12] - idealRun + lengthH,
+    coordinates[coordinates.length - 12] - (idealRun + lengthH),
     0,
-    coordinates[coordinates.length - 12] - idealRun + lengthH,
+    coordinates[coordinates.length - 12] - (idealRun + lengthH),
     floorThickness
   ];
+
+  console.log(floorThickness);
+
   //This part removes the headroom if the stair is too short
   let headroomTrue = true;
   if (
