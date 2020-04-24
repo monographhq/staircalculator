@@ -2,27 +2,92 @@ $sm: 540px;
 $md: 720px;
 $lg: 960px;
 $xl: 1140px;
+$black: #001323;
+$cyan: #41ead4;
+$purple: #5541ea;
+$mono: "Sohne Mono Buch";
+$mono-bold: "Sohne Mono Halbfett";
 
-#container {
+body {
+  font-family: $mono, monospace;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  height: 5rem;
+  font-family: $mono;
+  border-bottom: 1px solid $black;
+  padding: 0 2.5rem;
+  a {
+    color: $black;
+    &:hover {
+      color: $black;
+    }
+  }
+}
+.nav-links {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  margin-left: 1rem;
+  list-style: none;
+}
+.nav-link a {
+  padding: 1rem;
+}
+.nav-cta {
+  margin-left: auto;
+  display: inline-block;
+  padding: 0.5em 1em;
+  border: 2px solid #5541ea;
+  border-radius: 0px;
+  background-color: transparent;
+  transition: color 200ms ease-out, background-color 200ms ease-out;
+  font-family: $mono-bold, monospace;
+  color: #5541ea !important;
+  text-decoration: none;
+}
+.subnav {
+  padding: 0.5rem 2rem;
+  background: $cyan;
+}
+.breadcrumbs {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  margin-top: -2px;
+  span {
+    padding: 0 0.5rem;
+  }
+}
+
+.app {
+  display: flex;
+  border-bottom: 4px solid $purple;
+}
+
+.aside {
+  background: $black;
+  padding: 0 2rem;
+  @media only screen and (min-width: $lg) {
+    flex: 0 0 15rem;
+  }
+}
+
+.main {
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
   overflow: hidden;
 }
 
-#sidebar {
-  background: #001223;
-  padding: 0 2rem;
-  @media only screen and (max-width: $lg){
-    display: flex;
-    flex-direction: row;
-    overflow: scroll;
-  }
-  @media only screen and (min-width: $lg){
-    overflow: auto;
-    height: 100vh;
-  }
-}
-
 .title {
-  font-family: "Sohne Mono Halbfett";
+  font-family: $mono-bold;
   font-style: normal;
   font-size: 20px;
   font-weight: 600;
@@ -31,7 +96,7 @@ $xl: 1140px;
 }
 
 .subtitle {
-  font-family: "Sohne Mono Buch";
+  font-family: $mono;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -43,7 +108,7 @@ $xl: 1140px;
 
 .sidebar__section {
   padding: 3rem 0 4rem 0;
-  @media only screen and (max-width: $lg){
+  @media only screen and (max-width: $lg) {
     padding-top: 3rem;
     padding-bottom: 4rem;
     max-height: 100vh;
@@ -51,14 +116,14 @@ $xl: 1140px;
 }
 
 .sidebar__section--first {
-  @media only screen and (max-width: $md){
+  @media only screen and (max-width: $md) {
     min-width: 75vw;
     padding-top: 48px;
     padding-right: 2.5rem;
     padding-left: 0.5rem;
     border-right: 1px solid rgba(255, 255, 255, 0.8);
   }
-  @media only screen and (min-width: $md) and (max-width: $lg){
+  @media only screen and (min-width: $md) and (max-width: $lg) {
     min-width: 30vw;
     padding-top: 48px;
     padding-right: 2.5rem;
@@ -67,14 +132,16 @@ $xl: 1140px;
   }
 }
 
-.sidebar__section--second, .sidebar__section--third, .sidebar__section--fourth {
-  @media only screen and (max-width: $md){
+.sidebar__section--second,
+.sidebar__section--third,
+.sidebar__section--fourth {
+  @media only screen and (max-width: $md) {
     min-width: 75vw;
     padding-right: 2.5rem;
     padding-left: 2.5rem;
     border-right: 1px solid rgba(255, 255, 255, 0.8);
   }
-  @media only screen and (min-width: $md) and (max-width: $lg){
+  @media only screen and (min-width: $md) and (max-width: $lg) {
     min-width: 40vw;
     padding-top: 48px;
     padding-right: 2.5rem;
@@ -84,16 +151,16 @@ $xl: 1140px;
 }
 
 .sidebar__section--last {
-  @media only screen and (min-width: $md){
+  @media only screen and (min-width: $md) {
     padding-bottom: 4rem;
   }
-  @media only screen and (max-width: $md){
+  @media only screen and (max-width: $md) {
     min-width: 75vw;
     padding-right: 2.5rem;
     padding-left: 2.5rem;
     border-right: 1px solid rgba(255, 255, 255, 0.8);
   }
-  @media only screen and (min-width: $md) and (max-width: $lg){
+  @media only screen and (min-width: $md) and (max-width: $lg) {
     min-width: 40vw;
     padding-top: 48px;
     padding-right: 2.5rem;
@@ -103,17 +170,17 @@ $xl: 1140px;
 }
 
 .sidebar__section--border {
-  @media only screen and (max-width: $lg){
+  @media only screen and (max-width: $lg) {
     display: none;
   }
-  @media only screen and (min-width: $lg){
+  @media only screen and (min-width: $lg) {
     border-top: 1px solid rgba(255, 255, 255, 0.8);
     margin: 0 -2rem;
   }
 }
 
 .sidebar__section--stairangle {
-  @media only screen and (max-width: $lg){
+  @media only screen and (max-width: $lg) {
     margin-top: 32px;
   }
 }
@@ -121,7 +188,7 @@ $xl: 1140px;
 /* These styles are for the toggles */
 .toggle-group {
   vertical-align: center;
-  font-family: "Sohne Mono Halbfett";
+  font-family: $mono-bold;
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
@@ -154,8 +221,9 @@ $xl: 1140px;
 }
 
 /*These styles are for the dropdown inputs*/
-.dropdown, .dropdown--red {
-  font-family: "Sohne Mono Halbfett";
+.dropdown,
+.dropdown--red {
+  font-family: $mono-bold, monospace;
   font-style: normal;
   font-weight: 600;
   font-size: 14px;

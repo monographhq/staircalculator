@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import "bootstrap/dist/css/bootstrap-reboot.css";
 import "./Styles/index.scss";
 import "./Styles/fonts.css";
 import App from "./App";
@@ -12,11 +13,11 @@ function initApp() {
 
 WebFont.load({
   custom: {
-    families: ["Sohne Mono Buch"]
+    families: ["Sohne Mono Buch"],
   },
   active: () => {
     initApp();
-  }
+  },
 });
 
 // If you want your app to work offline and load faster, you can change

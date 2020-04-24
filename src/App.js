@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import "bootstrap/dist/css/bootstrap.css";
-import "./Styles/App.css";
 import TotalRun from "./Components/inputs/totalrun";
 import TotalRise from "./Components/inputs/totalrise";
 import IdealRun from "./Components/inputs/idealrun";
@@ -37,7 +35,7 @@ class App extends Component {
 
     stringerin: 5,
     stringerfr: 0.0625 * 15,
-    stringermm: (5 + (0.0625 * 15)) * 25.4,
+    stringermm: (5 + 0.0625 * 15) * 25.4,
 
     floorft: 0,
     floorin: 7,
@@ -67,454 +65,450 @@ class App extends Component {
     dimensions: true,
     units: true,
     details: true,
-    topStair: true
+    topStair: true,
   };
 
   //Handlers for changing total run
-  changetotalRunft = event => {
+  changetotalRunft = (event) => {
     this.setState({
       totalRunft: event.target.value,
       runOn: true,
       stairToggle: false,
-      idealOn: false
+      idealOn: false,
     });
   };
-  changetotalRunin = event => {
+  changetotalRunin = (event) => {
     this.setState({
       totalRunin: event.target.value,
       runOn: true,
       stairToggle: false,
-      idealOn: false
+      idealOn: false,
     });
   };
-  changetotalRunfr = event => {
+  changetotalRunfr = (event) => {
     this.setState({
       totalRunfr: event.target.value,
       runOn: true,
       stairToggle: false,
-      idealOn: false
+      idealOn: false,
     });
   };
-  changetotalRunmm = event => {
+  changetotalRunmm = (event) => {
     this.setState({
       totalRunmm: event.target.value,
       runOn: true,
       stairToggle: false,
-      idealOn: false
-    })
-  }
-  
+      idealOn: false,
+    });
+  };
+
   //Handlers for changing total rise
-  changetotalRiseft = event => {
+  changetotalRiseft = (event) => {
     this.setState({
       totalRiseft: event.target.value,
       runOn: false,
       stairToggle: false,
-      idealOn: false
+      idealOn: false,
     });
   };
-  changetotalRisein = event => {
+  changetotalRisein = (event) => {
     this.setState({
       totalRisein: event.target.value,
       runOn: false,
       stairToggle: false,
-      idealOn: false
+      idealOn: false,
     });
   };
-  changetotalRisefr = event => {
+  changetotalRisefr = (event) => {
     this.setState({
       totalRisefr: event.target.value,
       runOn: false,
       stairToggle: false,
-      idealOn: false
+      idealOn: false,
     });
   };
-  changetotalRisemm = event => {
+  changetotalRisemm = (event) => {
     this.setState({
       totalRisemm: event.target.value,
       runOn: false,
       stairToggle: false,
-      idealOn: false
+      idealOn: false,
     });
   };
 
   //Handlers for changing ideal run
-  changeidealRunin = event => {
+  changeidealRunin = (event) => {
     this.setState({
       idealRunin: event.target.value,
       stairToggle: false,
-      idealOn: true
+      idealOn: true,
     });
   };
-  changeidealRunfr = event => {
+  changeidealRunfr = (event) => {
     this.setState({
       idealRunfr: event.target.value,
       stairToggle: false,
-      idealOn: true
+      idealOn: true,
     });
   };
-  changeidealRunmm = event => {
+  changeidealRunmm = (event) => {
     this.setState({
       idealRunmm: event.target.value,
       stairToggle: false,
-      idealOn: true
+      idealOn: true,
     });
   };
 
   //Handlers for changing ideal rise
-  changeidealRisein = event => {
+  changeidealRisein = (event) => {
     this.setState({
       idealRisein: event.target.value,
       stairToggle: false,
-      idealOn: true
+      idealOn: true,
     });
   };
-  changeidealRisefr = event => {
+  changeidealRisefr = (event) => {
     this.setState({
       idealRisefr: event.target.value,
       stairToggle: false,
-      idealOn: true
+      idealOn: true,
     });
   };
-  changeidealRisemm = event => {
+  changeidealRisemm = (event) => {
     this.setState({
       idealRisemm: event.target.value,
       stairToggle: false,
-      idealOn: true
+      idealOn: true,
     });
   };
 
   //Handlers for changing stringer
-  changestringerin = event => {
+  changestringerin = (event) => {
     this.setState({ stringerin: event.target.value });
   };
 
-  changestringerfr = event => {
+  changestringerfr = (event) => {
     this.setState({ stringerfr: event.target.value });
   };
-  changestringermm = event => {
+  changestringermm = (event) => {
     this.setState({ stringermm: event.target.value });
   };
 
   //Handlers for changing floor thickness
-  changefloorft = event => {
+  changefloorft = (event) => {
     this.setState({ floorft: event.target.value });
   };
 
-  changefloorin = event => {
+  changefloorin = (event) => {
     this.setState({ floorin: event.target.value });
   };
 
-  changefloorfr = event => {
+  changefloorfr = (event) => {
     this.setState({ floorfr: event.target.value });
   };
-  changefloormm = event => {
+  changefloormm = (event) => {
     this.setState({ floormm: event.target.value });
   };
 
   //Handlers for headroom
-  changeheadroomlength = event => {
+  changeheadroomlength = (event) => {
     this.setState({
-      headroomLength: event.target.value
+      headroomLength: event.target.value,
     });
   };
 
   //Handlers for tread
-  changetreadin = event => {
+  changetreadin = (event) => {
     this.setState({
-      treadin: event.target.value
+      treadin: event.target.value,
     });
   };
-  changetreadfr = event => {
+  changetreadfr = (event) => {
     this.setState({
-      treadfr: event.target.value
+      treadfr: event.target.value,
     });
   };
-  changetreadmm = event => {
+  changetreadmm = (event) => {
     this.setState({
-      treadmm: event.target.value
+      treadmm: event.target.value,
     });
   };
 
   //Handlers for riser
-  changeriserin = event => {
+  changeriserin = (event) => {
     this.setState({
-      riserin: event.target.value
+      riserin: event.target.value,
     });
   };
-  changeriserfr = event => {
+  changeriserfr = (event) => {
     this.setState({
-      riserfr: event.target.value
+      riserfr: event.target.value,
     });
   };
-  changerisermm = event => {
+  changerisermm = (event) => {
     this.setState({
-      risermm: event.target.value
+      risermm: event.target.value,
     });
   };
 
   //Handlers for nosing
-  changenosingin = event => {
+  changenosingin = (event) => {
     this.setState({
-      nosingin: event.target.value
+      nosingin: event.target.value,
     });
   };
-  changenosingfr = event => {
+  changenosingfr = (event) => {
     this.setState({
-      nosingfr: event.target.value
+      nosingfr: event.target.value,
     });
   };
-  changenosingmm = event => {
+  changenosingmm = (event) => {
     this.setState({
-      nosingmm: event.target.value
+      nosingmm: event.target.value,
     });
   };
 
   //Handlers for toggles
   changeUnitsIn = () => {
     this.setState({
-      units: true
+      units: true,
     });
   };
   changeUnitsMM = () => {
     this.setState({
-      units: false
+      units: false,
     });
   };
   changeDimensionsOn = () => {
     this.setState({
-      dimensions: true
+      dimensions: true,
     });
   };
   changeDimensionsOff = () => {
     this.setState({
-      dimensions: false
+      dimensions: false,
     });
   };
   changeDetailsOn = () => {
     this.setState({
-      details: true
+      details: true,
     });
   };
   changeDetailsOff = () => {
     this.setState({
-      details: false
+      details: false,
     });
   };
   changeTopStairOn = () => {
     this.setState({
-      topStair: true
-    })
-  }
+      topStair: true,
+    });
+  };
   changeTopStairOff = () => {
     this.setState({
-      topStair: false
-    })
-  }
-
+      topStair: false,
+    });
+  };
 
   //Handler for stair angle
-  changeStairAngle = event => {
+  changeStairAngle = (event) => {
     this.setState({
       stairToggle: true,
-      stairAngle: event.target.value
+      stairAngle: event.target.value,
     });
   };
 
   render() {
     return (
-      <div className="container-fluid">
-        <div className="row">
-          <div id="sidebar" className="col-12 col-lg-2">
-            <div className="sidebar__section sidebar__section--first">
-              <div className="title">Toggles</div>
-              <Units
-                units={this.state.units}
-                changeUnitsIn={this.changeUnitsIn}
-                changeUnitsMM={this.changeUnitsMM}
-              />
-              <Dimensions
-                dimensions={this.state.dimensions}
-                changeDimensionsOn={this.changeDimensionsOn}
-                changeDimensionsOff={this.changeDimensionsOff}
-              />
-              <DetailsToggle
-                details={this.state.details}
-                changeDetailsOn={this.changeDetailsOn}
-                changeDetailsOff={this.changeDetailsOff}
-              />
-              <TopStair
-                topStair={this.state.topStair}
-                changeTopStairOn={this.changeTopStairOn}
-                changeTopStairOff={this.changeTopStairOff}
-              />
-            </div>
-
-            <div className="sidebar__section--border"></div>
-
-            <div className="sidebar__section sidebar__section--second">
-              <div className="title">Rise-run</div>
-              <TotalRun
-                totalRunft={this.state.totalRunft}
-                totalRunin={this.state.totalRunin}
-                totalRunfr={this.state.totalRunfr}
-                totalRunmm={this.state.totalRunmm}
-                changetotalRunft={this.changetotalRunft}
-                changetotalRunin={this.changetotalRunin}
-                changetotalRunfr={this.changetotalRunfr}
-                changetotalRunmm={this.changetotalRunmm}
-                changetotalRunSwitchOn={this.changetotalRunSwitchOn}
-                changetotalRunSwitchOff={this.changetotalRunSwitchOff}
-                units={this.state.units}
-              />
-              <TotalRise
-                totalRiseft={this.state.totalRiseft}
-                totalRisein={this.state.totalRisein}
-                totalRisefr={this.state.totalRisefr}
-                totalRisemm={this.state.totalRisemm}
-                changetotalRiseft={this.changetotalRiseft}
-                changetotalRisein={this.changetotalRisein}
-                changetotalRisefr={this.changetotalRisefr}
-                changetotalRisemm={this.changetotalRisemm}
-                units={this.state.units}
-                topStair={this.state.topStair}
-              />
-              <IdealRun
-                idealRunin={this.state.idealRunin}
-                idealRunfr={this.state.idealRunfr}
-                idealRunmm={this.state.idealRunmm}
-                changeidealRunin={this.changeidealRunin}
-                changeidealRunfr={this.changeidealRunfr}
-                changeidealRunmm={this.changeidealRunmm}
-                units={this.state.units}
-              />
-              <IdealRise
-                idealRisein={this.state.idealRisein}
-                idealRisefr={this.state.idealRisefr}
-                idealRisemm={this.state.idealRisemm}
-                changeidealRisein={this.changeidealRisein}
-                changeidealRisefr={this.changeidealRisefr}
-                changeidealRisemm={this.changeidealRisemm}
-                units={this.state.units}
-              />
-            </div>
-
-            <div className="sidebar__section--border"></div>
-
-            <Details
-              treadin={this.state.treadin}
-              treadfr={this.state.treadfr}
-              treadmm={this.state.treadmm}
-              riserin={this.state.riserin}
-              riserfr={this.state.riserfr}
-              risermm={this.state.risermm}
-              nosingin={this.state.nosingin}
-              nosingfr={this.state.nosingfr}
-              nosingmm={this.state.nosingmm}
-              changetreadin={this.changetreadin}
-              changetreadfr={this.changetreadfr}
-              changetreadmm={this.changetreadmm}
-              changeriserin={this.changeriserin}
-              changeriserfr={this.changeriserfr}
-              changerisermm={this.changerisermm}
-              changenosingin={this.changenosingin}
-              changenosingfr={this.changenosingfr}
-              changenosingmm={this.changenosingmm}
-              changestringerin={this.changestringerin}
-              changestringerfr={this.changestringerfr}
-              changestringermm={this.changestringermm}
-              stringerin={this.state.stringerin}
-              stringerfr={this.state.stringerfr}
-              stringermm={this.state.stringermm}
-              details={this.state.details}
+      <div className="app">
+        <aside id="sidebar" className="aside">
+          <div className="sidebar__section sidebar__section--first">
+            <div className="title">Toggles</div>
+            <Units
               units={this.state.units}
+              changeUnitsIn={this.changeUnitsIn}
+              changeUnitsMM={this.changeUnitsMM}
             />
-
-            <div className="sidebar__section--border"></div>
-
-            <div className="sidebar__section sidebar__section--fourth">
-              <div className="title">Headroom</div>
-              <Height
-                totalRunft={this.state.totalRunft}
-                totalRunin={this.state.totalRunin}
-                totalRunfr={this.state.totalRunfr}
-                totalRunmm={this.state.totalRunmm}
-                headroomLength={this.state.headroomLength}
-                changeheadroomlength={this.changeheadroomlength}
-                units={this.state.units}
-              />
-              <FloorThickness
-                floorft={this.state.floorft}
-                floorin={this.state.floorin}
-                floorfr={this.state.floorfr}
-                floormm={this.state.floormm}
-                changefloorft={this.changefloorft}
-                changefloorin={this.changefloorin}
-                changefloorfr={this.changefloorfr}
-                changefloormm={this.changefloormm}
-                units={this.state.units}
-              />
-            </div>
-
-            <div className="sidebar__section--border"></div>
-
-            <StairAngle
-              idealRunin={this.state.idealRunin}
-              idealRunfr={this.state.idealRunfr}
-              idealRisein={this.state.idealRisein}
-              idealRisefr={this.state.idealRisefr}
-              changeStairAngle={this.changeStairAngle}
-              stairAngle={this.state.stairAngle}
+            <Dimensions
+              dimensions={this.state.dimensions}
+              changeDimensionsOn={this.changeDimensionsOn}
+              changeDimensionsOff={this.changeDimensionsOff}
+            />
+            <DetailsToggle
+              details={this.state.details}
+              changeDetailsOn={this.changeDetailsOn}
+              changeDetailsOff={this.changeDetailsOff}
+            />
+            <TopStair
+              topStair={this.state.topStair}
+              changeTopStairOn={this.changeTopStairOn}
+              changeTopStairOff={this.changeTopStairOff}
             />
           </div>
 
-          <div id="container" className="col-12 col-lg-10">
-            <Stair
-              units={this.state.units}
+          <div className="sidebar__section--border" />
+
+          <div className="sidebar__section sidebar__section--second">
+            <div className="title">Rise-run</div>
+            <TotalRun
               totalRunft={this.state.totalRunft}
               totalRunin={this.state.totalRunin}
               totalRunfr={this.state.totalRunfr}
               totalRunmm={this.state.totalRunmm}
+              changetotalRunft={this.changetotalRunft}
+              changetotalRunin={this.changetotalRunin}
+              changetotalRunfr={this.changetotalRunfr}
+              changetotalRunmm={this.changetotalRunmm}
+              changetotalRunSwitchOn={this.changetotalRunSwitchOn}
+              changetotalRunSwitchOff={this.changetotalRunSwitchOff}
+              units={this.state.units}
+            />
+            <TotalRise
               totalRiseft={this.state.totalRiseft}
               totalRisein={this.state.totalRisein}
               totalRisefr={this.state.totalRisefr}
               totalRisemm={this.state.totalRisemm}
+              changetotalRiseft={this.changetotalRiseft}
+              changetotalRisein={this.changetotalRisein}
+              changetotalRisefr={this.changetotalRisefr}
+              changetotalRisemm={this.changetotalRisemm}
+              units={this.state.units}
+              topStair={this.state.topStair}
+            />
+            <IdealRun
               idealRunin={this.state.idealRunin}
               idealRunfr={this.state.idealRunfr}
               idealRunmm={this.state.idealRunmm}
+              changeidealRunin={this.changeidealRunin}
+              changeidealRunfr={this.changeidealRunfr}
+              changeidealRunmm={this.changeidealRunmm}
+              units={this.state.units}
+            />
+            <IdealRise
               idealRisein={this.state.idealRisein}
               idealRisefr={this.state.idealRisefr}
               idealRisemm={this.state.idealRisemm}
-              totalBoolean={this.state.runOn}
-              runCount={this.state.runCount}
-              riseCount={this.state.riseCount}
-              stringerin={this.state.stringerin}
-              stringerfr={this.state.stringerfr}
-              stringermm={this.state.stringermm}
+              changeidealRisein={this.changeidealRisein}
+              changeidealRisefr={this.changeidealRisefr}
+              changeidealRisemm={this.changeidealRisemm}
+              units={this.state.units}
+            />
+          </div>
+
+          <div className="sidebar__section--border" />
+
+          <Details
+            treadin={this.state.treadin}
+            treadfr={this.state.treadfr}
+            treadmm={this.state.treadmm}
+            riserin={this.state.riserin}
+            riserfr={this.state.riserfr}
+            risermm={this.state.risermm}
+            nosingin={this.state.nosingin}
+            nosingfr={this.state.nosingfr}
+            nosingmm={this.state.nosingmm}
+            changetreadin={this.changetreadin}
+            changetreadfr={this.changetreadfr}
+            changetreadmm={this.changetreadmm}
+            changeriserin={this.changeriserin}
+            changeriserfr={this.changeriserfr}
+            changerisermm={this.changerisermm}
+            changenosingin={this.changenosingin}
+            changenosingfr={this.changenosingfr}
+            changenosingmm={this.changenosingmm}
+            changestringerin={this.changestringerin}
+            changestringerfr={this.changestringerfr}
+            changestringermm={this.changestringermm}
+            stringerin={this.state.stringerin}
+            stringerfr={this.state.stringerfr}
+            stringermm={this.state.stringermm}
+            details={this.state.details}
+            units={this.state.units}
+          />
+
+          <div className="sidebar__section--border" />
+
+          <div className="sidebar__section sidebar__section--fourth">
+            <div className="title">Headroom</div>
+            <Height
+              totalRunft={this.state.totalRunft}
+              totalRunin={this.state.totalRunin}
+              totalRunfr={this.state.totalRunfr}
+              totalRunmm={this.state.totalRunmm}
+              headroomLength={this.state.headroomLength}
+              changeheadroomlength={this.changeheadroomlength}
+              units={this.state.units}
+            />
+            <FloorThickness
               floorft={this.state.floorft}
               floorin={this.state.floorin}
               floorfr={this.state.floorfr}
               floormm={this.state.floormm}
-              headroomLength={this.state.headroomLength}
-              headroomDelta={this.state.headroomDelta}
-              treadin={this.state.treadin}
-              treadfr={this.state.treadfr}
-              treadmm={this.state.treadmm}
-              riserin={this.state.riserin}
-              riserfr={this.state.riserfr}
-              risermm={this.state.risermm}
-              nosingin={this.state.nosingin}
-              nosingfr={this.state.nosingfr}
-              nosingmm={this.state.nosingmm}
-              details={this.state.details}
-              dimensions={this.state.dimensions}
-              stairAngle={this.state.stairAngle}
-              stairToggle={this.state.stairToggle}
-              idealBoolean={this.state.idealOn}
-              topStair={this.state.topStair}
+              changefloorft={this.changefloorft}
+              changefloorin={this.changefloorin}
+              changefloorfr={this.changefloorfr}
+              changefloormm={this.changefloormm}
+              units={this.state.units}
             />
           </div>
-        </div>
+
+          <div className="sidebar__section--border" />
+
+          <StairAngle
+            idealRunin={this.state.idealRunin}
+            idealRunfr={this.state.idealRunfr}
+            idealRisein={this.state.idealRisein}
+            idealRisefr={this.state.idealRisefr}
+            changeStairAngle={this.changeStairAngle}
+            stairAngle={this.state.stairAngle}
+          />
+        </aside>
+        <main id="container" className="main">
+          <Stair
+            units={this.state.units}
+            totalRunft={this.state.totalRunft}
+            totalRunin={this.state.totalRunin}
+            totalRunfr={this.state.totalRunfr}
+            totalRunmm={this.state.totalRunmm}
+            totalRiseft={this.state.totalRiseft}
+            totalRisein={this.state.totalRisein}
+            totalRisefr={this.state.totalRisefr}
+            totalRisemm={this.state.totalRisemm}
+            idealRunin={this.state.idealRunin}
+            idealRunfr={this.state.idealRunfr}
+            idealRunmm={this.state.idealRunmm}
+            idealRisein={this.state.idealRisein}
+            idealRisefr={this.state.idealRisefr}
+            idealRisemm={this.state.idealRisemm}
+            totalBoolean={this.state.runOn}
+            runCount={this.state.runCount}
+            riseCount={this.state.riseCount}
+            stringerin={this.state.stringerin}
+            stringerfr={this.state.stringerfr}
+            stringermm={this.state.stringermm}
+            floorft={this.state.floorft}
+            floorin={this.state.floorin}
+            floorfr={this.state.floorfr}
+            floormm={this.state.floormm}
+            headroomLength={this.state.headroomLength}
+            headroomDelta={this.state.headroomDelta}
+            treadin={this.state.treadin}
+            treadfr={this.state.treadfr}
+            treadmm={this.state.treadmm}
+            riserin={this.state.riserin}
+            riserfr={this.state.riserfr}
+            risermm={this.state.risermm}
+            nosingin={this.state.nosingin}
+            nosingfr={this.state.nosingfr}
+            nosingmm={this.state.nosingmm}
+            details={this.state.details}
+            dimensions={this.state.dimensions}
+            stairAngle={this.state.stairAngle}
+            stairToggle={this.state.stairToggle}
+            idealBoolean={this.state.idealOn}
+            topStair={this.state.topStair}
+          />
+        </main>
       </div>
     );
   }
