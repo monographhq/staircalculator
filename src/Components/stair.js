@@ -484,8 +484,6 @@ const Stair = (props) => {
     floorThickness,
   ];
 
-  console.log(floorThickness);
-
   //This part removes the headroom if the stair is too short
   let headroomTrue = true;
   if (

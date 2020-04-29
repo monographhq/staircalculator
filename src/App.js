@@ -15,6 +15,8 @@ import DetailsToggle from "./Components/inputs/detailsToggle";
 
 class App extends Component {
   state = {
+    aside: false,
+
     totalRunft: 12 * 12,
     totalRunin: 0,
     totalRunfr: 0,
@@ -66,6 +68,10 @@ class App extends Component {
     units: true,
     details: true,
     topStair: true,
+  };
+
+  toggleAside = () => {
+    this.setState({ aside: !this.state.aside });
   };
 
   //Handlers for changing total run
@@ -321,30 +327,48 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <aside id="sidebar" className="aside">
+        <aside
+          id="sidebar"
+          className={`aside ${this.state.aside ? "is-active" : ""}`}
+        >
+          <button className="aside-button" onClick={this.toggleAside}>
+            Close
+          </button>
           <div className="sidebar__section sidebar__section--first">
-            <div className="title">Toggles</div>
             <Units
               units={this.state.units}
               changeUnitsIn={this.changeUnitsIn}
               changeUnitsMM={this.changeUnitsMM}
             />
-            <Dimensions
-              dimensions={this.state.dimensions}
-              changeDimensionsOn={this.changeDimensionsOn}
-              changeDimensionsOff={this.changeDimensionsOff}
-            />
-            <DetailsToggle
-              details={this.state.details}
-              changeDetailsOn={this.changeDetailsOn}
-              changeDetailsOff={this.changeDetailsOff}
-            />
-            <TopStair
-              topStair={this.state.topStair}
-              changeTopStairOn={this.changeTopStairOn}
-              changeTopStairOff={this.changeTopStairOff}
-            />
+            <div className="sidebar__group">
+              <Dimensions
+                dimensions={this.state.dimensions}
+                changeDimensionsOn={this.changeDimensionsOn}
+                changeDimensionsOff={this.changeDimensionsOff}
+              />
+              <TopStair
+                topStair={this.state.topStair}
+                changeTopStairOn={this.changeTopStairOn}
+                changeTopStairOff={this.changeTopStairOff}
+              />
+              <DetailsToggle
+                details={this.state.details}
+                changeDetailsOn={this.changeDetailsOn}
+                changeDetailsOff={this.changeDetailsOff}
+              />
+            </div>
           </div>
+
+          <div className="sidebar__section--border" />
+
+          <StairAngle
+            idealRunin={this.state.idealRunin}
+            idealRunfr={this.state.idealRunfr}
+            idealRisein={this.state.idealRisein}
+            idealRisefr={this.state.idealRisefr}
+            changeStairAngle={this.changeStairAngle}
+            stairAngle={this.state.stairAngle}
+          />
 
           <div className="sidebar__section--border" />
 
@@ -451,19 +475,11 @@ class App extends Component {
               units={this.state.units}
             />
           </div>
-
-          <div className="sidebar__section--border" />
-
-          <StairAngle
-            idealRunin={this.state.idealRunin}
-            idealRunfr={this.state.idealRunfr}
-            idealRisein={this.state.idealRisein}
-            idealRisefr={this.state.idealRisefr}
-            changeStairAngle={this.changeStairAngle}
-            stairAngle={this.state.stairAngle}
-          />
         </aside>
         <main id="container" className="main">
+          <button className="aside-button" onClick={this.toggleAside}>
+            View Options
+          </button>
           <Stair
             units={this.state.units}
             totalRunft={this.state.totalRunft}

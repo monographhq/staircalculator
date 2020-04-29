@@ -12,13 +12,20 @@ body {
   font-family: $mono, monospace;
 }
 
+button:focus {
+  outline: 1px dotted;
+}
+label {
+  display: block;
+}
+
 .nav {
   display: flex;
   align-items: center;
   height: 5rem;
   font-family: $mono;
   border-bottom: 1px solid $black;
-  padding: 0 2.5rem;
+  padding: 0 2rem;
   a {
     color: $black;
     &:hover {
@@ -40,12 +47,12 @@ body {
   margin-left: auto;
   display: inline-block;
   padding: 0.5em 1em;
-  border: 2px solid #5541ea;
+  border: 2px solid $purple;
   border-radius: 0px;
   background-color: transparent;
   transition: color 200ms ease-out, background-color 200ms ease-out;
   font-family: $mono-bold, monospace;
-  color: #5541ea !important;
+  color: $purple !important;
   text-decoration: none;
 }
 .subnav {
@@ -72,11 +79,35 @@ body {
 }
 
 .aside {
+  position: absolute;
+  z-index: 1;
   background: $black;
-  padding: 0 2rem;
-  @media only screen and (min-width: $lg) {
-    flex: 0 0 15rem;
+  transform: translateX(-100%);
+  padding: 0 1rem;
+  transition: transform 250ms ease-out;
+  &.is-active {
+    transform: translateX(0);
   }
+  @media only screen and (min-width: $lg) {
+    position: relative;
+    flex: 0 0 16rem;
+    padding: 0 2rem;
+    transform: none;
+  }
+}
+.aside-button {
+  display: inline-block;
+  margin: 1rem;
+  padding: 0.5em 1em;
+  border: 2px solid $purple;
+  border-radius: 0px;
+  background-color: transparent;
+  transition: color 200ms ease-out, background-color 200ms ease-out;
+  font-family: $mono-bold, monospace;
+  color: $purple !important;
+}
+.aside .aside-button {
+  margin: 1rem 0;
 }
 
 .main {
@@ -103,85 +134,28 @@ body {
   line-height: 135%;
   letter-spacing: 0.05em;
   color: white;
-  margin: 2rem 0 1rem 0;
+  margin: 1rem 0 1rem 0;
+}
+.subtitle--sm {
+  font-size: 10px;
+  letter-spacing: 0.05rem;
+  text-transform: uppercase;
+  margin: 1rem 0 0.5rem 0;
 }
 
 .sidebar__section {
-  padding: 3rem 0 4rem 0;
-  @media only screen and (max-width: $lg) {
-    padding-top: 3rem;
-    padding-bottom: 4rem;
-    max-height: 100vh;
-  }
-}
-
-.sidebar__section--first {
-  @media only screen and (max-width: $md) {
-    min-width: 75vw;
-    padding-top: 48px;
-    padding-right: 2.5rem;
-    padding-left: 0.5rem;
-    border-right: 1px solid rgba(255, 255, 255, 0.8);
-  }
-  @media only screen and (min-width: $md) and (max-width: $lg) {
-    min-width: 30vw;
-    padding-top: 48px;
-    padding-right: 2.5rem;
-    padding-left: 0.5rem;
-    border-right: 1px solid rgba(255, 255, 255, 0.8);
-  }
-}
-
-.sidebar__section--second,
-.sidebar__section--third,
-.sidebar__section--fourth {
-  @media only screen and (max-width: $md) {
-    min-width: 75vw;
-    padding-right: 2.5rem;
-    padding-left: 2.5rem;
-    border-right: 1px solid rgba(255, 255, 255, 0.8);
-  }
-  @media only screen and (min-width: $md) and (max-width: $lg) {
-    min-width: 40vw;
-    padding-top: 48px;
-    padding-right: 2.5rem;
-    padding-left: 2.5rem;
-    border-right: 1px solid rgba(255, 255, 255, 0.8);
-  }
-}
-
-.sidebar__section--last {
-  @media only screen and (min-width: $md) {
-    padding-bottom: 4rem;
-  }
-  @media only screen and (max-width: $md) {
-    min-width: 75vw;
-    padding-right: 2.5rem;
-    padding-left: 2.5rem;
-    border-right: 1px solid rgba(255, 255, 255, 0.8);
-  }
-  @media only screen and (min-width: $md) and (max-width: $lg) {
-    min-width: 40vw;
-    padding-top: 48px;
-    padding-right: 2.5rem;
-    padding-left: 2.5rem;
-    border-right: 1px solid rgba(255, 255, 255, 0.8);
-  }
-}
-
-.sidebar__section--border {
-  @media only screen and (max-width: $lg) {
-    display: none;
-  }
+  padding: 1rem 0;
   @media only screen and (min-width: $lg) {
-    border-top: 1px solid rgba(255, 255, 255, 0.8);
-    margin: 0 -2rem;
+    padding: 2rem 0;
   }
 }
 
-.sidebar__section--stairangle {
-  @media only screen and (max-width: $lg) {
-    margin-top: 32px;
+.sidebar__group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  > div {
+    flex: 0 0 45%;
   }
 }
 
@@ -197,22 +171,25 @@ body {
 .toggle {
   text-align: center;
   display: inline-block;
+  border: 1px solid $cyan;
   width: 49.5%;
   height: 45px;
-}
-
-.toggle--inactive {
   box-sizing: border-box;
   background: none;
   border: 1px solid rgba(255, 255, 255, 0.5);
   color: rgba(255, 255, 255, 0.5);
 }
+.toggle--sm {
+  height: 24px;
+  width: 50%;
+  font-size: 12px;
+}
 
 .toggle--active {
   box-sizing: border-box;
-  background: rgba(65, 234, 212, 0.82);
+  background: $cyan;
   color: rgba(255, 255, 255, 1);
-  border: rgba(65, 234, 212, 0.82);
+  border: 1px solid $cyan;
 }
 
 .disabled {
@@ -228,7 +205,7 @@ body {
   font-weight: 600;
   font-size: 14px;
   line-height: 18px;
-  border-radius: 3px;
+  border-radius: 1px;
   padding: 10px 8px;
   background: white;
   height: 45px;
@@ -243,11 +220,13 @@ body {
 }
 
 .dropdown:focus {
-  border: 3px solid #40ead3;
+  box-shadow: 0 0 1px 2px #40ead3;
+  outline: none;
 }
 
 .dropdown--red {
-  border: 3px solid red;
+  box-shadow: 0 0 1px 2px red;
+  outline: none;
 }
 
 .dropdown__mm {
@@ -256,18 +235,23 @@ body {
 
 .dropdown__feet,
 .dropdown__inch {
+  box-sizing: border-box;
   margin-right: 6px;
-  width: 28%;
+  flex: 0 0 30%;
+  width: 30%;
   background-image: url("../images/dropdown-arrow.svg");
   background-repeat: no-repeat;
   background-position: 90% center;
 }
 
 .dropdown__fraction {
-  width: 42%;
+  box-sizing: border-box;
+  flex: 1 1 40%;
+  width: 32%;
   background-image: url("../images/dropdown-arrow.svg");
   background-repeat: no-repeat;
   background-position: 90% center;
+  background-color: rgba(255, 255, 255, 0.4);
 }
 
 .dropdown:hover {
@@ -341,4 +325,24 @@ body {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+.content {
+  padding: 4rem 0;
+  max-width: 50rem;
+  margin: 0 auto;
+  font-family: "Söhne Buch";
+  font-size: 20px;
+  h1 {
+    font-family: "Pilat";
+  }
+  dt {
+    font-family: "Söhne Halbfett";
+  }
+  a {
+    color: $purple;
+    &:hover {
+      color: $purple;
+    }
+  }
 }
