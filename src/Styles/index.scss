@@ -105,6 +105,9 @@ label {
   transition: color 200ms ease-out, background-color 200ms ease-out;
   font-family: $mono-bold, monospace;
   color: $purple !important;
+  @media only screen and (min-width: $lg) {
+    display: none;
+  }
 }
 .aside .aside-button {
   margin: 1rem 0;
@@ -328,11 +331,11 @@ label {
 }
 
 .content {
-  padding: 4rem 0;
+  padding: 2rem 0 4rem;
   max-width: 50rem;
-  margin: 0 auto;
+  margin: 0 1rem;
   font-family: "Söhne Buch";
-  font-size: 20px;
+  font-size: 1rem;
   h1 {
     font-family: "Pilat";
   }
@@ -344,5 +347,10 @@ label {
     &:hover {
       color: $purple;
     }
+  }
+  @media only screen and (min-width: $lg) {
+    font-size: 1.25rem;
+    margin: 0 auto;
+    padding: 4rem 0;
   }
 }
