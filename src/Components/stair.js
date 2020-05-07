@@ -474,13 +474,13 @@ const Stair = (props) => {
 
   //This is for the headroom part
   let headroomPts = [
-    coordinates[coordinates.length - 12] - idealRun * 3,
+    coordinates[coordinates.length - 12] - (idealRun * 3),
     floorThickness,
-    coordinates[coordinates.length - 12] - idealRun * 3,
+    coordinates[coordinates.length - 12] - (idealRun * 3),
     0,
-    coordinates[coordinates.length - 12] - (idealRun + lengthH),
+    coordinates[coordinates.length - 12] - idealRun + lengthH,
     0,
-    coordinates[coordinates.length - 12] - (idealRun + lengthH),
+    coordinates[coordinates.length - 12] - idealRun + lengthH,
     floorThickness,
   ];
 
