@@ -3,17 +3,7 @@ import { Stage, Layer, Line, Rect, Text } from "react-konva";
 import "../Styles/fonts.css";
 
 const Stair = (props) => {
-  const smMax = window.matchMedia("(max-width: 540px)");
-  const smMin = window.matchMedia("(min-width: 540px)");
-
-  const mdMax = window.matchMedia("(max-width: 720px)");
-  const mdMin = window.matchMedia("(min-width: 720px)");
-
-  const lgMax = window.matchMedia("(max-width: 960px)");
   const lgMin = window.matchMedia("(min-width: 960px)");
-
-  const xlMax = window.matchMedia("(max-width: 1140px)");
-  const xlMin = window.matchMedia("(min-width: 1140px)");
 
   let totalRun = props.units
     ? parseInt(props.totalRunft) === 12
